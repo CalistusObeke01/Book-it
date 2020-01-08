@@ -1,24 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../images/logo.png';
 import '../App.css';
-// import { FaAlignRight, FaTimes } from 'react-icons/fa';
+import { FaAlignRight, FaTimes } from 'react-icons/fa';
 
 function Header() {
+    const [isOpen, setIsOpen] = useState(false)
+
     return(
         <>
-            <nav className="navbar">
-                <div className="nav-center">
-                    <div className="nav-header">
-                        <Link to="/">
-                            <img src={Logo} alt="Book it" width="100" />
-                        </Link>
-
-                        <button type="button">
-                            
-                        </button>
-                    </div>
-
+            <header id="navbar">
+                <div className="logo"> 
+                    <Link to="/">
+                        <img src={Logo} alt="Book it" width="100" />
+                    </Link>
+                </div>
+                <nav className={isOpen ? "show-nav" : "disapper-nav"}>
                     <ul>
                         <li>
                             <Link to="/pricing">
@@ -26,9 +23,9 @@ function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/features">
+                            <a href="/#features">
                                 Features
-                            </Link>
+                            </a>
                         </li>
                         <li>
                             <Link to="/contact">
@@ -36,13 +33,17 @@ function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/signin">
+                            <Link to="/signin" id="signIn">
                                 Sign In
                             </Link>
                         </li>
                     </ul>
-                </div>
-            </nav>
+                </nav>
+                <button type="button" className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
+                    {isOpen ? <FaTimes className="nav-icon" /> : <FaAlignRight className="nav-icon" />}
+                </button>
+            </header>
+
         </>
     )
 }

@@ -1,41 +1,267 @@
 :root {
   --primaryColor: #336DF7;
-  /* --mainWhite: #fff; */
-  /* --offWhite: #f7f7f7;
-  --mainBlack: #222;
+  --mainWhite: #fff;
+  --offWhite: #f1f1f1;
+  --darkRed: #C82121;
+  --mainGray: #EBEEF4;
+  /* --mainBlack: #222;
   --mainGrey: #ececec;
-  --darkGrey: #cfcfcf; */
+  --darkGrey: #cfcfcf; 
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
-  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5); */
+}
+body {
+    margin: 0;
+    padding: 0;
 }
 
-.navbar {
+#navbar {
     position: fixed;
+    width: 100%;
     top: 0;
     left: 0;
-    width: 100%;
-    padding: 0.75rem 2rem;
+    padding: 1rem 4rem;
     background: var(--primaryColor);
+    box-sizing: border-box;
     z-index: 1;
 }
 
-.navbar .nav-center {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+#navbar .logo {
+    height: 50px;
+    line-height: 50px;
+    float: left;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+ 
+#navbar nav {
+    float: right;
+}
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+#navbar nav ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+#navbar nav ul li {
+    list-style: none;
+}
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+#navbar nav ul li a {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 24px;
+    text-decoration: none;
+    color: var(--mainWhite);
+    display: block;
+}
+
+#navbar nav ul li a:hover  {
+    border-bottom: 2px solid var(--mainWhite);
+    padding-bottom: 0;
+    width: 80%;
+}
+
+
+.menu-toggle {
+    color: var(--mainWhite);
+    float: right;
+    background: transparent;
+    border: none;
+    outline: none;
+    line-height: 50px;
+    font-size: 18px;
+    display: none;
+}
+
+#navbar nav ul li #signIn {
+    background: var(--mainWhite);
+    color: var(--primaryColor);
+    border-radius: 3px;
+}
+
+#navbar nav ul li #signIn:hover { 
+    background: #f1f1f1;
+    border-bottom: none;
+    padding-bottom: 0;
+    width: 100%;
+}
+
+.defaultHero {
+    min-height: calc(100vh - 1.5rem);
+    background: url("./images/benjamin-child-GWe-1.png") center/cover no-repeat;
+    padding-left: 4rem;
+    padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.hero-header {
+    color: var(--primaryColor);
+    font-size: 3rem;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.hero-text {
+    color: var(--mainWhite);
+}
+
+.createAccount {
+    width: 14rem;
+    background: var(--darkRed);
+    color: var(--mainWhite);
+    padding: 0.7rem 2rem;
+    border-radius: 3px;
+}
+
+.defaultHowToUse {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .how-to-use-pics {
+    min-height: 100vh;
+    background: url() center/cover no-repeat;
+} */
+.how-to-use {
+    padding: 4rem 4rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.how-to-use-text {
+    color: var(--primaryColor);
+    letter-spacing: 1px;
+}
+
+.users {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 2rem 4rem 4rem 4rem;
+}
+.user-header {
+    color: var(--primaryColor);
+    letter-spacing: 2px;
+}
+
+.user-text {
+    line-height: 1.8;
+}
+
+.user-footer-note {
+    color: var(--primaryColor);
+    letter-spacing: 1px;
+}
+
+.featues {
+    width: 100%;
+    padding: 2rem 2rem 2rem 7rem;
+    background: var(--mainGray)
+}
+
+.feature-header {
+    color: var(--primaryColor);
+    margin-bottom: 20px;
+}
+
+.feature-header-subText {
+    margin-bottom: 40px;
+}
+
+.feature-header-subText > p {
+    margin-bottom: 0;
+}
+
+.featureAttr::first-letter {
+    text-transform: uppercase;
+}
+
+.loading {
+    width: 100%;
+    min-height: calc(100vh - 1.5rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-icon {
+    color: var(--primaryColor);
+    font-size: 10vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .loading-icon {
+      animation: loading-icon-spin infinite 1s linear;
+    }
+}
+
+@keyframes loading-icon-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        /* color: var(--primaryColor) */
+    }
+
+    #navbar {
+        /* background: var(--mainWhite); */
+    }
+
+
+    #navbar nav {
+        position: absolute;
+        width: 100%;
+        height: calc(100vh - 50px);
+        background: var(--primaryColor);
+        top: 80px;
+        left: 0;
+        transition: 0.5s;
+    }
+
+    #navbar nav ul li #signIn {
+        width: 100px;
+    }
+
+    #navbar nav ul li a:hover {
+        width: calc(100vw - 6rem);
+    }
+
+    #navbar nav ul li #signIn:hover {
+        width: 100px;
+    }
+
+    #navbar .disapper-nav {
+        display: none;
+    }
+
+    #navbar .show-nav {
+        display: block;
+    }
+
+
+
+    #navbar nav.active {
+        left: 0;
+    }
+
+    #navbar nav ul {
+        margin-left: 2.5rem;
+        display: block;
+    }
+}
+
+
+  
