@@ -15,7 +15,7 @@ function Header() {
                         <img src={Logo} alt="Book it" width="100" />
                     </Link>
                 </div>
-                <nav className={isOpen ? "show-nav" : "disapper-nav"}>
+                <nav className={isOpen ? "show-nav" : "hide-nav"}>
                     <ul>
                         <li>
                             <Link to="/pricing">
