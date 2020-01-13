@@ -32,6 +32,9 @@ body {
     float: left;
 }
 
+#navbar .logo a .logo2 { 
+    display: none
+}
  
 #navbar nav {
     float: right;
@@ -213,13 +216,22 @@ body {
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
-        /* color: var(--primaryColor) */
+        color: var(--primaryColor)
     }
 
     #navbar {
-        /* background: var(--mainWhite); */
+        background: var(--mainWhite);
     }
 
+    
+    #navbar .logo a .logo1 {
+        display: none;
+    }
+
+    #navbar .logo a .logo2 { 
+        display: block;
+        margin-top: 13px;
+    }
 
     #navbar nav {
         position: absolute;
