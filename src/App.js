@@ -1,13 +1,13 @@
-import React, {Suspense, lazy} from 'react'
-import { Route, Switch } from "react-router-dom"
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Loading from './components/Loading'
+import React, {Suspense, lazy} from 'react';
+import { Route, Switch } from "react-router-dom";
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Loading from './components/Loading';
 import './App.css';
 
 
-const Home = lazy(() => import('./routes/Home'))
-const PageNotFound = lazy(() => import('./routes/PageNotFound'))
+const Home = lazy(() => import('./routes/Home'));
+const PageNotFound = lazy(() => import('./routes/PageNotFound'));
 
 function App() {
   return (

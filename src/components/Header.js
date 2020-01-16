@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import Logo1 from '../images/Group 139@2x.png';
 import Logo2 from '../images/Group 138@2x.png';
 import '../App.css';
 import { FaAlignRight, FaTimes } from 'react-icons/fa';
 
 function Header() {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
 
     return(
         <>
@@ -35,9 +35,9 @@ function Header() {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/signin" id="signIn">
+                            <a href="/#sign-up" id="signIn">
                                 Sign In
-                            </Link>
+                            </a>
                         </li>
                     </ul>
                 </nav>

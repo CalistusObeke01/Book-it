@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Title from './Title';
 
 function Features() {
     const featuresAtrr = [
@@ -9,12 +10,12 @@ function Features() {
         'automate any pricing and accept secure online payments.',
         'integrate with other systems and tools',
         'login with existing account (Microsoft, Google, Facebook, Twitter).'
-    ]
+    ];
 
     return(
         <section className="featues" id="features">
             <div className="text-center">
-                <h2 className="feature-header">Features</h2>
+                <Title title={`Features`}/>
                 <div className="feature-header-subText">
                     <p>
                         <b>Book!T</b> takes the hassles out of managing your spaces.

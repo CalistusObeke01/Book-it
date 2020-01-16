@@ -1,5 +1,5 @@
-import React from 'react'
-import usersMap from "../images/Picture1111.png"
+import React from 'react';
+import usersMap from "../images/Picture1111.png";
 
 function Users() {
     return(

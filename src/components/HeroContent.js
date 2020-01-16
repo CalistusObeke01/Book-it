@@ -1,5 +1,4 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react';
 
 function HeroContent() {
     return(
@@ -13,9 +12,9 @@ function HeroContent() {
                 BOOK!T is the best way to manage your venues, space for<br/>
                 meetings, conferences and other uses without hiccups...
             </p>
-            <Link to="/create-account" className="createAccount">
+            <a href="/#sign-up" className="createAccount">
                 CREATE AN ACCOUNT
-            </Link>
+            </a>
         </>
     )
 }

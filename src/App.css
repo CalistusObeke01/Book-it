@@ -1,9 +1,12 @@
 :root {
   --primaryColor: #336DF7;
+  --btnHover: rgb(46, 98, 219);
   --mainWhite: #fff;
   --offWhite: #f1f1f1;
   --darkRed: #C82121;
   --mainGray: #EBEEF4;
+  --sectionBackground: #F5F5F5;
+  --bordorRadius: 3px;
   /* --mainBlack: #222;
   --mainGrey: #ececec;
   --darkGrey: #cfcfcf; 
@@ -92,7 +95,7 @@ body {
 }
 
 .defaultHero {
-    min-height: calc(100vh - 1.5rem);
+    min-height: 100vh;
     background: url("./images/benjamin-child-GWe-1.png") center/cover no-repeat;
     padding-left: 4rem;
     padding-top: 8rem;
@@ -110,6 +113,9 @@ body {
 
 .hero-text {
     color: var(--mainWhite);
+    letter-spacing: 1px;
+    line-height: 1.4;
+    font-size: 1.5rem;
 }
 
 .createAccount {
@@ -118,6 +124,17 @@ body {
     color: var(--mainWhite);
     padding: 0.7rem 2rem;
     border-radius: 3px;
+}
+
+.createAccount:hover {
+    text-decoration: none;
+    color: #f1f1f1;
+}
+
+.site-subHeader {
+    color: var(--primaryColor);
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .defaultHowToUse {
@@ -163,13 +180,9 @@ body {
 .featues {
     width: 100%;
     padding: 2rem 2rem 2rem 7rem;
-    background: var(--mainGray)
+    background: var(--sectionBackground);
 }
 
-.feature-header {
-    color: var(--primaryColor);
-    margin-bottom: 20px;
-}
 
 .feature-header-subText {
     margin-bottom: 40px;
@@ -181,6 +194,210 @@ body {
 
 .featureAttr::first-letter {
     text-transform: uppercase;
+}
+
+.pricing-section {
+    width: 100%;
+    padding: 2rem 2rem 2rem 7rem;
+}
+
+.pricing-section ul {
+    list-style-type: none;
+    padding-right: 0;
+    text-align: center;
+}
+
+.pricing-section ul li {
+    display: inline-block;
+    padding: 0 12px;
+    outline: 1px solid var(--primaryColor);
+}
+
+.pricing-section ul li a {
+    color: var(--primaryColor);
+}
+
+.pricing-section ul li a:hover {
+    text-decoration: none;
+}
+
+.tabs {
+
+}
+
+.tab {
+    /* padding: 13px;
+    background-color: rgb(24, 26, 30);
+    border: 1px rgba(253, 98, 98, 0.1) solid;
+    box-shadow: 0px 3px 10px rgba(253, 98, 98, 0.1);
+    color: rgba(255,255,255, .5);
+    width: max-content;
+    float: left;
+    margin-left: 15px;
+    position: relative;
+    transition: box-shadow .5s ease 0s, top .5s ease 0s, border .5s ease 0s, color .5s ease 0s;
+    top: 0; */
+}
+
+.tab:first-child {
+    /* margin-left: 0; */
+}
+
+.tab:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: var(--primaryColor);
+}
+
+.tab .active {
+    box-shadow: 0px 6px 15px rgba(255, 30, 30, 0.5);
+    border: 1px rgba(255, 30, 30, 0.4);
+    top: -3px;
+    background-color: var(--primaryColor);
+}
+
+#section {
+    text-align: center;
+}
+
+.tabs menu ul {
+    list-style: none;
+}
+
+.tabs menu + div {
+    clear: both;
+    margin-top: 15px;
+    padding: 15px 0;
+    color: red;
+    line-height: 1.5;
+}
+
+.signUp-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 4rem;
+    background: var(--sectionBackground);
+}
+
+.form-control {
+    background-color: transparent !important;
+}
+
+.form-split {
+    width: 100%;
+    border: 1px solid #ced4da;
+    margin: 30px 0;
+    display: none;
+}
+
+.signUp-heading {
+    color: var(--primaryColor);
+    margin-bottom: 1.3rem;
+}
+
+.signUp-subHeading {
+    color: var(--primaryColor);
+}
+
+.signIn-heading {
+    color: var(--primaryColor); 
+}
+
+.signIn-subHeading {
+    color: var(--primaryColor); 
+    margin-bottom: 1.3rem;
+}
+
+.forgetPassword {
+    float: right;
+    color: var(--primaryColor);
+}
+
+.signUp-icons {
+    margin-top: 30px;
+}
+
+.signUp-icons ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: inline;
+}
+
+.signUp-icons ul li {
+    display: inline-block;
+    padding: 0 8px;
+}
+
+.trusted-brands {
+    color: var(--primaryColor);
+    background: var(--sectionBackground);
+    font-weight: 600;
+}
+
+.facebook-icon {
+    color: #4267B2;
+    background: var(--mainWhite);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+}
+
+.linkedIn-icon {
+    color: #0E76A8;
+    background: var(--mainWhite);
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+}
+
+/* FOOTER STYLING */
+
+#footer-links {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4rem;
+}
+
+.footerList {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.socials {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.socials li a{
+    padding: 0 6px;
+}
+
+
+/* .footerList li {
+    display: inline-block;
+    padding: 0 8px;
+} */
+
+.googlePlus-icon {
+    color: #db4a39;
+    background: var(--mainWhite);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.twitter-icon {
+    color: #1DA1F2;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.facebook-icon:hover {
+    cursor: pointer;
 }
 
 .loading {
@@ -196,6 +413,21 @@ body {
     font-size: 10vmin;
     pointer-events: none;
 }
+
+.defaultBtn {
+    background: var(--primaryColor);
+    border: none;
+    outline: none;
+    padding: .6rem 1rem;
+    color: var(--mainWhite);
+    border-radius: var(--bordorRadius);
+}
+
+.defaultBtn:hover {
+    cursor: pointer;
+    background: var(--btnHover);
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
     .loading-icon {
@@ -219,6 +451,10 @@ body {
         color: var(--primaryColor)
     }
 
+    .menu-toggle:focus {
+        outline: none;
+    }
+    
     #navbar {
         background: var(--mainWhite);
     }
@@ -273,7 +509,21 @@ body {
         margin-left: 2.5rem;
         display: block;
     }
-}
+
+    .signUp-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .form-split {
+        display: block;
+    }
+
+    #footer-links {
+        flex-direction: column;
+    }
+} 
 
 
   

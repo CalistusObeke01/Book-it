@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 class ErrorBoundary extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       error: null,
-      errorInfo: null 
+      errorInfo: null
     };
   }
     
@@ -13,7 +13,7 @@ class ErrorBoundary extends React.Component {
     this.setState({
       error: error,
       errorInfo: errorInfo
-    })
+    });
   }
     
   render() {
