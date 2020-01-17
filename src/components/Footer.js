@@ -1,7 +1,10 @@
 import React from 'react';
 import FooterList from './FooterList';
 import Socials from './Socials';
-
+import Logo from '../images/Group 139@2x.png';
+import netball from '../images/South-Africa.png';
+import Vortex from '../images/Vortex Comics 2 Profile Logo.png';
+import deloitte from '../images/71d910fe035b5832022357875f97e844deloitte.png';
 function Footer() {
 
     const footerLinks = {
@@ -42,29 +45,110 @@ function Footer() {
 
 
     return (
-        <div id="footer-links">
-            <div>
-                <p>Support</p>
-                <FooterList eachColumnToMap={supportColumn} />
+        <footer className="footer-parent">
+            <div className="trusted-brands-story">
+                <div>
+                    <p>
+                        <q>
+                            Our business managers a sport venues with a wide variety of 
+                            sporting facilities. As such, it can be complicated to link in
+                             the varoius facilities together so that it remains user friendly whilst
+                             also being functional.
+                             Book!T has managed to help achieve this and i have found that
+                             they have always responded in a timely manner with all our queries too
+                        </q>
+                    </p>
+                    <div className="logo-company-container">
+                        <div>
+                            <img src={netball} alt="Randy Crowler" width="100" />
+                        </div>
+                        <div>
+                            <h5 className="company-heading">Randy Crowler</h5>
+                            <p>SPAR Proteas Cape Town</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p>
+                        <q>
+                            We use Book!T in our four workspaces; Cairo, Lagos, Accra, and Cape Town.
+                            Our travelling communities find it quick to view which meeting rooms and 
+                            phone booths are free on a daily basis. Before Book!T, we were using Google Calender
+                            to manage rooms, Now we are able to centralize the workspaces which helps
+                            our growing communities book without interrupting their workflow or 
+                            crowding their work calender.
+                        </q>
+                    </p>
+                    <div className="logo-company-container">
+                        <div>
+                            <img src={deloitte} alt="Randy Crowler" width="100" />
+                        </div>
+                        <div>
+                            <h5 className="company-heading">Jane Stutern</h5>
+                            <p>Deloitte Africa - Lagos</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p>
+                        <q>
+                            Book!T is a deceivingly powerful space-management solution
+                            made simple by an intuitive user interface.
+                            As a studio with an incredibly dynamic schedule and a variety
+                            of needs.
+                            Book!T has all but eliminated space-scheduling conflicts. 
+                            This has had an important positive impact on departmental cooperation
+                            and employee morale.
+                        </q>
+                    </p>
+                    <div className="logo-company-container">
+                        <div>
+                            <img src={Vortex} alt="Randy Crowler" width="100" />
+                        </div>
+                        <div>
+                            <h5 className="company-heading">Somto Ajulu</h5>
+                            <p>Vortex Studio, Lagos</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p>Resources</p>
-                <FooterList eachColumnToMap={resourcesColumn} />
+            <div id="footer-links">
+                <div>
+                    <p>Support</p>
+                    <FooterList eachColumnToMap={supportColumn} />
+                </div>
+                <div>
+                    <p>Resources</p>
+                    <FooterList eachColumnToMap={resourcesColumn} />
+                </div>
+                
+                <div>
+                    <p>Features</p>
+                    <FooterList eachColumnToMap={featuresColumn} />
+                </div>
+                <div>
+                    <p>Product</p>
+                    <FooterList eachColumnToMap={productColumn} />
+                </div>
+                <div>
+                    <p>Connect with us</p>
+                    <Socials />
+                </div>
             </div>
-            
-            <div>
-                <p>Features</p>
-                <FooterList eachColumnToMap={featuresColumn} />
+            <div className="footer-hr-container">
+                <hr />
             </div>
-            <div>
-                <p>Product</p>
-                <FooterList eachColumnToMap={productColumn} />
+            <div className="text-center">
+                <img src={Logo} width="90" alt="site-log" />
             </div>
-            <div>
-                <p>Connect with us</p>
-                <Socials />
-            </div>
-        </div>
+            <small className="copyright-text">
+                Copyright &copy; Book!T. Book!T ia a Venue Booking Support System 
+                Business/Conference Application. All Operating systems are supported.
+                The core features are all free.
+            </small>
+
+        </footer>
+        
     )
 }
 

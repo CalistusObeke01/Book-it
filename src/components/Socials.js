@@ -5,10 +5,10 @@ import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 function Socials() {
 
     const socialLinks = [
-        {id: 1, link: '/#http://www.twitter.com/bookit', icon: <FaTwitter /> },
-        {id: 2, link: '/#http://www.facebook.com/bookit', icon: <FaFacebook /> },
-        {id: 3, link: '/#http://www.instagram.com/bookit', icon: <FaInstagram /> },
-        {id: 4, link: '/#http://www.linded/in/.com/bookit', icon: <FaLinkedin /> }
+        {id: 1, link: '/#http://www.twitter.com/bookit', icon: <FaTwitter className="footer-social-icon" /> },
+        {id: 2, link: '/#http://www.facebook.com/bookit', icon: <FaFacebook className="footer-social-icon" /> },
+        {id: 3, link: '/#http://www.instagram.com/bookit', icon: <FaInstagram className="footer-social-icon" /> },
+        {id: 4, link: '/#http://www.linded/in/.com/bookit', icon: <FaLinkedin className="footer-social-icon" /> }
     ];
         
 
