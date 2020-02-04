@@ -7,6 +7,8 @@ import Features from '../components/Features';
 import Pricing from '../components/Pricing';
 import SignUp from '../components/SignUp';
 import SEO from '../components/SEO';
+
+
 function Home () {
     return (
         <>
