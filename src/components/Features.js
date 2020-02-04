@@ -13,7 +13,7 @@ function Features() {
     ];
 
     return(
-        <section className="featues" id="features">
+        <section className="features" id="features">
             <div className="text-center">
                 <Title title={`Features`}/>
                 <div className="feature-header-subText">
