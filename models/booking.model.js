@@ -30,6 +30,10 @@ const bookingSchema = new Schema({
 
     invites: {
         type: Array
+    },
+
+    owner: {
+        type: String
     }
 });
 

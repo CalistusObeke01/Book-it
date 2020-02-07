@@ -24,8 +24,9 @@ module.exports = app => {
 
   app
     .route("/api/bookings/")
-    .post(bookingResource.create)
-    .get(bookingResource.getMany);
+    .post(bookingResource.create);
+
+    app.route("/api/booking/:venueId").get(bookingResource.getMany);
 
   app
     .route("/api/booking/:bookingId")
