@@ -20,7 +20,7 @@ const bookingSchema = new Schema({
         type: Date
     },
 
-    venueId: {
+    venue: {
         type: String
     },
 
