@@ -222,9 +222,7 @@ body {
     text-decoration: none;
 }
 
-.tabs {
 
-}
 
 .tab {
     /* padding: 13px;
@@ -240,9 +238,7 @@ body {
     top: 0; */
 }
 
-.tab:first-child {
-    /* margin-left: 0; */
-}
+
 
 .tab:hover {
     cursor: pointer;
