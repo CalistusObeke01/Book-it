@@ -1,625 +1,715 @@
 :root {
-  --primaryColor: #336DF7;
-  --btnHover: rgb(46, 98, 219);
-  --mainWhite: #fff;
-  --offWhite: #f1f1f1;
-  --darkRed: #C82121;
-  --mainGray: #EBEEF4;
-  --dark: #000;
-  --sectionBackground: #F5F5F5;
-  --bordorRadius: 3px;
-  /* --mainBlack: #222;
-  --mainGrey: #ececec;
-  --darkGrey: #cfcfcf; 
-  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
-  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5); */
-}
-body {
-    margin: 0;
-    padding: 0;
-}
-
-#navbar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    padding: 1rem 4rem;
-    background: var(--primaryColor);
-    box-sizing: border-box;
-    z-index: 1;
-}
-
-#navbar .logo {
-    height: 50px;
-    line-height: 50px;
-    float: left;
-}
-
-#navbar .logo a .logo2 { 
-    display: none
-}
- 
-#navbar nav {
-    float: right;
-}
-
-
-#navbar nav ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-#navbar nav ul li {
-    list-style: none;
-}
-
-#navbar nav ul li a {
-    height: 50px;
-    line-height: 50px;
-    padding: 0 24px;
-    text-decoration: none;
-    color: var(--mainWhite);
-    display: block;
-}
-
-#navbar nav ul li a:hover  {
-    border-bottom: 2px solid var(--mainWhite);
-    padding-bottom: 0;
-    width: 80%;
-}
-
-
-.menu-toggle {
-    color: var(--mainWhite);
-    float: right;
-    background: transparent;
-    border: none;
-    outline: none;
-    line-height: 50px;
-    font-size: 18px;
-    display: none;
-}
-
-#navbar nav ul li #signIn {
-    background: var(--mainWhite);
-    color: var(--primaryColor);
-    border-radius: 3px;
-}
-
-#navbar nav ul li #signIn:hover { 
-    background: #f1f1f1;
-    border-bottom: none;
-    padding-bottom: 0;
-    width: 100%;
-}
-
-.defaultHero {
-    min-height: 100vh;
-    background: url("./images/benjamin-child-GWe-1.png") center/cover no-repeat;
-    padding-left: 4rem;
-    padding-top: 8rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-.hero-header {
-    color: var(--primaryColor);
-    font-size: 3rem;
-    line-height: 1.4;
-    letter-spacing: 1px;
-}
-
-.hero-text {
-    color: var(--mainWhite);
-    letter-spacing: 1px;
-    line-height: 1.4;
-    font-size: 1.5rem;
-}
-
-.createAccount {
-    width: 14rem;
-    background: var(--darkRed);
-    color: var(--mainWhite);
-    padding: 0.7rem 2rem;
-    border-radius: 3px;
-}
-
-.createAccount:hover {
-    text-decoration: none;
-    color: #f1f1f1;
-}
-
-.site-subHeader {
-    color: var(--primaryColor);
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.defaultHowToUse {
-    display: flex;
-    justify-content: space-between;
-}
-
-/* .how-to-use-pics {
-    min-height: 100vh;
-    background: url() center/cover no-repeat;
-} */
-.how-to-use {
-    padding: 4rem 4rem;
-    display: flex;
-    justify-content: space-between;
-}
-
-.how-to-use-text {
-    color: var(--primaryColor);
-    letter-spacing: 1px;
-}
-
-.users {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    padding: 2rem 4rem 4rem 4rem;
-}
-.user-header {
-    color: var(--primaryColor);
-    letter-spacing: 2px;
-}
-
-.user-text {
-    line-height: 1.8;
-}
-
-.user-footer-note {
-    color: var(--primaryColor);
-    letter-spacing: 1px;
-}
-
-.featues {
-    width: 100%;
-    padding: 2rem 2rem 2rem 7rem;
-    background: var(--sectionBackground);
-}
-
-
-.feature-header-subText {
-    margin-bottom: 40px;
-}
-
-.feature-header-subText > p {
-    margin-bottom: 0;
-}
-
-.featureAttr::first-letter {
-    text-transform: uppercase;
-}
-
-.pricing-section {
-    width: 100%;
-    padding: 2rem 2rem 2rem 7rem;
-}
-
-.pricing-section ul {
-    list-style-type: none;
-    padding-right: 0;
-    text-align: center;
-}
-
-.pricing-section ul li {
-    display: inline-block;
-    padding: 0 12px;
-    outline: 1px solid var(--primaryColor);
-}
-
-.pricing-section ul li a {
-    color: var(--primaryColor);
-}
-
-.pricing-section ul li a:hover {
-    text-decoration: none;
-}
-
-
-
-.tab {
-    /* padding: 13px;
-    background-color: rgb(24, 26, 30);
-    border: 1px rgba(253, 98, 98, 0.1) solid;
-    box-shadow: 0px 3px 10px rgba(253, 98, 98, 0.1);
-    color: rgba(255,255,255, .5);
-    width: max-content;
-    float: left;
-    margin-left: 15px;
-    position: relative;
-    transition: box-shadow .5s ease 0s, top .5s ease 0s, border .5s ease 0s, color .5s ease 0s;
-    top: 0; */
-}
-
-
-
-.tab:hover {
-    cursor: pointer;
-    color: #fff;
-    background-color: var(--primaryColor);
-}
-
-.tab .active {
-    box-shadow: 0px 6px 15px rgba(255, 30, 30, 0.5);
-    border: 1px rgba(255, 30, 30, 0.4);
-    top: -3px;
-    background-color: var(--primaryColor);
-}
-
-#section {
-    text-align: center;
-}
-
-.tabs menu ul {
-    list-style: none;
-}
-
-.tabs menu + div {
-    clear: both;
-    margin-top: 15px;
-    padding: 15px 0;
-    color: red;
-    line-height: 1.5;
-}
-
-.signUp-section {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem 4rem;
-    background: var(--sectionBackground);
-}
-
-.form-control {
-    background-color: transparent !important;
-}
-
-.form-split {
-    width: 100%;
-    border: 1px solid #ced4da;
-    margin: 30px 0;
-    display: none;
-}
-
-.signUp-heading {
-    color: var(--primaryColor);
-    margin-bottom: 1.3rem;
-}
-
-.signUp-subHeading {
-    color: var(--primaryColor);
-}
-
-.signIn-heading {
-    color: var(--primaryColor); 
-}
-
-.signIn-subHeading {
-    color: var(--primaryColor); 
-    margin-bottom: 1.3rem;
-}
-
-.forgetPassword {
-    float: right;
-    color: var(--primaryColor);
-}
-
-.signUp-icons {
-    margin-top: 30px;
-}
-
-.signUp-icons ul {
-    list-style-type: none;
-    padding-left: 0;
-    display: inline;
-}
-
-.signUp-icons ul li {
-    display: inline-block;
-    padding: 0 8px;
-}
-
-.trusted-brands {
-    color: var(--primaryColor);
-    background: var(--sectionBackground);
-    font-weight: 600;
-    padding-bottom: 7rem;
-    margin-bottom: 0;
-}
-
-.facebook-icon {
-    color: #4267B2;
-    background: var(--mainWhite);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    outline: none;
-    border: none;
-}
-
-.linkedIn-icon {
-    color: #0E76A8;
-    background: var(--mainWhite);
-    width: 20px;
-    height: 20px;
-    border-radius: 6px;
-}
-
-/* FOOTER STYLING */
-
-.footer-parent {
-    width: 100%;
-    background: var(--primaryColor);
-    position: relative;
-    bottom: 18px;
-    border-top-left-radius: 500px 20px;
-    border-top-right-radius: 500px 20px;
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-    padding-top: 7rem;
-}
-
-.trusted-brands-story {
-    position: absolute;
-    top: -88px;
-    left: 0;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 1rem 2rem;
-}
-
-
-
-.trusted-brands-story > div {
-    background: var(--mainWhite);
-    color: var(--dark);
-    margin-right: 20px;
-    padding: 1rem;
-    border-radius: 5px
-}
-
-.trusted-brands-story > div p {
-    line-height: 1.9;
-}
-
-.logo-company-container {
-    display: flex;
-}
-
-.logo-company-container > div {
-    margin-right: 20px;
-}
-
-.logo-company-container .company-heading {
-    margin-top: 25px;
-    margin-bottom: 0;
-}
-
-#footer-links {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 15rem;
-    padding-left: 4rem;
-    padding-right: 4rem;
-    z-index: 2;
-}
-
-#footer-links div p {
-    color: var(--mainWhite);
-    font-size: 1.2rem;
-}
-
-
-
-.footerList {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.footerList li {
-    line-height: 2;
-}
-
-.footerList li a  {
-    color: var(--mainWhite);
-}
-
-.socials {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.socials li a{
-    padding: 0 6px;
-}
-
-.footer-social-icon {
-    height: 25px;
-    width: 25px;
-    background: var(--mainWhite);
-    color: var(--dark);
-    border-radius: 50%;
-    padding: 4px;
-}
-
-.footer-hr-container {
-    padding: 10px 4rem;
-}
-
-.footer-hr-container hr {
-    background: var(--mainWhite);
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-.copyright-text {
-    color: var(--mainWhite);
-    display: block;
-    text-align: center;
-    padding: 20px 4rem;
-}
-
-.googlePlus-icon {
-    color: #db4a39;
-    background: var(--mainWhite);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-}
-
-.twitter-icon {
-    color: #1DA1F2;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-}
-
-.facebook-icon:hover {
-    cursor: pointer;
-}
-
-.loading {
-    width: 100%;
-    min-height: calc(100vh - 1.5rem);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loading-icon {
-    color: var(--primaryColor);
-    font-size: 10vmin;
-    pointer-events: none;
-}
-
-.defaultBtn {
-    background: var(--primaryColor);
-    border: none;
-    outline: none;
-    padding: .6rem 1rem;
-    color: var(--mainWhite);
-    border-radius: var(--bordorRadius);
-}
-
-.defaultBtn:hover {
-    cursor: pointer;
-    background: var(--btnHover);
-}
-
-
-@media (prefers-reduced-motion: no-preference) {
-    .loading-icon {
-      animation: loading-icon-spin infinite 1s linear;
-    }
-}
-
-@keyframes loading-icon-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-}
-
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-        color: var(--primaryColor)
-    }
-
-    .menu-toggle:focus {
-        outline: none;
-    }
-    
-    #navbar {
-        background: var(--mainWhite);
-    }
-
-    
-    #navbar .logo a .logo1 {
-        display: none;
-    }
-
-    #navbar .logo a .logo2 { 
-        display: block;
-        margin-top: 13px;
-    }
-
-    #navbar nav {
-        position: absolute;
-        width: 100%;
-        height: calc(100vh - 50px);
-        background: var(--primaryColor);
-        top: 80px;
-        left: 0;
-        transition: 0.5s;
-    }
-
-    #navbar nav ul li #signIn {
-        width: 100px;
-    }
-
-    #navbar nav ul li a:hover {
-        width: calc(100vw - 6rem);
-    }
-
-    #navbar nav ul li #signIn:hover {
-        width: 100px;
-    }
-
-    #navbar .hide-nav {
-        display: none;
-    }
-
-    #navbar .show-nav {
-        display: block;
-    }
-
-
-
-    #navbar nav.active {
-        left: 0;
-    }
-
-    #navbar nav ul {
-        margin-left: 2.5rem;
-        display: block;
-    }
-
-    .signUp-section {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .form-split {
-        display: block;
-    }
-
-    #footer-links {
-        flex-direction: column;
-    }
-
-    .trusted-brands-story {
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .trusted-brands-story > div {
-        margin-bottom: 20px;
-    }
-} 
-
-
+    --primaryColor: #336DF7;
+    --btnHover: rgb(46, 98, 219);
+    --mainWhite: #fff;
+    --offWhite: #f1f1f1;
+    --darkRed: #C82121;
+    --mainGray: #EBEEF4;
+    --dark: #000;
+    --sectionBackground: #F5F5F5;
+    --bordorRadius: 3px;
+    /* --mainBlack: #222;
+    --mainGrey: #ececec;
+    --darkGrey: #cfcfcf; 
+    --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+    --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5); */
+  }
+  body {
+      margin: 0;
+      padding: 0;
+  }
   
+  #navbar {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      padding: 1rem 4rem;
+      background: var(--primaryColor);
+      box-sizing: border-box;
+      z-index: 1;
+  }
+  
+  #navbar .logo {
+      height: 50px;
+      line-height: 50px;
+      float: left;
+  }
+  
+  #navbar .logo a .logo2 { 
+      display: none
+  }
+   
+  #navbar nav {
+      float: right;
+  }
+  
+  
+  #navbar nav ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+  }
+  
+  #navbar nav ul li {
+      list-style: none;
+  }
+  
+  #navbar nav ul li a {
+      height: 50px;
+      line-height: 50px;
+      padding: 0 24px;
+      text-decoration: none;
+      color: var(--mainWhite);
+      display: block;
+  }
+  
+  #navbar nav ul li a:hover  {
+      border-bottom: 2px solid var(--mainWhite);
+      padding-bottom: 0;
+      width: 80%;
+  }
+  
+  
+  .menu-toggle {
+      color: var(--mainWhite);
+      float: right;
+      background: transparent;
+      border: none;
+      outline: none;
+      line-height: 50px;
+      font-size: 18px;
+      display: none;
+  }
+  
+  #navbar nav ul li #signIn {
+      background: var(--mainWhite);
+      color: var(--primaryColor);
+      border-radius: 3px;
+  }
+  
+  #navbar nav ul li #signIn:hover { 
+      background: #f1f1f1;
+      border-bottom: none;
+      padding-bottom: 0;
+      width: 100%;
+  }
+  
+  .defaultHero {
+      min-height: 100vh;
+      background: url("./images/benjamin-child-GWe-1.png") center/cover no-repeat;
+      padding-left: 4rem;
+      padding-top: 8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+  }
+  
+  .hero-header {
+      color: var(--primaryColor);
+      font-size: 3rem;
+      line-height: 1.4;
+      letter-spacing: 1px;
+  }
+  
+  .hero-text {
+      color: var(--mainWhite);
+      letter-spacing: 1px;
+      line-height: 1.4;
+      font-size: 1.5rem;
+  }
+  
+  .createAccount {
+      width: 14rem;
+      background: var(--darkRed);
+      color: var(--mainWhite);
+      padding: 0.7rem 2rem;
+      border-radius: 3px;
+  }
+  
+  .createAccount:hover {
+      text-decoration: none;
+      color: #f1f1f1;
+  }
+  
+  .easyToUse-container {
+      background: var(--mainGray);
+      text-align: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      padding: 1rem;
+  }
+  
+  .easyToUse {
+      width: 21px;
+  }
+  
+  .easyToUse-headings {
+      margin-top: .5rem;
+      color: var(--primaryColor);
+  }
+  
+  .easyToUse-content {
+      color: var(--primaryColor);
+  }
+  
+  .easyToUse-content {
+      margin-top: 1rem;
+  }
+  
+  .cheapCost {
+      width: 32px;
+  }
+  
+  .site-subHeader {
+      color: var(--primaryColor);
+      margin-bottom: 20px;
+      text-align: center;
+  }
+  
+  .defaultHowToUse {
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  /* .how-to-use-pics {
+      min-height: 100vh;
+      background: url() center/cover no-repeat;
+  } */
+  .how-to-use {
+      padding: 4rem 4rem;
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  .how-to-use-text {
+      color: var(--primaryColor);
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
+  }
+  
+  .users {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      padding: 2rem 4rem 4rem 4rem;
+  }
+  .user-header {
+      color: var(--primaryColor);
+      letter-spacing: 2px;
+  }
+  
+  .user-text {
+      line-height: 1.8;
+  }
+  
+  .user-footer-note {
+      color: var(--primaryColor);
+      letter-spacing: 1px;
+  }
+  
+  .features {
+      width: 100%;
+      padding: 2rem 2rem 2rem 7rem;
+      background: var(--sectionBackground);
+  }
+  
+  
+  .feature-header-subText {
+      margin-bottom: 40px;
+  }
+  
+  .feature-header-subText > p {
+      margin-bottom: 0;
+  }
+  
+  .featureAttr::first-letter {
+      text-transform: uppercase;
+  }
+  
+  .pricing-section {
+      width: 100%;
+      padding: 2rem 2rem 2rem 7rem;
+  }
+  
+  .pricing-section ul {
+      list-style-type: none;
+      padding-right: 0;
+      text-align: center;
+  }
+  
+  .pricing-section ul li {
+      display: inline-block;
+      padding: 0 12px;
+      outline: 1px solid var(--primaryColor);
+  }
+  
+  .pricing-section ul li a {
+      color: var(--primaryColor);
+  }
+  
+  .pricing-section ul li a:hover {
+      text-decoration: none;
+  }
+  
+  .tabs {
+  
+  }
+  
+  .tab {
+      /* padding: 13px;
+      background-color: rgb(24, 26, 30);
+      border: 1px rgba(253, 98, 98, 0.1) solid;
+      box-shadow: 0px 3px 10px rgba(253, 98, 98, 0.1);
+      color: rgba(255,255,255, .5);
+      width: max-content;
+      float: left;
+      margin-left: 15px;
+      position: relative;
+      transition: box-shadow .5s ease 0s, top .5s ease 0s, border .5s ease 0s, color .5s ease 0s;
+      top: 0; */
+  }
+  
+  .tab:first-child {
+      /* margin-left: 0; */
+  }
+  
+  .tab:hover {
+      cursor: pointer;
+      color: #fff;
+      background-color: var(--primaryColor);
+  }
+  
+  .tab .active {
+      box-shadow: 0px 6px 15px rgba(255, 30, 30, 0.5);
+      border: 1px rgba(255, 30, 30, 0.4);
+      top: -3px;
+      background-color: var(--primaryColor);
+  }
+  
+  #section {
+      text-align: center;
+  }
+  
+  .tabs menu ul {
+      list-style: none;
+  }
+  
+  .tabs menu + div {
+      clear: both;
+      margin-top: 15px;
+      padding: 15px 0;
+      color: red;
+      line-height: 1.5;
+  }
+  
+  .signUp-section {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem 4rem;
+      background: var(--sectionBackground);
+  }
+  
+  .form-control {
+      background-color: transparent !important;
+  }
+  
+  .form-split {
+      width: 100%;
+      border: 1px solid #ced4da;
+      margin: 30px 0;
+      display: none;
+  }
+  
+  .signUp-heading {
+      color: var(--primaryColor);
+      margin-bottom: 1.3rem;
+  }
+  
+  .signUp-subHeading {
+      color: var(--primaryColor);
+  }
+  
+  .signIn-heading {
+      color: var(--primaryColor); 
+  }
+  
+  .signIn-subHeading {
+      color: var(--primaryColor); 
+      margin-bottom: 1.3rem;
+  }
+  
+  .forgetPassword {
+      float: right;
+      color: var(--primaryColor);
+  }
+  
+  .signUp-icons {
+      margin-top: 30px;
+  }
+  
+  .signUp-icons ul {
+      list-style-type: none;
+      padding-left: 0;
+      display: inline;
+  }
+  
+  .signUp-icons ul li {
+      display: inline-block;
+      padding: 0 8px;
+  }
+  
+  .trusted-brands {
+      color: var(--primaryColor);
+      background: var(--sectionBackground);
+      font-weight: 600;
+      padding-bottom: 7rem;
+      margin-bottom: 0;
+  }
+  
+  .facebook-icon {
+      color: #4267B2;
+      background: var(--mainWhite);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      outline: none;
+      border: none;
+  }
+  
+  .linkedIn-icon {
+      color: #0E76A8;
+      background: var(--mainWhite);
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+  }
+  
+  /* BOOK A VENUE  */
+  
+  .sidebar {
+      min-height: 100vh;
+      background: var(--primaryColor);
+      padding: 2rem;
+      margin-left: -16px;
+      margin-right: -16px;
+  }
+  
+  .sidebar-content {
+      display: flex;
+      justify-content: stretch;
+      margin-bottom: 1rem;
+  }
+  
+  .sidebar-siteLogo {
+      margin-left: 1rem;
+  }
+  /* FOOTER STYLING */
+  
+  .footer-parent {
+      width: 100%;
+      background: var(--primaryColor);
+      position: relative;
+      bottom: 18px;
+      border-top-left-radius: 500px 20px;
+      border-top-right-radius: 500px 20px;
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+      padding-top: 7rem;
+  }
+  
+  .trusted-brands-story {
+      position: absolute;
+      top: -88px;
+      left: 0;
+      display: flex;
+      justify-content: space-evenly;
+      padding: 1rem 2rem;
+  }
+  
+  
+  
+  .trusted-brands-story > div {
+      background: var(--mainWhite);
+      color: var(--dark);
+      margin-right: 20px;
+      padding: 1rem;
+      border-radius: 5px
+  }
+  
+  .trusted-brands-story > div p {
+      line-height: 1.9;
+  }
+  
+  .logo-company-container {
+      display: flex;
+  }
+  
+  .logo-company-container > div {
+      margin-right: 20px;
+  }
+  
+  .logo-company-container .company-heading {
+      margin-top: 25px;
+      margin-bottom: 0;
+  }
+  
+  #footer-links {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 15rem;
+      padding-left: 4rem;
+      padding-right: 4rem;
+      z-index: 2;
+  }
+  
+  #footer-links div p {
+      color: var(--mainWhite);
+      font-size: 1.2rem;
+  }
+  
+  
+  
+  .footerList {
+      list-style-type: none;
+      padding-left: 0;
+  }
+  
+  .footerList li {
+      line-height: 2;
+  }
+  
+  .footerList li a  {
+      color: var(--mainWhite);
+  }
+  
+  .socials {
+      list-style-type: none;
+      padding-left: 0;
+  }
+  
+  .socials li a{
+      padding: 0 6px;
+  }
+  
+  .footer-social-icon {
+      height: 25px;
+      width: 25px;
+      background: var(--mainWhite);
+      color: var(--dark);
+      border-radius: 50%;
+      padding: 4px;
+  }
+  
+  .footer-hr-container {
+      padding: 10px 4rem;
+  }
+  
+  .footer-hr-container hr {
+      background: var(--mainWhite);
+      margin-bottom: 0;
+      margin-top: 0;
+  }
+  
+  .copyright-text {
+      color: var(--mainWhite);
+      display: block;
+      text-align: center;
+      padding: 20px 4rem;
+  }
+  
+  .googlePlus-icon {
+      color: #db4a39;
+      background: var(--mainWhite);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+  }
+  
+  .twitter-icon {
+      color: #1DA1F2;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+  }
+  
+  .facebook-icon:hover {
+      cursor: pointer;
+  }
+  
+  .loading {
+      width: 100%;
+      min-height: calc(100vh - 1.5rem);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .loading-icon {
+      color: var(--primaryColor);
+      font-size: 10vmin;
+      pointer-events: none;
+  }
+  
+  .defaultBtn {
+      background: var(--primaryColor);
+      border: none;
+      outline: none;
+      padding: .6rem 1rem;
+      color: var(--mainWhite);
+      border-radius: var(--bordorRadius);
+  }
+  
+  .defaultBtn:hover {
+      cursor: pointer;
+      background: var(--btnHover);
+  }
+  
+  
+  
+  /* BOOK A VENUE  */
+  .booking {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 2rem;
+  }
+  
+  .change-btn {
+      border: 1px solid var(--mainGray);
+      background: transparent;
+      padding: .4rem 1rem;
+      border-radius: var(--bordorRadius);
+  }
+  
+  .change-btn:hover {
+      cursor: pointer;
+      background: var(--primaryColor);
+      color: var(--mainWhite);
+  }
+  
+  .booking-board {
+      background: var(--offWhite);
+      padding: 1rem 1rem 4rem 1rem;
+      margin-top: 1rem;
+  }
+  
+  .calendar-board {
+      background: var(--mainGray);
+  }
+  
+  .check-availiability {
+      padding-top: 2rem;
+  }
+  
+  
+  @media (prefers-reduced-motion: no-preference) {
+      .loading-icon {
+        animation: loading-icon-spin infinite 1s linear;
+      }
+  }
+  
+  @keyframes loading-icon-spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+  }
+  
+  
+  @media (max-width: 768px) {
+      .menu-toggle {
+          display: block;
+          color: var(--primaryColor)
+      }
+  
+      .menu-toggle:focus {
+          outline: none;
+      }
+      
+      #navbar {
+          background: var(--mainWhite);
+      }
+  
+      
+      #navbar .logo a .logo1 {
+          display: none;
+      }
+  
+      #navbar .logo a .logo2 { 
+          display: block;
+          margin-top: 13px;
+      }
+  
+      #navbar nav {
+          position: absolute;
+          width: 100%;
+          height: calc(100vh - 50px);
+          background: var(--primaryColor);
+          top: 80px;
+          left: 0;
+          transition: 0.5s;
+      }
+  
+      #navbar nav ul li #signIn {
+          width: 100px;
+      }
+  
+      #navbar nav ul li a:hover {
+          width: calc(100vw - 6rem);
+      }
+  
+      #navbar nav ul li #signIn:hover {
+          width: 100px;
+      }
+  
+      #navbar .hide-nav {
+          display: none;
+      }
+  
+      #navbar .show-nav {
+          display: block;
+      }
+  
+  
+  
+      #navbar nav.active {
+          left: 0;
+      }
+  
+      #navbar nav ul {
+          margin-left: 2.5rem;
+          display: block;
+      }
+  
+      .signUp-section {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+  
+      .form-split {
+          display: block;
+      }
+  
+      #footer-links {
+          flex-direction: column;
+      }
+  
+      .trusted-brands-story {
+          flex-direction: column;
+          justify-content: center;
+      }
+  
+      .trusted-brands-story > div {
+          margin-bottom: 20px;
+      }
+  } 
+  
+  
+    
