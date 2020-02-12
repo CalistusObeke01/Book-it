@@ -7,6 +7,7 @@ import './App.css';
 
 
 const Home = lazy(() => import('./routes/Home'));
+const BookVenue = lazy(() => import('./routes/BookVenue'));
 const PageNotFound = lazy(() => import('./routes/PageNotFound'));
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/book-venue" component={BookVenue} />
           <Route path="*" component={PageNotFound} /> 
         </Switch>
       </Suspense>

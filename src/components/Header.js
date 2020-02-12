@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
+import {withRouter} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Logo1 from '../images/Group 139@2x.png';
 import Logo2 from '../images/Group 138@2x.png';
 import '../App.css';
 import { FaAlignRight, FaTimes } from 'react-icons/fa';
 
-function Header() {
+const Header = props => {
     const [isOpen, setIsOpen] = useState(false);
-
+    
+    if (props.location.pathname === '/book-venue') return null;
     return(
         <>
             <header id="navbar">
@@ -50,4 +52,4 @@ function Header() {
     )
 }
 
-export default Header
+export default withRouter(Header)

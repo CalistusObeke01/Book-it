@@ -387,6 +387,25 @@ body {
     border-radius: 6px;
 }
 
+/* BOOK A VENUE  */
+
+.sidebar {
+    min-height: 100vh;
+    background: var(--primaryColor);
+    padding: 2rem;
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.sidebar-content {
+    display: flex;
+    justify-content: stretch;
+    margin-bottom: 1rem;
+}
+
+.sidebar-siteLogo {
+    margin-left: 1rem;
+}
 /* FOOTER STYLING */
 
 .footer-parent {
@@ -548,6 +567,42 @@ body {
 .defaultBtn:hover {
     cursor: pointer;
     background: var(--btnHover);
+}
+
+
+
+/* BOOK A VENUE  */
+.booking {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
+
+.change-btn {
+    border: 1px solid var(--mainGray);
+    background: transparent;
+    padding: .4rem 1rem;
+    border-radius: var(--bordorRadius);
+}
+
+.change-btn:hover {
+    cursor: pointer;
+    background: var(--primaryColor);
+    color: var(--mainWhite);
+}
+
+.booking-board {
+    background: var(--offWhite);
+    padding: 1rem 1rem 4rem 1rem;
+    margin-top: 1rem;
+}
+
+.calendar-board {
+    background: var(--mainGray);
+}
+
+.check-availiability {
+    padding-top: 2rem;
 }
 
 
