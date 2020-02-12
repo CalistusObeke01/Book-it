@@ -4,6 +4,7 @@ import Logo1 from '../images/Group 139@2x.png';
 import Logo2 from '../images/Group 138@2x.png';
 import '../App.css';
 import { FaAlignRight, FaTimes } from 'react-icons/fa';
+import Nav from './Navbar';
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,14 +12,17 @@ function Header() {
     return (
       <>
         <header id="navbar">
+         
           <div className="logo">
             <Link to="/">
               <img src={Logo1} alt="Book it" width="100" className="logo1" />
               <img src={Logo2} alt="Book it" width="120" className="logo2" />
+              
             </Link>
           </div>
           <nav className={isOpen ? "show-nav" : "hide-nav"}>
             <ul>
+              
               <li>
                 <Link to="/pricing">Pricing</Link>
               </li>
