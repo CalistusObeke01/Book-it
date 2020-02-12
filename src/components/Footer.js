@@ -1,13 +1,11 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
 import FooterList from './FooterList';
 import Socials from './Socials';
 import Logo from '../images/Group 139@2x.png';
 import netball from '../images/South-Africa.png';
 import Vortex from '../images/Vortex Comics 2 Profile Logo.png';
 import deloitte from '../images/71d910fe035b5832022357875f97e844deloitte.png';
-
-const Footer = props => {
+function Footer() {
 
     const footerLinks = {
         support: [
@@ -45,7 +43,7 @@ const Footer = props => {
     let featuresColumn = footerLinks.features;
     let productColumn = footerLinks.product;
 
-    if (props.location.pathname === '/book-venue') return null;
+
     return (
         <footer className="footer-parent">
             <div className="trusted-brands-story">
@@ -154,4 +152,4 @@ const Footer = props => {
     )
 }
 
-export default withRouter(Footer);
+export default Footer;

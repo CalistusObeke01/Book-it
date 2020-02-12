@@ -11,7 +11,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-    defaultBtnColor: "defaultBtn"
+    defaultBtnColor: "defaultBtn",
 }
 
 
