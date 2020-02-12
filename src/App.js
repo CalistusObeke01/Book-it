@@ -8,7 +8,7 @@ import './App.css';
 const Home = lazy(() => import('./routes/Home'));
 const BookVenue = lazy(() => import('./routes/BookVenue'));
 const PageNotFound = lazy(() => import('./routes/PageNotFound'));
-const Conference = lazy(() => import('./components/Confrence'));
+
  
 function App() {
   return (
@@ -18,7 +18,6 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/book-venue" component={BookVenue} />
-          <Route path="/confrence" component={Conference} />
           <Route path="*" component={PageNotFound} /> 
         </Switch>
       </Suspense>
