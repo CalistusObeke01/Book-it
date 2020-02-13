@@ -569,6 +569,45 @@
       background: var(--btnHover);
   }
   
+
+  /* ERROR PAGE */
+
+  .error-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .error-text {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 4rem;
+    text-align: center;
+    margin-top: 15rem;
+  }
+
+  .error-figure {
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 4px 2px #ececec;
+  }
+
+  .error-figure::first-letter {
+    color: var(--primaryColor);
+  }
+
+  .error-figure:: {
+    color: var(--primaryColor);
+  }
+
+  .error-img {
+    max-height: 85vh;
+    background: url("./images/confushed.png") center/cover no-repeat;
+    min-width: 60vw;
+    margin-top: 5rem;
+    display: flex;
+  }
   
   
   /* BOOK A VENUE  */
