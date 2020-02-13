@@ -5,37 +5,39 @@ import Room3 from "../images/Room3.png";
 import Room4 from "../images/Room4.png";
 import Room5 from "../images/Room5.png";
 import Room6 from "../images/Room6.png";
-import './Card.css'
-
-
+// import './Card.css';
 import "../App.css";
 
 
 class Confrence extends React.Component{
  render() {
-    const Images = [
+    // const Images = [
       // require("../images/Room1.png"),
       // require("../images/Room2.png"),
       // require("../images/Room3.png"),
       // require("../images/Room4.png"),
       // require("../images/Room5.png"),
       // require("../images/Room6.png")
-    ];
+    // ];
 
         return (
           <div style={{ marginBottom: "150px", marginTop: "100px" }}>
             <div className="wrapper">
-              <h1>BookiT Confrence Rooms</h1>
-              <div className="cols vvv">
+              <h1 className="h11">BookiT Confrence Rooms</h1>
+              <div className="cols confr">
                 <div
                   className="col-md-4"
                   ontouchstart="this.classList.toggle('hover');"
                   // background-image={Room1}
                 >
-                  <div className="container">
+                  <div className="container1">
                     <div
                       className="front"
-                      style={{ backgroundImage: "url(" + Room1 + ")" }}
+                      id="front"
+                      style={{
+                        backgroundImage: "url(" + Room1 + ")",
+                        backgroundSize: "cover"
+                      }}
                     >
                       <div className="inner">
                         <h5>Standard Confrence Room 1</h5>
@@ -60,10 +62,13 @@ class Confrence extends React.Component{
                   className="col-md-4"
                   ontouchstart="this.classList.toggle('hover');"
                 >
-                  <div className="container">
+                  <div className="container1">
                     <div
                       className="front"
-                      style={{ backgroundImage: "url(" + Room2 + ")" }}
+                      style={{
+                        backgroundImage: "url(" + Room2 + ")",
+                        backgroundSize: "cover"
+                      }}
                     >
                       <div className="inner">
                         <h5>Standard Confrence Room 2</h5>
@@ -88,10 +93,13 @@ class Confrence extends React.Component{
                   className="col-md-4"
                   ontouchstart="this.classList.toggle('hover');"
                 >
-                  <div className="container">
+                  <div className="container1">
                     <div
                       className="front"
-                      style={{ backgroundImage: "url(" + Room3 + ")" }}
+                      style={{
+                        backgroundImage: "url(" + Room3 + ")",
+                        backgroundSize: "cover"
+                      }}
                     >
                       <div className="inner">
                         <h5>Big Confrence Room</h5>
@@ -116,12 +124,12 @@ class Confrence extends React.Component{
                   className="col-md-4"
                   ontouchstart="this.classList.toggle('hover');"
                 >
-                  <div className="container">
+                  <div className="container1">
                     <div
                       className="front"
                       style={{
                         backgroundImage: "url(" + Room4 + ")",
-                        width: "100%"
+                        backgroundSize: "cover"
                       }}
                     >
                       <div className="inner">
@@ -147,10 +155,13 @@ class Confrence extends React.Component{
                   className="col-md-4"
                   ontouchstart="this.classList.toggle('hover');"
                 >
-                  <div className="container">
+                  <div className="container1">
                     <div
                       className="front"
-                      style={{ backgroundImage: "url(" + Room5 + ")" }}
+                      style={{
+                        backgroundImage: "url(" + Room5 + ")",
+                        backgroundSize: "cover"
+                      }}
                     >
                       <div className="inner">
                         <h5>Standard Confrence Room 3</h5>
@@ -175,14 +186,17 @@ class Confrence extends React.Component{
                   className="col-md-4"
                   ontouchstart="this.classList.toggle('hover');"
                 >
-                  <div className="container">
+                  <div className="container1">
                     <div
                       className="front"
-                      style={{ backgroundImage: "url(" + Room6 + ")" }}
+                      style={{
+                        backgroundImage: "url(" + Room6 + ")",
+                        backgroundSize: "cover"
+                      }}
                     >
                       <div className="inner">
-                        <h5>Reflupper</h5>
-                        <span>Lorem ipsum</span>
+                        <h5>Small Confrence Room</h5>
+                        <span>Floor 2 E210, Lekki, Lagos</span>
                       </div>
                     </div>
                     <div className="back">
