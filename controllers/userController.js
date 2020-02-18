@@ -16,7 +16,13 @@ module.exports.upload = (req, res) => {
   }
   cloudinary.uploader.upload(
     req.file.path,
-    { tags: "Book_!t" },
+    {
+      folder: "Book-!t/users",
+      use_filename: true,
+      unique_filename: true,
+      overwrite: false,
+      tags: "Book_!t"
+    },
     (err, image) => {
       if (err) {
         console.warn(err);

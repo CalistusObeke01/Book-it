@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const roomSchema = new Schema({
   name: {
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
 
   location: {
@@ -22,6 +23,13 @@ const roomSchema = new Schema({
 
   facilities: {
     type: Array
+  },
+
+  company: {
+    type: String,
+    required: true,
+    trim: true
+
   }
 });
 
