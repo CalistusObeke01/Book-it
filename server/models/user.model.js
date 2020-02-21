@@ -23,7 +23,7 @@ const userSchema = new Schema({
     type: String
   },
 
-  administration: {
+  admin: {
     type: Boolean
   },
 
