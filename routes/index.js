@@ -23,10 +23,12 @@ module.exports = app => {
     .delete(roomResource.delete);
 
   app
-    .route("/api/bookings/")
-    .post(bookingResource.create);
+  .route("/api/venue/:companyName")
+  .get(roomResource.getMany);
 
-    app.route("/api/booking/:venueId").get(bookingResource.getMany);
+  app.route("/api/bookings/").post(bookingResource.create);
+
+  app.route("/api/booking/:venueId").get(bookingResource.getMany);
 
   app
     .route("/api/booking/:bookingId")

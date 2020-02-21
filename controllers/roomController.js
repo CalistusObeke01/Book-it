@@ -37,7 +37,8 @@ module.exports.create = (req, res) => {
     location: req.body.location,
     image: roomImg,
     seats: req.body.seats,
-    facilities: req.body.facilities
+    facilities: req.body.facilities,
+    company: req.body.company
   };
 
   const newRoom = new Room(room);
@@ -50,9 +51,9 @@ module.exports.create = (req, res) => {
     );
 };
 
-module.exports.getAll = (req, res) => {
-  Room.find()
-    .then(spots => res.status(200).json({ body: spots }))
+module.exports.getMany = (req, res) => {
+  Room.find(({ company: req.params.companyName }))
+    .then(rooms => res.status(200).json({ body: rooms }))
     .catch(err =>
       res.status(404).json({ error: err, message: "Venues could not be fetched." })
     );
