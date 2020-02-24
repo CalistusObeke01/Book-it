@@ -9,8 +9,7 @@ const userResource = require("../controllers/userController");
 module.exports = app => {
   app
     .route("/api/venue/")
-    .post(roomResource.create)
-    .get(roomResource.getAll);
+    .post(roomResource.create);
 
   app
     .route("/api/venue/upload/")
@@ -22,9 +21,7 @@ module.exports = app => {
     .put(roomResource.update)
     .delete(roomResource.delete);
 
-  app
-  .route("/api/venue/:companyName")
-  .get(roomResource.getMany);
+  app.route("/api/venue/:companyName").get(roomResource.getMany);
 
   app.route("/api/bookings/").post(bookingResource.create);
 
