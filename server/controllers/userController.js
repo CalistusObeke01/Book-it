@@ -50,7 +50,7 @@ module.exports.create = async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword,
-        image: userImg,
+        image: userImg || 'N/A',
         admin: req.body.admin || false,
         company: req.body.company
       };
@@ -84,7 +84,7 @@ module.exports.login = async (req, res) => {
       const check = await bcrypt.compare(req.body.password, user.password);
       console.log(check);
       if (check) {
-        res.status(200).json({ body: { name: user.name, id: user._id } });
+        res.status(200).json({ body: { name: user.name, company: user.company, admin: user.admin, id: user._id } });
       } else {
         res.status(401).json({ message: "incorrect password" });
       }

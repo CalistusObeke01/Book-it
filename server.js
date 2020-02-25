@@ -28,6 +28,6 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
-app.listen(process.env.PORT || 6000, () =>
-  console.log("server listening on port 6000")
+app.listen(process.env.PORT || 4000, () =>
+  console.log("server listening on port 4000")
 );

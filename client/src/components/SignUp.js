@@ -63,7 +63,7 @@ function SignUp() {
                             <a href="#forgetPassword" className="forgetPassword">Forget password ?</a>
                         </div>
                         <Button>Sign in</Button>
-                        <div className="signUp-icons">
+                        {/* <div className="signUp-icons">
                             
                             <span>Sign in using </span>
                             
@@ -89,7 +89,7 @@ function SignUp() {
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> */}
                     </form>                
                 </div>
             </section>
