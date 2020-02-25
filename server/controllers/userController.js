@@ -1,7 +1,7 @@
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 var cloudinary = require("cloudinary").v2;
-let User = require("../models/room.model");
+let User = require("../models/user.model");
 var userImg;
 
 cloudinary.config({
@@ -34,8 +34,10 @@ module.exports.upload = (req, res) => {
 };
 
 module.exports.create = async (req, res) => {
-  user = await User.findOne({ email: req.body.email });
-  if (user != null) {
+  console.log(req.body);
+  acct = await User.findOne({ email: req.body.email });
+  console.log(acct);
+  if (acct != null) {
     res
       .status(403)
       .json({
@@ -74,12 +76,12 @@ module.exports.create = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
+  console.log(req.body);
   if (user == null || undefined) {
     return res.status(401).json({ message: "user not found" });
   } else {
     try {
       const check = await bcrypt.compare(req.body.password, user.password);
-      console.log(check);
       if (check) {
         res.status(200).json({ body: { name: user.name, company: user.company, admin: user.admin, id: user._id } });
       } else {

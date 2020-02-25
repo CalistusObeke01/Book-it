@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Button from "./Button";
+import { Redirect } from "react-router-dom";
 
 // function SignUp()\
 class SignUp extends Component {
@@ -19,16 +20,19 @@ class SignUp extends Component {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ company, name, email, password, admin })
-      }).then(response => {
-        console.log(response);
-        if (response.status === 201) {
-          alert("signup Successful. Please login to continue");
-        } else if (response.status !== 500) {
-          alert(
-            "An account already exists with this email address. Log in to continue"
-          );
-        }
-      });
+      })
+        .then(response => {
+          if (response.status === 201) {
+            alert("signup Successful. Please login to continue");
+            this.setState({ company: "", name: "", email: "", password: "" });
+          } else {
+            alert(
+              "An account already exists with this email address. Log in to continue"
+            );
+            this.setState({ company: "", name: "", email: "", password: "" });
+          }
+        })
+        .catch(err => console.log(err));
     } catch (error) {
       alert("Signup failed. Please try again");
       console.log(error);
@@ -40,6 +44,7 @@ class SignUp extends Component {
 
     try {
       const { email, password } = this.state;
+      console.log(email, password);
       fetch("/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -55,7 +60,10 @@ class SignUp extends Component {
         .then(data => {
           sessionStorage.setItem("user", JSON.stringify(data.body));
           alert("login successful.");
-        });
+          this.setState({ company: "", name: "", email: "", password: "" });
+          // redirect to confrence page
+        })
+        .catch(err => console.log(err));
     } catch (error) {
       alert("Error! please try again");
       console.log(error);
@@ -159,7 +167,7 @@ class SignUp extends Component {
                   type="email"
                   className="form-control"
                   id="signInEmail"
-                  onChange={() => this.inputChange}
+                  onChange={this.inputChange}
                   required
                 />
               </div>
@@ -170,7 +178,7 @@ class SignUp extends Component {
                   type="password"
                   className="form-control"
                   id="signInPassword"
-                  onChange={() => this.inputChange}
+                  onChange={this.inputChange}
                   required
                 />
               </div>
