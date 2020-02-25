@@ -60,10 +60,7 @@ module.exports.create = async (req, res) => {
       newUser
         .save()
         .then(() =>
-          res.status(201).json({
-            message: "User created.",
-            body: { name: user.name, id: user._id }
-          })
+          res.status(201).json({message: "User created."})
         )
         .catch(err =>
           res.status(400).json({ error: err, Message: "User Not created" })
