@@ -7,9 +7,11 @@ function Features() {
         'invite and empower users to amke frictionless self-service bookings.',
         'Enforce your policies (e.g quotas, cancellation rules, advance-notice rules).',
         'control how users interact with the system with custom user tags.',
-        'automate any pricing and accept secure online payments.',
-        'integrate with other systems and tools',
-        'login with existing account (Microsoft, Google, Facebook, Twitter).'
+        'Online bookings and notifications',
+        'User Management',
+        'Mobile friendly',
+        
+        
     ];
 
     return(
