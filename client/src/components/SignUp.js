@@ -21,11 +21,6 @@ function SignUp() {
                             <input type="text" className="form-control" id="InputFullname" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="InputCompanyURL">Select Book!T URL</label>
-                            <input type="url" className="form-control" id="InputCompanyURL" 
-                            placeholder="companyname@bookit.com" />
-                        </div>
-                        <div className="form-group">
                             <label htmlFor="InputEmail">Email</label>
                             <input type="email" className="form-control" id="InputEmail" />
                         </div>
