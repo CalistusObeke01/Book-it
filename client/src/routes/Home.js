@@ -4,7 +4,6 @@ import HeroContent from '../components/HeroContent';
 import HowToUse from '../components/HowToUse';
 import Users from '../components/Users';
 import Features from '../components/Features';
-import Pricing from '../components/Pricing';
 import SignUp from '../components/SignUp';
 import SEO from '../components/SEO';
 
@@ -21,8 +20,7 @@ function Home () {
             </Hero>
             <HowToUse />
             <Users />
-            <Features />
-            <Pricing />
+            <Features /> 
             <SignUp />
         </>
     )

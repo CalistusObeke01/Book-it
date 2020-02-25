@@ -21,11 +21,7 @@ const Header = props => {
                 </div>
                 <nav className={isOpen ? "show-nav" : "hide-nav"}>
                     <ul>
-                        <li>
-                            <Link to="/pricing">
-                                Pricing
-                            </Link>
-                        </li>
+                        
                         <li>
                             <a href="/#features">
                                 Features

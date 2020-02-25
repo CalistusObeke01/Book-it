@@ -24,12 +24,11 @@ const Footer = props => {
             {link: '/#help', text: 'Help'}
         ],
 
-        features: [
-            {link: '/#booking-calculator', text: 'Booking calcutor'},
-            {link: '/#online-bookings', text: 'Online bookings'},
-            {link: '/#user-management', text: 'User Management'},
-            {link: '/#mobile-friendly', text: 'Mobile friendly'},
-            {link: '/#rules-and-policy', text: 'Rules, policy and notifications'}
+        contact: [
+            {link:'', text:'16A Fola Jinadu street, UPS Bus-stop, Gbagada, Lagos.'},
+            {link:'', text:'Email: info@bookiT.com'},
+            {link:'', text:'Phone Number: 08023995138, 07030884944'}
+            
         ],
 
         product: [
@@ -42,7 +41,7 @@ const Footer = props => {
 
     let supportColumn = footerLinks.support;
     let resourcesColumn = footerLinks.resources;
-    let featuresColumn = footerLinks.features;
+    let contactColumn = footerLinks.contact;
     let productColumn = footerLinks.product;
 
     if (props.location.pathname === '/book-venue') return null;
@@ -123,14 +122,13 @@ const Footer = props => {
                     <p>Resources</p>
                     <FooterList eachColumnToMap={resourcesColumn} />
                 </div>
-                
-                <div>
-                    <p>Features</p>
-                    <FooterList eachColumnToMap={featuresColumn} />
-                </div>
-                <div>
+                {/* <div>
                     <p>Product</p>
                     <FooterList eachColumnToMap={productColumn} />
+                </div> */}
+                 <div>
+                    <p>Contact</p>
+                    <FooterList eachColumnToMap={contactColumn} />
                 </div>
                 <div>
                     <p>Connect with us</p>
