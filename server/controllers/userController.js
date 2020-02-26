@@ -34,16 +34,12 @@ module.exports.upload = (req, res) => {
 };
 
 module.exports.create = async (req, res) => {
-  console.log(req.body);
   acct = await User.findOne({ email: req.body.email });
-  console.log(acct);
+  org = await User.findOne({ company: req.body.company });
   if (acct != null) {
-    res
-      .status(403)
-      .json({
-        message:
-          "User already exists with this account details. Login to continue"
-      });
+    res.status(403).send("User exists");
+  } else if (org != null) {
+    res.status(401).send("Company exists");
   } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -52,7 +48,7 @@ module.exports.create = async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword,
-        image: userImg || 'N/A',
+        image: userImg || "N/A",
         admin: req.body.admin || false,
         company: req.body.company
       };
@@ -61,9 +57,42 @@ module.exports.create = async (req, res) => {
 
       newUser
         .save()
-        .then(() =>
-          res.status(201).json({message: "User created."})
-        )
+        .then(() => res.status(201).json({ message: "User created." }))
+        .catch(err =>
+          res.status(400).json({ error: err, Message: "User Not created" })
+        );
+    } catch (err) {
+      console.log(err);
+      res.status(500).send();
+    }
+  }
+};
+
+module.exports.adminCreate = async (req, res) => {
+  acct = await User.findOne({ email: req.body.email });
+  if (acct != null) {
+    res.status(403).json({
+      message:
+        "User already exists with this account details. Login to continue"
+    });
+  } else {
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+      const user = {
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword,
+        image: userImg || "N/A",
+        admin: req.body.admin || false,
+        company: req.body.company
+      };
+
+      const newUser = new User(user);
+
+      newUser
+        .save()
+        .then(() => res.status(201).json({ message: "User created." }))
         .catch(err =>
           res.status(400).json({ error: err, Message: "User Not created" })
         );
@@ -76,14 +105,20 @@ module.exports.create = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
-  console.log(req.body);
   if (user == null || undefined) {
     return res.status(401).json({ message: "user not found" });
   } else {
     try {
       const check = await bcrypt.compare(req.body.password, user.password);
       if (check) {
-        res.status(200).json({ body: { name: user.name, company: user.company, admin: user.admin, id: user._id } });
+        res.status(200).json({
+          body: {
+            name: user.name,
+            company: user.company,
+            admin: user.admin,
+            id: user._id
+          }
+        });
       } else {
         res.status(401).json({ message: "incorrect password" });
       }
@@ -93,4 +128,3 @@ module.exports.login = async (req, res) => {
     }
   }
 };
-
