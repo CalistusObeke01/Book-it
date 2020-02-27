@@ -36,11 +36,11 @@ const Room = props => {
                 <li key={i}>{feature}</li>
               ))}
             </ul>
-            <Link to="/book-venue">
-              <Button onClick={onclick} id={props.venue.id}>
+            <Button className='bookNow' onClick={onclick} id={props.venue.id}>
+              <Link to="/book-venue" className="bookNowLink">
                 Book Now!
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

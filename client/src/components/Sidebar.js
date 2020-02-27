@@ -8,9 +8,7 @@ import SpaceImg from '../images/Path 160.png';
 
 function Sidebar() {
     const sidebarAttr = [
-        {img: SpaceImg, attr: 'Spaces'},
-        {img: MembershipImg, attr: 'Membership'},
-        {img: AdminstrationImg, attr: 'Adminstration'}
+        {link: '/confrence', img: SpaceImg, attr: 'Spaces'}
     ];
 
     return(
@@ -26,7 +24,9 @@ function Sidebar() {
                             return(
                                 <li className="sidebar-content">
                                     <img src={content.img} alt={content.attr} width="20" /> 
-                                    {content.attr}
+                                    <Link className="spaceAttr" to={content.link}>
+                                        {content.attr}
+                                    </Link>
                                 </li>
                             );
                         })
