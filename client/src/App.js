@@ -20,7 +20,7 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Switch>
             <Route exact path="/" component={Home} />
-            <PrivateRoute path="/book-venue" component={BookVenue} />
+            <Route path="/book-venue" component={BookVenue} />
             <PrivateRoute path="/confrence" component={Confrence} />
             <Route path="*" component={PageNotFound} />
           </Switch>

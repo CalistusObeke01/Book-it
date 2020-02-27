@@ -6,6 +6,7 @@ const Room = props => {
   onclick = e => {
     e.preventDefault();
     sessionStorage.setItem("venue", JSON.stringify(e.target.id));
+    // redirect to BookVenue
   };
 
   return (

@@ -74,10 +74,8 @@ class SignUp extends Component {
           }
         })
         .then(data => {
-          console.log(typeof(toggleAuth, setUser));
           toggleAuth();
           setUser(data.body);
-          console.log({ user: this.context.user, isAuthenticated:this.context.isAuthenticated});
           alert("login successful.");
           this.setState({ company: "", name: "", email: "", password: "" });
           // redirect to confrence page
