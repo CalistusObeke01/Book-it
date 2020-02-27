@@ -130,7 +130,7 @@ const Footer = props => {
                     <p>Contact</p>
                     <FooterList eachColumnToMap={contactColumn} />
                 </div>
-                <div>
+                <div id="contact">
                     <p>Connect with us</p>
                     <Socials />
                 </div>

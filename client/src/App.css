@@ -209,10 +209,10 @@
       letter-spacing: 1px;
   }
   
-  .features {
+  #features {
       width: 100%;
       padding: 2rem 2rem 2rem 7rem;
-      background: var(--sectionBackground);
+      /* background: var(--sectionBackground); */
   }
   
   
@@ -308,7 +308,7 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
-      padding: 2rem 4rem;
+      padding: 3rem 4rem 4rem 4rem;
       background: var(--sectionBackground);
   }
   
@@ -391,7 +391,7 @@
   
   .sidebar {
       min-height: 100vh;
-      background: var(--primaryColor);
+      background: var(--btnHover);
       padding: 2rem;
       margin-left: -16px;
       margin-right: -16px;
@@ -401,7 +401,26 @@
       display: flex;
       justify-content: stretch;
       margin-bottom: 1rem;
+      margin-top: 1rem;
   }
+
+  .sidebar-content:hover {
+    background: rgb(129, 157, 224);
+    padding: .4rem;
+    border-radius: var(--bordorRadius);
+  }
+
+  .spaceAttr {
+      color: var(--mainWhite);
+      margin-left: 0.7rem;
+
+  }
+
+  .spaceAttr:hover {
+    color: var(--mainWhite);
+    text-decoration: none;
+  }
+
   
   .sidebar-siteLogo {
       margin-left: 1rem;
@@ -567,6 +586,24 @@
   .defaultBtn:hover {
       cursor: pointer;
       background: var(--btnHover);
+  }
+
+  .bookNow {
+      background: transparent;
+      color: var(--mainWhite);
+      border: 1px solid #fff;
+  }
+
+  .bookNow:hover {
+    background-color: var(--primaryColor);
+    color: var(--mainWhite);
+    border: none;
+  }
+
+  .bookNowLink:hover {
+      text-decoration: none;
+      color: var(--mainWhite);
+      outline: none;
   }
   
 
@@ -747,6 +784,10 @@
   
       .trusted-brands-story > div {
           margin-bottom: 20px;
+      }
+
+      #features {
+          padding: 1rem;
       }
   } 
 

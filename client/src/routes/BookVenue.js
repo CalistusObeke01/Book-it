@@ -5,6 +5,13 @@ import Button from '../components/Button';
 
 function BookVenue() {
     const [venue, setValue] = useState('lekki');
+    const [meetingTitle, setMeetingTitle] = useState('');
+    const [bookingDate, setBookingDate] = useState(new Date());
+    const [description, setDescription] = useState('');
+
+    const handleBookingDate = event => {
+        setBookingDate(event.target.value);
+    };
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -13,6 +20,7 @@ function BookVenue() {
     return(
         <div className="container-fluid">
             <SEO title="Book!T | Book Venue" 
+                name="Book Venue"
                 content ={`Book a venue `} />
             <div className="row">
                 <div className="col-md-3">
@@ -33,15 +41,25 @@ function BookVenue() {
                     </div>
                     <div className="booking-board">
                         <p><b>New Meeting</b></p>
-                        <form>
+                        <form onSubmit={event => {event.preventDefault(); console.log(`${meetingTitle}, ${description}`)}}>
                             <div className="form-group">
                                 <label htmlFor="InputTitle">Meeting Title</label>
-                                <input type="text" className="form-control" id="InputTitle" />
+                                <input type="text" 
+                                className="form-control" 
+                                id="InputTitle"
+                                value={meetingTitle}
+                                onChange={(event => {
+                                    setMeetingTitle(event.target.value)
+                                })} />
                             </div>
                             <div className="form-row">
                                 <div className="form-group col">
                                     <label htmlFor="InputDate">Date</label>
-                                    <input type="date" className="form-control" id="InputDate" />
+                                    <input type="date" 
+                                    className="form-control"
+                                    id="InputDate" 
+                                    value={bookingDate} 
+                                    onChange={handleBookingDate}/>
                                 </div>
                                 <div className="col-1"></div>
                                 <div className="form-group col">
@@ -65,7 +83,12 @@ function BookVenue() {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="InputDescription">Description</label>
-                                <textarea className="form-control" id="InputDescription" />
+                                <textarea className="form-control" 
+                                id="InputDescription"
+                                value={description}
+                                onChange={(event => {
+                                    setDescription(event.target.value)
+                                })} />
                             </div>
                         </form>
                     </div>

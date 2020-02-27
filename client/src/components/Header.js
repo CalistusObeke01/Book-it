@@ -28,9 +28,9 @@ const Header = props => {
                             </a>
                         </li>
                         <li>
-                            <Link to="/contact">
+                            <a href="/#contact">
                                 Contact
-                            </Link>
+                            </a>
                         </li>
                         <li>
                             <a href="/#sign-up" id="signIn">
