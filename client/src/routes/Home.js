@@ -11,7 +11,7 @@ import SEO from '../components/SEO';
 function Home () {
     return (
         <>
-          <SEO title="Book!T | An online booking app for scheduling meeting rooms seamlessly" 
+          <SEO title="Book!T | An online booking app for managing and booking  meeting rooms seamlessly" 
             name="Official homepage of Book!T" 
             content ={`BOOK!T is the best way to manage your venues, space for
             meetings, conferences and other uses without hiccups...`} />

@@ -42,7 +42,7 @@ const Footer = props => {
     let supportColumn = footerLinks.support;
     let resourcesColumn = footerLinks.resources;
     let contactColumn = footerLinks.contact;
-    let productColumn = footerLinks.product;
+    // let productColumn = footerLinks.product;
 
     if (props.location.pathname === '/book-venue') return null;
     return (

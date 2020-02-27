@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "./Button";
-import { Redirect } from "react-router-dom";
+import { AuthContext } from "../components/AuthContext";
+// import { Redirect } from "react-router-dom";
 
 // function SignUp()\
 class SignUp extends Component {
@@ -10,6 +11,8 @@ class SignUp extends Component {
     email: "",
     password: ""
   };
+
+  static contextType = AuthContext;
 
   signUp = e => {
     e.preventDefault();
@@ -25,14 +28,25 @@ class SignUp extends Component {
           if (response.status === 201) {
             alert("signup Successful. Please login to continue");
             this.setState({ company: "", name: "", email: "", password: "" });
-          } else {
+          } else if (response.status === 403) {
+            console.log(response);
             alert(
               "An account already exists with this email address. Log in to continue"
             );
             this.setState({ company: "", name: "", email: "", password: "" });
+          } else if (response.status === 401) {
+            console.log(response);
+            alert(
+              "This Organization already exists, get your organization's admin to add you or log in to continue"
+            );
+            this.setState({ company: "", name: "", email: "", password: "" });
+          } else {
+            alert("network error, please try again in a bit");
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err);
+        });
     } catch (error) {
       alert("Signup failed. Please try again");
       console.log(error);
@@ -41,10 +55,10 @@ class SignUp extends Component {
 
   login = e => {
     e.preventDefault();
-
+    const setUser = this.context.setUser;
+    const toggleAuth = this.context.toggleAuth;
     try {
       const { email, password } = this.state;
-      console.log(email, password);
       fetch("/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -53,12 +67,17 @@ class SignUp extends Component {
         .then(response => {
           if (response.status === 200) {
             return response.json();
-          } else {
+          } else if (response.status === 401) {
             alert("incorrect email or password, please check and try again");
+          } else {
+            alert("Network error, please try again in a bit.");
           }
         })
         .then(data => {
-          sessionStorage.setItem("user", JSON.stringify(data.body));
+          console.log(typeof(toggleAuth, setUser));
+          toggleAuth();
+          setUser(data.body);
+          console.log({ user: this.context.user, isAuthenticated:this.context.isAuthenticated});
           alert("login successful.");
           this.setState({ company: "", name: "", email: "", password: "" });
           // redirect to confrence page
@@ -80,7 +99,7 @@ class SignUp extends Component {
         <section className="signUp-section" id="sign-up">
           <div className="col-md-5">
             <p className="signUp-heading lead">
-              Ready to create your <b>account ? Sign Up</b>
+              Ready to create your <b>account? Sign Up</b> 
             </p>
             <p className="signUp-subHeading">
               Welcome to <span>Book!T</span>
