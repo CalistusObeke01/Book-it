@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../App.css";
 import Room from "./room";
+import { AuthContext } from "../components/AuthContext";
 
 const Confrence = props => {
-  var user = JSON.parse(sessionStorage.getItem("user"));
+  const {user} = useContext(AuthContext);
   const [rooms, setRooms] = useState("");
   useEffect(() => {
     fetch(`/api/venue/${user.company}`)
