@@ -1,27 +1,36 @@
 let Booking = require("../models/booking.model");
 
-module.exports.create = (req, res) => {
+module.exports.create = async (req, res) => {
   const booking = req.body;
 
   newBooking = new Booking(booking);
 
-  newBooking
-    .save()
-    .then(() => res.status(200).send({ message: "Venue booked successfully" }))
-    .catch(err =>
-      res
-        .status(400)
-        .send({ error: err, message: "Booking failed, please try again" })
-    );
+  booked = await Booking.find({
+    venueId: req.body.venueId,
+    date: req.body.date,
+    startTime: req.body.startTime
+  });
+  if (booked == null || undefined || booked.length < 1) {
+    newBooking
+      .save()
+      .then(() =>
+        res.status(200).send({ message: "Venue booked successfully" })
+      )
+      .catch(err =>
+        res
+          .status(400)
+          .send({ error: err, message: "Booking failed, please try again" })
+      );
+  } else {
+    res.status(403).send("selected time not available");
+  }
 };
 
 module.exports.getMany = (req, res) => {
-  Booking.find({ spotId: req.params.venueId })
+  Booking.find({ venueId: req.params.venueId })
     .then(bookings => {
       if (bookings.length == 0) {
-        res
-          .status(204)
-          .send("no bookings found");
+        res.status(204).send("no bookings found");
       } else {
         res.status(200).json({ body: bookings });
       }
