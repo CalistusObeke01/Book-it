@@ -1,7 +1,7 @@
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 var cloudinary = require("cloudinary").v2;
-let User = require("../models/room.model");
+let User = require("../models/user.model");
 var userImg;
 
 cloudinary.config({
@@ -34,14 +34,12 @@ module.exports.upload = (req, res) => {
 };
 
 module.exports.create = async (req, res) => {
-  user = await User.findOne({ email: req.body.email });
-  if (user != null) {
-    res
-      .status(403)
-      .json({
-        message:
-          "User already exists with this account details. Login to continue"
-      });
+  acct = await User.findOne({ email: req.body.email });
+  org = await User.findOne({ company: req.body.company });
+  if (acct != null) {
+    res.status(403).send("User exists");
+  } else if (org != null) {
+    res.status(401).send("Company exists");
   } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -50,7 +48,7 @@ module.exports.create = async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword,
-        image: userImg || 'N/A',
+        image: userImg || "N/A",
         admin: req.body.admin || false,
         company: req.body.company
       };
@@ -59,9 +57,42 @@ module.exports.create = async (req, res) => {
 
       newUser
         .save()
-        .then(() =>
-          res.status(201).json({message: "User created."})
-        )
+        .then(() => res.status(201).json({ message: "User created." }))
+        .catch(err =>
+          res.status(400).json({ error: err, Message: "User Not created" })
+        );
+    } catch (err) {
+      console.log(err);
+      res.status(500).send();
+    }
+  }
+};
+
+module.exports.adminCreate = async (req, res) => {
+  acct = await User.findOne({ email: req.body.email });
+  if (acct != null) {
+    res.status(403).json({
+      message:
+        "User already exists with this account details. Login to continue"
+    });
+  } else {
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+      const user = {
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword,
+        image: userImg || "N/A",
+        admin: req.body.admin || false,
+        company: req.body.company
+      };
+
+      const newUser = new User(user);
+
+      newUser
+        .save()
+        .then(() => res.status(201).json({ message: "User created." }))
         .catch(err =>
           res.status(400).json({ error: err, Message: "User Not created" })
         );
@@ -79,9 +110,15 @@ module.exports.login = async (req, res) => {
   } else {
     try {
       const check = await bcrypt.compare(req.body.password, user.password);
-      console.log(check);
       if (check) {
-        res.status(200).json({ body: { name: user.name, company: user.company, admin: user.admin, id: user._id } });
+        res.status(200).json({
+          body: {
+            name: user.name,
+            company: user.company,
+            admin: user.admin,
+            id: user._id
+          }
+        });
       } else {
         res.status(401).json({ message: "incorrect password" });
       }
@@ -91,4 +128,3 @@ module.exports.login = async (req, res) => {
     }
   }
 };
-

@@ -42,7 +42,7 @@ const Footer = props => {
     let supportColumn = footerLinks.support;
     let resourcesColumn = footerLinks.resources;
     let contactColumn = footerLinks.contact;
-    let productColumn = footerLinks.product;
+    // let productColumn = footerLinks.product;
 
     if (props.location.pathname === '/book-venue') return null;
     return (
@@ -130,7 +130,7 @@ const Footer = props => {
                     <p>Contact</p>
                     <FooterList eachColumnToMap={contactColumn} />
                 </div>
-                <div>
+                <div id="contact">
                     <p>Connect with us</p>
                     <Socials />
                 </div>

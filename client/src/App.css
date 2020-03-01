@@ -209,10 +209,10 @@
       letter-spacing: 1px;
   }
   
-  .features {
+  #features {
       width: 100%;
       padding: 2rem 2rem 2rem 7rem;
-      background: var(--sectionBackground);
+      /* background: var(--sectionBackground); */
   }
   
   
@@ -308,7 +308,7 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
-      padding: 2rem 4rem;
+      padding: 3rem 4rem 4rem 4rem;
       background: var(--sectionBackground);
   }
   
@@ -391,7 +391,7 @@
   
   .sidebar {
       min-height: 100vh;
-      background: var(--primaryColor);
+      background: var(--btnHover);
       padding: 2rem;
       margin-left: -16px;
       margin-right: -16px;
@@ -401,7 +401,26 @@
       display: flex;
       justify-content: stretch;
       margin-bottom: 1rem;
+      margin-top: 1rem;
   }
+
+  .sidebar-content:hover {
+    background: rgb(129, 157, 224);
+    padding: .4rem;
+    border-radius: var(--bordorRadius);
+  }
+
+  .spaceAttr {
+      color: var(--mainWhite);
+      margin-left: 0.7rem;
+
+  }
+
+  .spaceAttr:hover {
+    color: var(--mainWhite);
+    text-decoration: none;
+  }
+
   
   .sidebar-siteLogo {
       margin-left: 1rem;
@@ -567,6 +586,24 @@
   .defaultBtn:hover {
       cursor: pointer;
       background: var(--btnHover);
+  }
+
+  .bookNow {
+      background: transparent;
+      color: var(--mainWhite);
+      border: 1px solid #fff;
+  }
+
+  .bookNow:hover {
+    background-color: var(--primaryColor);
+    color: var(--mainWhite);
+    border: none;
+  }
+
+  .bookNowLink:hover {
+      text-decoration: none;
+      color: var(--mainWhite);
+      outline: none;
   }
   
 
@@ -748,49 +785,53 @@
       .trusted-brands-story > div {
           margin-bottom: 20px;
       }
+
+      #features {
+          padding: 1rem;
+      }
   } 
 /* Admin */
-.dropdown {
-     position: relative;
-      display: block; 
+.admin{
+    border: 1px solid #336DF7;
+    border-radius: 7px;
+    border-radius: 7px;
+    display: inline-flex;
+    margin-left: 60px;
+    margin-right: 60px;
 }
- .admin1 {
-     list-style-type: none;
-     margin: 0;
-     padding: 0;
-     top:45px;
+ .adminHeader {
+     padding: 10px;
      right:0px;
-     /* width: 100px; */
-     background-color: #336DF7;
+     width: 100%;
+     background-color: grey;
      font-weight:bold;
      position: absolute;
-    display: flex;
-    flex-direction: column;
-     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-     z-index: 1;
+
 }
- /* li a1 {
-     color: #000;
-     text-decoration: none;
-} */
- .admin2 {
+.adHeader1{
+    text-align: center;
+    
+}
+.admin1{
+    border: 1px solid #336DF7;
+    border-radius: 7px;
+    display: inline-flex;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+ 
+ .newad {
      padding: 8px 16px;
+     padding-top: 20px;
      border-bottom: 1px solid #e5e5e5;
 }
- /* .admin2:last-child {
-     border-bottom: none;
+.newad1{
+    margin-top: 20px;
 }
- .admin2:hover {
-     background-color: #e5e5e5;
-     color: white;
-} */
+
  .button{
-     /* width:178px; */
-     /* height:18px; */
-     /* background-color: blue ; */
      padding:12px;
      border-radius:5px;
-     /* font-weight:bold; */
      color:white;
 }
  .button:before{
@@ -803,88 +844,6 @@
      right:6px;
      top:18px;
 }
-/* Admin */
-.modal-wrapper {
-    background: white;
-    border: 1px solid #d0cccc;
-    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
-    margin: 100px auto 0;
-    transition: all .8s;
-    width: 60%;
-}
-
-.modal-header {
-    background: #263238;
-    height: 40px;
-    line-height: 40px;
-    padding: 5px 20px;
-    text-align: right;
-}
-
-.modal-header h3 {
-    color: white;
-    float: left;
-    margin: 0;
-    padding: 0;
-}
-
-.modal-body {
-    padding: 10px 15px;
-    text-align: center;
-}
-
-.modal-footer {
-    background: #263238;
-    height: 35px;
-    padding: 15px;
-}
-
-.close-modal-btn {
-    color: white;
-    cursor: pointer;
-    float: right;
-    font-size: 30px;
-    margin: 0;
-}
-
-.close-modal-btn:hover {
-    color: black;
-}
-
-.btn-cancel, .btn-continue {
-    background: coral;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    outline: none;
-    padding: 10px;
-}
-
-.btn-cancel {
-    background-color: #b71c1c;
-    float: left;
-}
-
-.btn-continue {
-    background-color: #1b5e20;
-    float: right;
-}
-
-.back-drop {
-    background-color: rgba(48, 49, 48, 0.42);
-    height: 100%;
-    position: fixed;
-    transition: all 1.3s;
-    width: 100%;
-}
-
-.open-modal-btn {
-    margin: 15px;
-    padding: 10px;
-    font-weight: bold;
-}
-
 
 
 

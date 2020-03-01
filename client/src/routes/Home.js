@@ -10,6 +10,7 @@ import SEO from '../components/SEO';
 
 function Home () {
     return (
+
       <>
         <SEO
           title="Book!T | An online booking app for scheduling meeting rooms seamlessly"
@@ -26,6 +27,8 @@ function Home () {
         <SignUp />
       </>
     );
+
+
 }
 
 export default Home

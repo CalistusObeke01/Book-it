@@ -5,7 +5,8 @@ import { Button } from "reactstrap";
 const Room = props => {
   onclick = e => {
     e.preventDefault();
-    sessionStorage.setItem("venue", JSON.stringify(e.target.id));
+    sessionStorage.setItem("vId", JSON.stringify(e.target.id));
+    // redirect to BookVenue
   };
 
   return (
