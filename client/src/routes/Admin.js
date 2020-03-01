@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Button from "./Button";
+import Button from "../components/Button";
 import { AuthContext } from "../components/AuthContext";
 import { Redirect } from "react-router-dom";
 
 // function SignUp()\
-class SignUp extends Component {
+class Admin extends Component {
   static contextType = AuthContext;
   state = {
     company: "",
@@ -67,12 +67,9 @@ class SignUp extends Component {
         .then(async response => {
           if (response.status === 200) {
             var data = await response.json();
-            const { name, company, admin, id, userKey } = data.body;
-            const user = { name, company, admin, id };
-            console.log(user);
-            sessionStorage.setItem("mx", JSON.stringify(userKey));
+            console.log(data);
             toggleAuth();
-            setUser(user);
+            setUser(data.body);
             this.setState({ company: "", name: "", email: "", password: "" });
           } else if (response.status === 401) {
             alert("incorrect email or password, please check and try again");
@@ -237,4 +234,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default Admin;

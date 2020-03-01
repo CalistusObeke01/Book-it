@@ -44,13 +44,20 @@ module.exports.create = async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
+      const randomvalue = arr => arr[Math.floor(Math.random() * arr.length)];
+
+      const userKey = `b${randomvalue(req.body.name)}k${randomvalue(
+        req.body.company
+      )}i${randomvalue(req.body.email)}`;
+
       const user = {
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword,
         image: userImg || "N/A",
         admin: req.body.admin || false,
-        company: req.body.company
+        company: req.body.company,
+        userKey: userKey
       };
 
       const newUser = new User(user);
@@ -79,13 +86,18 @@ module.exports.adminCreate = async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
+       const userKey = `b${randomvalue(req.body.name)}k${randomvalue(
+         req.body.company
+       )}i${randomvalue(req.body.email)}`;
+
       const user = {
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword,
         image: userImg || "N/A",
         admin: req.body.admin || false,
-        company: req.body.company
+        company: req.body.company,
+        userKey: userKey
       };
 
       const newUser = new User(user);
@@ -116,12 +128,35 @@ module.exports.login = async (req, res) => {
             name: user.name,
             company: user.company,
             admin: user.admin,
-            id: user._id
+            id: user._id,
+            userKey: user.userKey
           }
         });
       } else {
         res.status(401).json({ message: "incorrect password" });
       }
+    } catch (err) {
+      console.log(err);
+      res.status(500).send();
+    }
+  }
+};
+
+module.exports.getDeets = async (req, res) => {
+  const user = await User.find(({ userKey: req.params.userkey }));
+  console.log(user);
+  if (user === null || undefined) {
+    return res.status(404);
+  } else {
+    try {
+      res.status(200).json({
+        body: {
+          name: user.name,
+          company: user.company,
+          admin: user.admin,
+          id: user._id
+        }
+      });
     } catch (err) {
       console.log(err);
       res.status(500).send();

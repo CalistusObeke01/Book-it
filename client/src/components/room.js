@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 
 const Room = props => {
+ 
   onclick = e => {
     e.preventDefault();
     sessionStorage.setItem("vId", JSON.stringify(e.target.id));
-    // redirect to BookVenue
   };
 
   return (

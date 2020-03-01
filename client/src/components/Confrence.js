@@ -4,7 +4,7 @@ import Room from "./room";
 import { AuthContext } from "../components/AuthContext";
 
 const Confrence = props => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [rooms, setRooms] = useState("");
   useEffect(() => {
     fetch(`/api/venue/${user.company}`)
@@ -16,7 +16,6 @@ const Confrence = props => {
       .then(data => {
         if (data) {
           setRooms(data.body);
-          console.log("effect");
         }
       })
       .catch(error => console.log(error));
@@ -26,8 +25,13 @@ const Confrence = props => {
     return (
       <div style={{ marginBottom: "150px", marginTop: "100px" }}>
         <div className="wrapper">
-          <div className="cols justify-content-center confr" style={{ minHeight: "80vh"}}>
-            <h3>No Rooms available for this organization</h3>
+          <div
+            className="cols align-middle confr"
+            style={{ minHeight: "50vh" }}
+          >
+            <h3 style={{ height: "50%", margin: "auto" }}>
+              No spaces available for {user.company}
+            </h3>
           </div>
         </div>
       </div>
