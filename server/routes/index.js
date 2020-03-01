@@ -39,6 +39,8 @@ module.exports = app => {
 
   app.route("/api/users/login").post(userResource.login);
 
+  app.route("/api/users/:userKey").get(userResource.getDeets);
+
   app
     .route("/api/users/upload/")
     .post(upload.single("file"), userResource.upload);

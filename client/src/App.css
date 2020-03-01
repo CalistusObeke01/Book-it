@@ -53,12 +53,13 @@
   
   #navbar nav ul li {
       list-style: none;
+      margin: 0 10px;
   }
   
   #navbar nav ul li a {
-      height: 50px;
-      line-height: 50px;
-      padding: 0 24px;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 20px;
       text-decoration: none;
       color: var(--mainWhite);
       display: block;
@@ -69,7 +70,22 @@
       padding-bottom: 0;
       width: 80%;
   }
-  
+
+   #navbar nav ul li button {
+      height: 40px;
+      line-height: 40px;
+      padding: 0 20px;
+      text-decoration: none;
+      color: var(--mainWhite);
+      display: block;
+      border: 0;
+  }
+
+  #navbar nav ul li button:hover  {
+      border-bottom: 2px solid var(--mainWhite);
+      padding-bottom: 0;
+      width: 80%;
+  }
   
   .menu-toggle {
       color: var(--mainWhite);

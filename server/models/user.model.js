@@ -29,6 +29,10 @@ const userSchema = new Schema({
 
   company: {
     type: String
+  },
+
+  userKey : {
+    type: String
   }
 });
 
