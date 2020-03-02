@@ -6,6 +6,8 @@ import "../App.css";
 import { FaAlignRight, FaTimes } from "react-icons/fa";
 import { AuthContext } from "./AuthContext";
 
+
+
 const Header = props => {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated, user, setUser, toggleAuth } = useContext(

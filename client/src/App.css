@@ -806,6 +806,62 @@
           padding: 1rem;
       }
   } 
+/* Admin */
+.admin{
+    border: 1px solid #336DF7;
+    border-radius: 7px;
+    border-radius: 7px;
+    display: inline-flex;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+ .adminHeader {
+     padding: 10px;
+     right:0px;
+     width: 100%;
+     background-color: grey;
+     font-weight:bold;
+     position: absolute;
+
+}
+.adHeader1{
+    text-align: center;
+    
+}
+.admin1{
+    border: 1px solid #336DF7;
+    border-radius: 7px;
+    display: inline-flex;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+ 
+ .newad {
+     padding: 8px 16px;
+     padding-top: 20px;
+     border-bottom: 1px solid #e5e5e5;
+}
+.newad1{
+    margin-top: 20px;
+}
+
+ .button{
+     padding:12px;
+     border-radius:5px;
+     color:white;
+}
+ .button:before{
+     content:"";
+     position:absolute;
+     width:0px;
+     height:0px;
+     border: 10px solid;
+     border-color: white transparent transparent transparent;
+     right:6px;
+     top:18px;
+}
+
+
 
 /* CONFRENCE ROOMS */
 *{
