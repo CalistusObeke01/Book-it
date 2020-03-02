@@ -7,7 +7,7 @@ import {
 } from "reactstrap";
 import '../App.css'
 
-class Admin extends Component {
+class Admin1 extends Component {
   state = {
     name: "",
     nameError: "",
@@ -96,6 +96,8 @@ class Admin extends Component {
     }
   };
 
+
+  //create user
   userRole = e => {
     e.preventDefault();
     const setUserRole = this.context.setUserRole;
@@ -129,6 +131,7 @@ class Admin extends Component {
       console.log(error);
     }
   };
+///////////////////////////////////
 
   render() {
     return (
@@ -177,7 +180,7 @@ class Admin extends Component {
               <br />
               <Label for="features">Features</Label>
               <Input
-                type="text"
+                type= {<li>{feature}</li>}
                 value={this.state.features}
                 name="features"
                 placeholder="Conference room features"
@@ -252,4 +255,4 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+export default Admin1;
