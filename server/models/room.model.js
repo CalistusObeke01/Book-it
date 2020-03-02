@@ -17,7 +17,7 @@ const roomSchema = new Schema({
     type: String
   },
 
-  seats: {
+  capacity: {
     type: String
   },
 

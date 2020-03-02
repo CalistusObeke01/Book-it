@@ -11,7 +11,7 @@ import "./App.css";
 const Home = lazy(() => import("./routes/Home"));
 const Confrence = lazy(() => import("./components/Confrence"));
 const BookVenue = lazy(() => import("./routes/BookVenue"));
-const Admin = lazy(() => import("./routes/Admin"));
+const Admin = lazy(() => import("./components/AddForms"));
 const PageNotFound = lazy(() => import("./routes/PageNotFound"));
 
 function App() {

@@ -11,7 +11,7 @@ export class SecretRoute extends Component {
              <Route
                {...props}
                render={props =>
-                 this.context.isAuthenticated && this.context.user.admin ? (
+                 this.context.isAuthenticated /*&& this.context.user.admin*/ ? (
                    <Component {...props} />
                  ) : (
                    <Redirect to="/" />
