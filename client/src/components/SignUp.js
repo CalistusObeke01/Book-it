@@ -205,7 +205,7 @@ class SignUp extends Component {
                     required
                   />
                 </div>
-                <div className="form-group form-check">
+                {/* <div className="form-group form-check">
                   <input
                     type="checkbox"
                     className="form-check-input"
@@ -221,7 +221,7 @@ class SignUp extends Component {
                   <a href="#forgetPassword" className="forgetPassword">
                     Forget password ?
                   </a>
-                </div>
+                </div> */}
                 <Button>Sign in</Button>
               </form>
             </div>

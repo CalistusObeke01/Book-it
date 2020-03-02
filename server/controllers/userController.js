@@ -46,9 +46,12 @@ module.exports.create = async (req, res) => {
 
       const randomvalue = arr => arr[Math.floor(Math.random() * arr.length)];
 
-      const userKey = `b${randomvalue(req.body.name)}k${randomvalue(
-        req.body.company
-      )}i${randomvalue(req.body.email)}`;
+      const userKey = await bcrypt.hash(
+        `b${randomvalue(req.body.name)}k${randomvalue(
+          req.body.company
+        )}i${randomvalue(req.body.email)}`,
+        10
+      );
 
       const user = {
         name: req.body.name,
@@ -86,9 +89,12 @@ module.exports.adminCreate = async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-       const userKey = `b${randomvalue(req.body.name)}k${randomvalue(
-         req.body.company
-       )}i${randomvalue(req.body.email)}`;
+      const userKey = await bcrypt.hash(
+        `b${randomvalue(req.body.name)}k${randomvalue(
+          req.body.company
+        )}i${randomvalue(req.body.email)}`,
+        10
+      );
 
       const user = {
         name: req.body.name,
@@ -143,10 +149,9 @@ module.exports.login = async (req, res) => {
 };
 
 module.exports.getDeets = async (req, res) => {
-  const user = await User.find(({ userKey: req.params.userkey }));
-  console.log(user);
-  if (user === null || undefined) {
-    return res.status(404);
+  const user = await User.findOne({ userKey: req.params.userKey });
+  if (user == null || undefined) {
+    return res.status(401).json({ message: "user not found" });
   } else {
     try {
       res.status(200).json({
