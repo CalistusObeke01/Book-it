@@ -14,7 +14,6 @@ const Header = props => {
     AuthContext
   );
 
-  const rd = () => <Redirect to="/administration" />;
   const logout = () => {
     sessionStorage.removeItem("mx");
     setUser("");
@@ -54,6 +53,11 @@ const Header = props => {
                      </li>
                      <li>
                        <h5 className="text-white p-2">{user.company}</h5>
+                     </li>
+                     <li>
+                       <Link to="/confrence">
+                         <a href="#">Spaces</a>
+                       </Link>
                      </li>
                      <li>
                        <button onClick={logout} id="signIn">
@@ -106,7 +110,7 @@ const Header = props => {
                      </li>
                      <li>
                        <Link to="/administration">
-                         <a>Admin</a>
+                         <a href="#">Admin</a>
                        </Link>
                      </li>
                      <li>

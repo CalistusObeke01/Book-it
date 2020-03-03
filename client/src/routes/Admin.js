@@ -4,10 +4,15 @@ import AddForms from "../components/AddForms";
 const Admin = () => {
   return (
     <>
-      <div className="m-3">
-        <h3 className="lead text-center trusted-brands">Administration</h3>
+      <section className="pt-5 pb-5">
+        <div>
+          {" "}
+          <h3 className="mt-5 text-primary text-center">Administration</h3>
+        </div>
         <AddForms />
-      </div>
+      </section>
     </>
   );
 };
+
+export default Admin;

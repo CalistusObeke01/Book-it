@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Container,
-  Label,
-  Input
-} from "reactstrap";
-import '../App.css'
+import { Button, Container, Label, Input } from "reactstrap";
+import "../App.css";
 
 class Admin1 extends Component {
   state = {
@@ -17,9 +12,8 @@ class Admin1 extends Component {
     features: "",
     featuresError: "",
     userName: "",
-    role: "",
-    password: "",
-    
+    admin: "",
+    password: ""
   };
 
   onChange = e => {
@@ -30,8 +24,8 @@ class Admin1 extends Component {
     this.setState({ file: file });
   };
   handleChange = e => {
-      this.setState({selectedValue:e.target.value})
-  }
+    this.setState({ selectedValue: e.target.value });
+  };
 
   handleUpload = e => {
     let file = this.state.file;
@@ -59,16 +53,15 @@ class Admin1 extends Component {
 
     if (this.state.name.length < 5) {
       isError = true;
-      errors.nameError = "Name required atleast 5 letters";
+      errors.nameError = "Name requires at least 5 letters";
     }
     if (this.state.location.length < 3) {
       isError = true;
-      errors.locationError = "Location name is required";
+      errors.locationError = "Location is required";
     }
-    if (this.state.features < 5) {
+    if (this.state.features < 1) {
       isError = true;
-      errors.featuresError =
-        "conference Features required atleast 4 description";
+      errors.featuresError = "space features required";
     }
 
     this.setState({
@@ -83,7 +76,7 @@ class Admin1 extends Component {
     e.preventDefault();
 
     const err = this.validate();
-    if (!err) {
+    if (err == true) {
       //clear form
       this.setState({
         name: "",
@@ -96,18 +89,15 @@ class Admin1 extends Component {
     }
   };
 
-
   //create user
   userRole = e => {
     e.preventDefault();
-    const setUserRole = this.context.setUserRole;
-    const toggleAuth = this.context.toggleAuth;
     try {
-      const { userName, role, password } = this.state;
+      const { userName, admin, password } = this.state;
       fetch("/api/admin/adrole", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userName, role, password })
+        body: JSON.stringify({ userName, admin, password })
       })
         .then(response => {
           if (response.status === 200) {
@@ -119,11 +109,8 @@ class Admin1 extends Component {
           }
         })
         .then(data => {
-          toggleAuth();
-          setUserRole(data.body);
           alert("user created successful.");
-          this.setState({ userName: "", role: "", password: "" });
-          
+          this.setState({ userName: "", admin: "", password: "" });
         })
         .catch(err => console.log(err));
     } catch (error) {
@@ -131,7 +118,7 @@ class Admin1 extends Component {
       console.log(error);
     }
   };
-///////////////////////////////////
+  ///////////////////////////////////
 
   render() {
     return (
@@ -144,58 +131,65 @@ class Admin1 extends Component {
             </div>
 
             <div className="newad">
-              <Label for="name">Name</Label>
-              <Input
-                type="name"
-                name="name"
-                value={this.state.name}
-                placeholder="Name"
-                className="mb-3 newad1"
-                errortext={this.state.nameError}
-                onChange={e => this.onChange(e)}
-              />
+              <div>
+                <Label for="name">Name</Label>
+                <Input
+                  type="name"
+                  name="name"
+                  value={this.state.name}
+                  placeholder="Name"
+                  className="mb-3 newad1"
+                  errortext={this.state.nameError}
+                  onChange={e => this.onChange(e)}
+                />
+              </div>
+              <div>
+                <Label for="location">Location</Label>
+                <Input
+                  type="name"
+                  value={this.state.location}
+                  name="location"
+                  placeholder="location "
+                  className="mb-3"
+                  errortext={this.state.locationError}
+                  onChange={e => this.onChange(e)}
+                />
+              </div>
+              <div>
+                <Label for="image">Upload image</Label>
+                <Input
+                  type="file"
+                  value={this.state.image}
+                  name="file"
+                  placeholder="Upload Image"
+                  className="mb-3"
+                  onChange={e => this.handleFile(e)}
+                />
+                <button>upload</button>
+              </div>
 
-              <Label for="location">Location</Label>
-              <Input
-                type="name"
-                value={this.state.location}
-                name="location"
-                placeholder="location "
-                className="mb-3"
-                errortext={this.state.locationError}
-                onChange={e => this.onChange(e)}
-              />
-
-              <Label for="image">Upload image</Label>
-              <Input
-                type="file"
-                value={this.state.image}
-                name="file"
-                placeholder="Upload Image"
-                className="mb-3"
-                onChange={e => this.handleFile(e)}
-              />
-              <button>upload</button>
               <br />
               <br />
-              <Label for="features">Features</Label>
-              <Input
-                type= {<li>{feature}</li>}
-                value={this.state.features}
-                name="features"
-                placeholder="Conference room features"
-                className="mb-3"
-                errortext={this.state.featuresError}
-                onChange={e => this.onChange(e)}
-              />
-
+              <div>
+                <Label for="features">Features</Label>
+                <Input
+                  type="text"
+                  value={this.state.features}
+                  name="features"
+                  placeholder="feature 1, feature 2, etc..."
+                  className="mb-3"
+                  errortext={this.state.featuresError}
+                  onChange={e => this.onChange(e)}
+                />
+                <small>comma seperated list of features</small>
+              </div>
               <Button
                 onClick={e => this.onSubmit(e)}
                 color="dark"
                 style={{ marginTop: "2rem", width: "100%" }}
                 block
               >
-                Submit
+                Add
               </Button>
             </div>
           </form>
@@ -224,9 +218,9 @@ class Admin1 extends Component {
                 onChange={this.handleChange}
               >
                 <option value="admin">Admin</option>
-                <option value="user role">user</option>
+                <option value="user role">Member</option>
               </select>
-            
+
               <br />
               <Label for="password">Password</Label>
               <Input

@@ -307,6 +307,10 @@
   #section {
       text-align: center;
   }
+
+  section {
+      background: var(--sectionBackground);
+  }
   
   .tabs menu ul {
       list-style: none;
@@ -807,6 +811,7 @@
       }
   } 
 /* Admin */
+
 .admin{
     border: 1px solid #336DF7;
     border-radius: 7px;

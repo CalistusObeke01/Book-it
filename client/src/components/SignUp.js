@@ -11,7 +11,6 @@ class SignUp extends Component {
     name: "",
     email: "",
     password: "",
-    loggedIn: this.context.isAuthenticated
   };
 
   signUp = e => {
@@ -69,11 +68,10 @@ class SignUp extends Component {
             var data = await response.json();
             const { name, company, admin, id, userKey } = data.body;
             const user = { name, company, admin, id };
-            console.log(user);
             sessionStorage.setItem("mx", JSON.stringify(userKey));
-            toggleAuth();
-            setUser(user);
             this.setState({ company: "", name: "", email: "", password: "" });
+            setUser(user);
+            toggleAuth();
           } else if (response.status === 401) {
             alert("incorrect email or password, please check and try again");
           } else {
