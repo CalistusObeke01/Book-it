@@ -6,6 +6,7 @@ import { AuthContext } from "../components/AuthContext";
 const Confrence = props => {
   const { user } = useContext(AuthContext);
   const [rooms, setRooms] = useState("");
+
   useEffect(() => {
     fetch(`/api/venue/${user.company}`)
       .then(response => {
@@ -19,7 +20,7 @@ const Confrence = props => {
         }
       })
       .catch(error => console.log(error));
-  });
+  }, []);
 
   if (rooms.length < 1) {
     return (

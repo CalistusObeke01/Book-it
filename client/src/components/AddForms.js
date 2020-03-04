@@ -9,12 +9,13 @@ class AddForms extends Component {
   state = {};
 
   getRole = ad => {
-    if (ad == "Admin") {
+    if (ad === "Admin") {
       return true;
     } else {
       return false;
     }
   };
+
   addUser = e => {
     e.preventDefault();
     try {
@@ -22,6 +23,7 @@ class AddForms extends Component {
       var company = this.context.user.company;
       var admin = this.getRole(admin);
       var name = UserName;
+      
       fetch("/api/users/adminAdd", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -52,20 +54,22 @@ class AddForms extends Component {
     try {
       var { RoomName, location, features, capacity } = this.state;
       var name = RoomName;
-      var capacity = `${capacity} people`;
+      var capacity = `${capacity} sitter`;
       var features = features.split(",");
+      features = features.unshift(capacity);
+      console.log(features);
       var company = this.context.user.company;
-      fetch("/api/users/adminAdd", {
+      fetch("/api/venue/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company, name, capacity, features, location })
+        body: JSON.stringify({ company, name, features, location })
       })
         .then(response => {
           if (response.status === 201) {
-            alert("Member added Successfully.");
+            alert("Space added Successfully.");
             this.setState({});
-          } else if (response.status === 403) {
-            alert("An account already exists with this email address.");
+          } else if (response.status === 400) {
+            alert("Error adding space.");
             this.setState({});
           } else {
             alert("network error, please try again in a bit");
@@ -74,9 +78,30 @@ class AddForms extends Component {
         .catch(err => {
           console.log(err);
         });
-    } catch (error) {}
+    } catch (error) {
+      alert("Operation failed. Please try again");
+      console.log(error);
+    }
+  };
 
-    console.log(this.state);
+  uploadSpaceImg = e => {
+    e.preventDefault();
+    var image = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", image);
+    try {
+      fetch("/api/venue/upload/", {
+        method: "POST",
+        body: formData
+      }).then(response => {
+        if (response.status != 200) {
+          console.log(response.json());
+        }
+      });
+    } catch (error) {
+      alert("Error! please try again");
+      console.log(error);
+    }
   };
 
   inputChange = e => {
@@ -95,12 +120,12 @@ class AddForms extends Component {
 
             <form onSubmit={this.addUser}>
               <div className="form-group">
-                <label htmlFor="InputFullname">Full Name</label>
+                <label htmlFor="InputFullName">Full Name</label>
                 <input
                   name="UserName"
                   type="text"
                   className="form-control"
-                  id="InputFullname"
+                  id="InputFullName"
                   onChange={this.inputChange}
                   required
                 />
@@ -162,7 +187,7 @@ class AddForms extends Component {
                   className="form-control"
                   id="RoomImg"
                   accept="image/*"
-                  onChange={this.inputChange}
+                  onChange={this.uploadSpaceImg}
                   plaintext
                 />
               </div>
