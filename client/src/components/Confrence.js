@@ -20,7 +20,7 @@ const Confrence = props => {
         }
       })
       .catch(error => console.log(error));
-  }, []);
+  });
 
   if (rooms.length < 1) {
     return (

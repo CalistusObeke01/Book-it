@@ -22,13 +22,12 @@ class AddForms extends Component {
   addUser = e => {
     e.preventDefault();
     try {
-      var { company, admin, UserName, email, password } = this.state;
+      var {admin, UserName, email, password } = this.state;
       var company = this.context.user.company;
-      var admin = this.getRole(admin);
+      admin = this.getRole(admin);
       var name = UserName;
-      var uk = sessionStorage.getItem('mx');
-      console.log(uk);
-      
+      var uk = sessionStorage.getItem('mx')
+
       fetch(`/api/users/adminAdd/${uk}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -62,7 +61,7 @@ class AddForms extends Component {
     try {
       var { RoomName, location, feature, capacity } = this.state;
       var name = RoomName;
-      var capacity = `${capacity} seater`;
+      capacity = `${capacity} seater`;
       var features = this.toArray(feature);
       features.unshift(capacity);  
       var company = this.context.user.company;
@@ -101,7 +100,7 @@ class AddForms extends Component {
         method: "POST",
         body: formData
       }).then(response => {
-        if (response.status != 200) {
+        if (response.status !== 200) {
           console.log(response.json());
         }
       });

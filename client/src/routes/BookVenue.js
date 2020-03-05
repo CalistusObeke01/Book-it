@@ -122,10 +122,10 @@ function BookVenue() {
         content={`Book a venue `}
       />
       <div className="row">
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <Sidebar />
-        </div>
-        <div className="col-md-7">
+        </div> */}
+        <div className="col-md-8">
           <form
             onSubmit={event => {
               event.preventDefault();
@@ -225,7 +225,7 @@ function BookVenue() {
             </div>
           </form>
         </div>
-        <div className="col-md-2 calendar-board">
+        <div className="col-md-4 calendar-board">
           <p className="check-availiability">Check Availability</p>
         </div>
       </div>

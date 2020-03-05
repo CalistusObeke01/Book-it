@@ -36,7 +36,7 @@ class AuthContextProvider extends Component {
   };
 
   componentDidMount() {
-    if(this.state.isAuthenticated == false){
+    if(this.state.isAuthenticated === false){
       this.getUser();
     }
   }
