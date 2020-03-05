@@ -43,15 +43,21 @@ module.exports.create = async (req, res) => {
   } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
+      const nums = "0123456789";
       const randomvalue = arr => arr[Math.floor(Math.random() * arr.length)];
-
-      const userKey = await bcrypt.hash(
-        `b${randomvalue(req.body.name)}k${randomvalue(
-          req.body.company
-        )}i${randomvalue(req.body.email)}`,
-        10
-      );
+      const userKey = `b${randomvalue(req.body.name)}k${randomvalue(
+        req.body.company
+      )}i${randomvalue(req.body.email)}${randomvalue(nums)}${randomvalue(
+        req.body.name
+      )}k${randomvalue(req.body.company)}i${randomvalue(
+        req.body.email
+      )}${randomvalue(nums)}${randomvalue(req.body.name)}k${randomvalue(
+        req.body.company
+      )}i${randomvalue(req.body.email)}${randomvalue(nums)}${randomvalue(
+        req.body.name
+      )}k${randomvalue(req.body.company)}i${randomvalue(
+        req.body.email
+      )}${randomvalue(nums)}`;
 
       const user = {
         name: req.body.name,
@@ -79,44 +85,61 @@ module.exports.create = async (req, res) => {
 };
 
 module.exports.adminCreate = async (req, res) => {
-  acct = await User.findOne({ email: req.body.email });
-  if (acct != null) {
-    res.status(403).json({
-      message:
-        "User already exists with this account details. Login to continue"
-    });
+  admin = await User.findOne({ userKey: req.params.userKey });
+  if (admin == null || undefined) {
+    res.status(401).send("unauthorized user");
+  } else if (admin.admin !== true) {
+    res.status(401).send("unauthorized user");
   } else {
-    try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    acct = await User.findOne({ email: req.body.email });
+    if (acct != null) {
+      res.status(403).json({
+        message:
+          "User already exists with this account details. Login to continue"
+      });
+    } else {
+      try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const nums = "0123456789";
 
-      const userKey = await bcrypt.hash(
-        `b${randomvalue(req.body.name)}k${randomvalue(
+        const randomvalue = arr => arr[Math.floor(Math.random() * arr.length)];
+
+        const userKey = `b${randomvalue(req.body.name)}k${randomvalue(
           req.body.company
-        )}i${randomvalue(req.body.email)}`,
-        10
-      );
+        )}i${randomvalue(req.body.email)}${randomvalue(nums)}${randomvalue(
+          req.body.name
+        )}k${randomvalue(req.body.company)}i${randomvalue(
+          req.body.email
+        )}${randomvalue(nums)}${randomvalue(req.body.name)}k${randomvalue(
+          req.body.company
+        )}i${randomvalue(req.body.email)}${randomvalue(nums)}${randomvalue(
+          req.body.name
+        )}k${randomvalue(req.body.company)}i${randomvalue(
+          req.body.email
+        )}${randomvalue(nums)}`;
 
-      const user = {
-        name: req.body.name,
-        email: req.body.email,
-        password: hashedPassword,
-        image: userImg || "N/A",
-        admin: req.body.admin || false,
-        company: req.body.company,
-        userKey: userKey
-      };
+        const user = {
+          name: req.body.name,
+          email: req.body.email,
+          password: hashedPassword,
+          image: userImg || "N/A",
+          admin: req.body.admin || false,
+          company: req.body.company,
+          userKey: userKey
+        };
 
-      const newUser = new User(user);
+        const newUser = new User(user);
 
-      newUser
-        .save()
-        .then(() => res.status(201).json({ message: "User created." }))
-        .catch(err =>
-          res.status(400).json({ error: err, Message: "User Not created" })
-        );
-    } catch (err) {
-      console.log(err);
-      res.status(500).send();
+        newUser
+          .save()
+          .then(() => res.status(201).json({ message: "User created." }))
+          .catch(err =>
+            res.status(400).json({ error: err, Message: "User Not created" })
+          );
+      } catch (err) {
+        console.log(err);
+        res.status(500).send();
+      }
     }
   }
 };

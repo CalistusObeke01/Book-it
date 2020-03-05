@@ -115,17 +115,17 @@ function BookVenue() {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <SEO
         title="Book!T | Book Venue"
         name="Book Venue"
         content={`Book a venue `}
       />
       <div className="row">
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <Sidebar />
-        </div>
-        <div className="col-md-7">
+        </div> */}
+        <div className="col-md-8">
           <form
             onSubmit={event => {
               event.preventDefault();
@@ -141,7 +141,7 @@ function BookVenue() {
             }}
           >
             <div className="booking">
-              <p>{venue.name}</p>
+              <p>{venue.name || 'Book-Venue'}</p>
               <div>
                 <Button defaultBtnColor="change-btn">Cancel</Button>
                 <span style={{ marginLeft: "10px" }}></span>
@@ -225,7 +225,7 @@ function BookVenue() {
             </div>
           </form>
         </div>
-        <div className="col-md-2 calendar-board">
+        <div className="col-md-4 calendar-board">
           <p className="check-availiability">Check Availability</p>
         </div>
       </div>

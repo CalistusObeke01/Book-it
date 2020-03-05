@@ -12,11 +12,12 @@ class AuthContextProvider extends Component {
   };
 
   getUser = () => {
-    const uk = JSON.parse(sessionStorage.getItem("mx"));
+    const uk = sessionStorage.getItem("mx");
     if (uk !== null || undefined) {
       fetch(`/api/users/${uk}`)
         .then(response => {
           if (response.status === 200) {
+            console.log(response);
             return response.json();
           }
         })
