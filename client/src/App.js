@@ -24,7 +24,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <PrivateRoute path="/confrence" component={Confrence} />
             <SecretRoute path="/administration" component={Admin} />
-            <PrivateRoute path="/book-venue" component={BookVenue} />
+            <SecretRoute path="/book-venue" component={BookVenue} />
             <Route path="*" component={PageNotFound} />
           </Switch>
         </Suspense>

@@ -6,24 +6,29 @@ class AuthContextProvider extends Component {
   state = {
     isAuthenticated: false,
     user: "",
-    setUser: newUser => this.setState({ user: newUser }),
-    toggleAuth: () =>
-      this.setState({ isAuthenticated: !this.state.isAuthenticated })
+    setUser: newUser => this.setState({ user: newUser }), 
   };
 
+  toggleAuth = () =>
+      this.setState({ isAuthenticated: !this.state.isAuthenticated });
+
   getUser = () => {
-    const uk = JSON.parse(sessionStorage.getItem("mx"));
+    const uk = sessionStorage.getItem("mx");
     if (uk !== null || undefined) {
       fetch(`/api/users/${uk}`)
         .then(response => {
           if (response.status === 200) {
+            console.log(response)
             return response.json();
           }
         })
         .then(data => {
+          console.log(data);
           if (data) {
             this.state.setUser(data.body);
-            this.state.toggleAuth();
+            console.log(this.state.user);
+            this.toggleAuth();
+            console.log(this.state.isAuthenticated);
           }
         })
         .catch(error => console.log(error));
@@ -31,12 +36,16 @@ class AuthContextProvider extends Component {
   };
 
   componentDidMount() {
-    this.getUser();
+    if(this.state.isAuthenticated == false){
+      this.getUser();
+    }
   }
 
-  render() {
+  render(){
     return (
-      <AuthContext.Provider value={{ ...this.state }}>
+      <AuthContext.Provider
+        value={{ ...this.state, toggleAuth: this.toggleAuth }}
+      >
         {this.props.children}
       </AuthContext.Provider>
     );

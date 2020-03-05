@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Button from "./Button";
 import { AuthContext } from "./AuthContext";
-import Room from "./room";
 
 // function SignUp()\
 class AddForms extends Component {
@@ -16,6 +15,10 @@ class AddForms extends Component {
     }
   };
 
+  toArray = (str) =>{
+    return str.split(',');
+  }
+
   addUser = e => {
     e.preventDefault();
     try {
@@ -23,8 +26,10 @@ class AddForms extends Component {
       var company = this.context.user.company;
       var admin = this.getRole(admin);
       var name = UserName;
+      var uk = sessionStorage.getItem('mx');
+      console.log(uk);
       
-      fetch("/api/users/adminAdd", {
+      fetch(`/api/users/adminAdd/${uk}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ company, name, email, password, admin })
@@ -34,11 +39,14 @@ class AddForms extends Component {
             alert("Member added Successfully.");
             this.setState({});
           } else if (response.status === 403) {
-            alert("An account already exists with this email address.");
-            this.setState({});
-          } else {
-            alert("network error, please try again in a bit");
-          }
+                   alert("An account already exists with this email address.");
+                   this.setState({});
+                 } else if (response.status === 401) {
+                   alert("You do not have the required permission.");
+                   this.setState({});
+                 } else {
+                   alert("network error, please try again in a bit");
+                 }
         })
         .catch(err => {
           console.log(err);
@@ -52,12 +60,11 @@ class AddForms extends Component {
   addSpace = e => {
     e.preventDefault();
     try {
-      var { RoomName, location, features, capacity } = this.state;
+      var { RoomName, location, feature, capacity } = this.state;
       var name = RoomName;
-      var capacity = `${capacity} sitter`;
-      var features = features.split(",");
-      features = features.unshift(capacity);
-      console.log(features);
+      var capacity = `${capacity} seater`;
+      var features = this.toArray(feature);
+      features.unshift(capacity);  
       var company = this.context.user.company;
       fetch("/api/venue/", {
         method: "POST",
@@ -231,7 +238,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="RoomFeatures">Features/Facilities</label>
                 <input
-                  name="features"
+                  name="feature"
                   type="textarea"
                   className="form-control"
                   id="RoomFeatures"

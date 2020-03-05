@@ -33,7 +33,7 @@ module.exports = app => {
 
   app.route("/api/users/").post(userResource.create);
 
-  app.route("/api/users/adminAdd").post(userResource.adminCreate);
+  app.route("/api/users/adminAdd/:userKey").post(userResource.adminCreate);
 
   app.route("/api/users/login").post(userResource.login);
 

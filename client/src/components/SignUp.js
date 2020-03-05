@@ -68,7 +68,7 @@ class SignUp extends Component {
             var data = await response.json();
             const { name, company, admin, id, userKey } = data.body;
             const user = { name, company, admin, id };
-            sessionStorage.setItem("mx", JSON.stringify(userKey));
+            sessionStorage.setItem("mx", userKey);
             this.setState({ company: "", name: "", email: "", password: "" });
             setUser(user);
             toggleAuth();
@@ -230,7 +230,9 @@ class SignUp extends Component {
         </>
       );
     } else {
-      return <Redirect to="/confrence" />;
+      return (
+      <Redirect to="/confrence" />
+      );
     }
   }
 }
