@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 
 const Room = props => {
+ 
   onclick = e => {
     e.preventDefault();
-    sessionStorage.setItem("venue", JSON.stringify(e.target.id));
+    sessionStorage.setItem("vId", JSON.stringify(e.target.id));
   };
 
   return (
@@ -35,11 +36,11 @@ const Room = props => {
                 <li key={i}>{feature}</li>
               ))}
             </ul>
-            <Button className='bookNow' onClick={onclick} id={props.venue.id}>
-              <Link to="/book-venue" className="bookNowLink">
+            <Link to="/book-venue">
+              <Button onClick={onclick} id={props.venue.id}>
                 Book Now!
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -17,10 +17,6 @@ const roomSchema = new Schema({
     type: String
   },
 
-  seats: {
-    type: String
-  },
-
   features: {
     type: Array
   },

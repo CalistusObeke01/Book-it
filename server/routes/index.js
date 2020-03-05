@@ -7,21 +7,19 @@ const bookingResource = require("../controllers/bookingController");
 const userResource = require("../controllers/userController");
 
 module.exports = app => {
-  app
-    .route("/api/venue/")
-    .post(roomResource.create);
+  app.route("/api/venue/").post(roomResource.create);
 
   app
     .route("/api/venue/upload/")
     .post(upload.single("file"), roomResource.upload);
+    
+  app.route("/api/venue/:company").get(roomResource.getMany);
 
   app
     .route("/api/venue/:venueId")
     .get(roomResource.getOne)
     .put(roomResource.update)
     .delete(roomResource.delete);
-
-  app.route("/api/venue/:companyName").get(roomResource.getMany);
 
   app.route("/api/bookings/").post(bookingResource.create);
 
@@ -38,6 +36,8 @@ module.exports = app => {
   app.route("/api/users/adminAdd").post(userResource.adminCreate);
 
   app.route("/api/users/login").post(userResource.login);
+
+  app.route("/api/users/:userKey").get(userResource.getDeets);
 
   app
     .route("/api/users/upload/")

@@ -3,38 +3,41 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const bookingSchema = new Schema({
-    title: {
-        type: String,
-        trim: true
-    },
+  title: {
+    type: String,
+    trim: true,
+    required: true
+  },
 
-    date: {
-        type:Date
-    },
+  date: {
+    type: String,
+    required: true
+  },
 
-    startTime: {
-        type: Date
-    },
+  startTime: {
+    type: Number,
+    required: true
+  },
 
-    endTime: {
-        type: Date
-    },
+  endTime: {
+    type: Number,
+    required: true
+  },
 
-    venue: {
-        type: String
-    },
+  venueId: {
+    type: String,
+    required: true
+  },
 
-    description: {
-        type: String
-    },
+  description: {
+    type: String,
+    required: true
+  },
 
-    invites: {
-        type: Array
-    },
-
-    owner: {
-        type: String
-    }
+  userId: {
+    type: String,
+    required: true
+  }
 });
 
 const Booking = mongoose.model("Booking", bookingSchema);

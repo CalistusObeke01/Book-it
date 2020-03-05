@@ -15,11 +15,12 @@ module.exports.upload = (req, res) => {
   }
   cloudinary.uploader.upload(
     req.file.path,
-    { folder: "Book-!t/rooms",
+    {
+      folder: "Book-!t/rooms",
       use_filename: true,
       unique_filename: true,
       overwrite: false,
-      tags: "Book_!t" 
+      tags: "Book_!t"
     },
     (err, image) => {
       if (err) {
@@ -36,7 +37,6 @@ module.exports.create = (req, res) => {
     name: req.body.name,
     location: req.body.location,
     image: roomImg,
-    seats: req.body.seats,
     facilities: req.body.facilities,
     company: req.body.company
   };
@@ -51,12 +51,20 @@ module.exports.create = (req, res) => {
     );
 };
 
-module.exports.getMany = (req, res) => {
-  Room.find(({ company: req.params.companyName }))
-    .then(rooms => res.status(200).json({ body: rooms }))
-    .catch(err =>
-      res.status(404).json({ error: err, message: "Venues could not be fetched." })
-    );
+module.exports.getMany = async (req, res) => {
+  const rooms = await Room.find({ company: req.params.company });
+  if (rooms == null || undefined) {
+    return res.status(401).json({ message: "no rooms found" });
+  } else {
+    try {
+      res.status(200).json({
+        body: rooms
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send();
+    }
+  }
 };
 
 module.exports.getOne = (req, res) => {

@@ -5,11 +5,13 @@ import Footer from "./components/Footer";
 import Loading from "./components/Loading";
 import AuthContextProvider from "./components/AuthContext";
 import { PrivateRoute } from "./routes/PrivateRoute";
+import {SecretRoute} from "./routes/SecretRoute";
 import "./App.css";
 
 const Home = lazy(() => import("./routes/Home"));
 const Confrence = lazy(() => import("./components/Confrence"));
 const BookVenue = lazy(() => import("./routes/BookVenue"));
+const Admin = lazy(() => import("./routes/Admin"));
 const PageNotFound = lazy(() => import("./routes/PageNotFound"));
 
 function App() {
@@ -20,8 +22,9 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Switch>
             <Route exact path="/" component={Home} />
-            <PrivateRoute path="/book-venue" component={BookVenue} />
             <PrivateRoute path="/confrence" component={Confrence} />
+            <SecretRoute path="/administration" component={Admin} />
+            <PrivateRoute path="/book-venue" component={BookVenue} />
             <Route path="*" component={PageNotFound} />
           </Switch>
         </Suspense>
