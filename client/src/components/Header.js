@@ -20,7 +20,7 @@ const Header = props => {
 
   /*if (props.location.pathname === "/book-venue") {
     return null;
-  }*/ else if (
+  }*/ if (
     isAuthenticated === true &&
     props.location.pathname === "/administration" &&
     user.admin === true
