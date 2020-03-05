@@ -115,7 +115,7 @@ function BookVenue() {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <SEO
         title="Book!T | Book Venue"
         name="Book Venue"
@@ -141,7 +141,7 @@ function BookVenue() {
             }}
           >
             <div className="booking">
-              <p>{venue.name}</p>
+              <p>{venue.name || 'Book-Venue'}</p>
               <div>
                 <Button defaultBtnColor="change-btn">Cancel</Button>
                 <span style={{ marginLeft: "10px" }}></span>

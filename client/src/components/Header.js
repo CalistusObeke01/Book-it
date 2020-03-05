@@ -44,7 +44,7 @@ const Header = props => {
               </li>
               <li>
                 <Link to="/confrence">
-                  <a href="#">Spaces</a>
+                  <span href="#">Spaces</span>
                 </Link>
               </li>
               <li>
@@ -88,7 +88,7 @@ const Header = props => {
               </li>
               <li>
                 <Link to="/administration">
-                  <a href="#">Admin</a>
+                  <span>Admin</span>
                 </Link>
               </li>
               <li>

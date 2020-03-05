@@ -4,7 +4,6 @@ import { Button } from "reactstrap";
 
 const Room = props => {
   var openBookVenue = e => {
-    e.preventDefault();
     sessionStorage.setItem("vId", e.target.id);
   };
   console.log(props.venue);
@@ -36,7 +35,7 @@ const Room = props => {
               ))}
             </ul>
             <Link to="/book-venue">
-              <Button id={props.venue._id}>Book Now!</Button>
+              <Button onClick={openBookVenue} id={props.venue._id}>Book-!T</Button>
             </Link>
           </div>
         </div>
