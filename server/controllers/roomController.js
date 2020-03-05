@@ -37,7 +37,7 @@ module.exports.create = (req, res) => {
     name: req.body.name,
     location: req.body.location,
     image: roomImg,
-    facilities: req.body.facilities,
+    features: req.body.features,
     company: req.body.company
   };
 

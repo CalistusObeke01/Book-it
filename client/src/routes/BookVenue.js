@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import SEO from "../components/SEO";
 import Sidebar from "../components/Sidebar";
 import Button from "../components/Button";
+import {Link} from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
 
 function BookVenue() {
@@ -68,7 +69,7 @@ function BookVenue() {
     });
   };
 
-  const createbooking = event => {
+  const createBooking = event => {
     event.preventDefault();
     if (endTime <= startTime) {
       alert("End Time earlier than Start Time");
@@ -94,7 +95,6 @@ function BookVenue() {
           .then(response => {
             if (response.status === 200) {
               alert("Venue booked successfully");
-              
             } else if (response.status === 403) {
               console.log(response);
               alert(
@@ -126,24 +126,13 @@ function BookVenue() {
           <Sidebar />
         </div> */}
         <div className="col-md-8">
-          <form
-            onSubmit={event => {
-              event.preventDefault();
-              console.log(
-                { meetingTitle },
-                { description },
-                { bookingDate },
-                { startTime },
-                { endTime },
-                parseFloat(startTime),
-                parseFloat(endTime)
-              );
-            }}
-          >
+          <form onSubmit={createBooking}>
             <div className="booking">
-              <p>{venue.name || 'Book-Venue'}</p>
+              <p>{venue.name || "Book-Venue"}</p>
               <div>
-                <Button defaultBtnColor="change-btn">Cancel</Button>
+                <Link to="/confrence">
+                  <Button defaultBtnColor="change-btn">Cancel</Button>
+                </Link>
                 <span style={{ marginLeft: "10px" }}></span>
                 <Button type={"submit"} defaultBtnColor="change-btn">
                   Book space
@@ -202,15 +191,7 @@ function BookVenue() {
                   />
                 </div>
               </div>
-              {/* <div className="form-group">
-                                <label htmlFor="InputVenue">Venue</label>
-                                <select value={venue} onChange={handleChange} className="form-control">
-                                    <option value="ikoyi">Ikoyi</option>
-                                    <option value="lekki">Lekki</option>
-                                    <option value="apapa">Apapa</option>
-                                    <option value="surulere">Surulere</option>
-                                </select>
-                            </div> */}
+              
               <div className="form-group">
                 <label htmlFor="InputDescription">Description</label>
                 <textarea
