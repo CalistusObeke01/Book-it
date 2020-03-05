@@ -6,49 +6,48 @@ import { Redirect } from "react-router-dom";
 // function SignUp()\
 class SignUp extends Component {
   static contextType = AuthContext;
-  state = {
-    company: "",
-    name: "",
-    email: "",
-    password: "",
-  };
+  state = {};
 
   signUp = e => {
     e.preventDefault();
-    try {
-      var { company, name, email, password } = this.state;
-      var admin = true;
-      fetch("/api/users/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company, name, email, password, admin })
-      })
-        .then(response => {
-          if (response.status === 201) {
-            alert("signup Successful. Please login to continue");
-            this.setState({ company: "", name: "", email: "", password: "" });
-          } else if (response.status === 403) {
-            console.log(response);
-            alert(
-              "An account already exists with this email address. Log in to continue"
-            );
-            this.setState({ company: "", name: "", email: "", password: "" });
-          } else if (response.status === 401) {
-            console.log(response);
-            alert(
-              "This Organization already exists, get your organization's admin to add you or log in to continue"
-            );
-            this.setState({ company: "", name: "", email: "", password: "" });
-          } else {
-            alert("network error, please try again in a bit");
-          }
+    if (this.state.ConfirmPassword === this.state.password) {
+      try {
+        var { company, name, email, password } = this.state;
+        var admin = true;
+        fetch("/api/users/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ company, name, email, password, admin })
         })
-        .catch(err => {
-          console.log(err);
-        });
-    } catch (error) {
-      alert("Signup failed. Please try again");
-      console.log(error);
+          .then(response => {
+            if (response.status === 201) {
+              alert("signup Successful. Please login to continue");
+              this.setState({ company: "", name: "", email: "", password: "" });
+            } else if (response.status === 403) {
+              console.log(response);
+              alert(
+                "An account already exists with this email address. Log in to continue"
+              );
+              this.setState({ company: "", name: "", email: "", password: "" });
+            } else if (response.status === 401) {
+              console.log(response);
+              alert(
+                "This Organization already exists, get your organization's admin to add you or log in to continue"
+              );
+              this.setState({ company: "", name: "", email: "", password: "" });
+            } else {
+              alert("network error, please try again in a bit");
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      } catch (error) {
+        alert("Signup failed. Please try again");
+        console.log(error);
+      }
+    } else {
+      alert("Confirm Password does not match Password");
     }
   };
 
@@ -118,6 +117,7 @@ class SignUp extends Component {
                     onChange={this.inputChange}
                     required
                   />
+                  <small>Capitalization sensitive</small>
                 </div>
                 <div className="form-group">
                   <label htmlFor="InputFullname">Full Name</label>
@@ -148,6 +148,19 @@ class SignUp extends Component {
                     type="password"
                     className="form-control"
                     id="signUpPassword"
+                    onChange={this.inputChange}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="ConfirmPassword">Confirm Password</label>
+                  <input
+                    value={this.state.ConfirmPassword}
+                    name="ConfirmPassword"
+                    type="password"
+                    className="form-control"
+                    id="ConfirmPassword"
                     onChange={this.inputChange}
                     required
                   />
@@ -230,9 +243,7 @@ class SignUp extends Component {
         </>
       );
     } else {
-      return (
-      <Redirect to="/confrence" />
-      );
+      return <Redirect to="/confrence" />;
     }
   }
 }

@@ -15,44 +15,48 @@ class AddForms extends Component {
     }
   };
 
-  toArray = (str) =>{
-    return str.split(',');
-  }
+  toArray = str => {
+    return str.split(",");
+  };
 
   addUser = e => {
     e.preventDefault();
-    try {
-      var {admin, UserName, email, password } = this.state;
-      var company = this.context.user.company;
-      admin = this.getRole(admin);
-      var name = UserName;
-      var uk = sessionStorage.getItem('mx')
+    if (this.state.ConfirmPassword === this.state.password) {
+      try {
+        var { admin, UserName, email, password } = this.state;
+        var company = this.context.user.company;
+        admin = this.getRole(admin);
+        var name = UserName;
+        var uk = sessionStorage.getItem("mx");
 
-      fetch(`/api/users/adminAdd/${uk}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company, name, email, password, admin })
-      })
-        .then(response => {
-          if (response.status === 201) {
-            alert("Member added Successfully.");
-            this.setState({});
-          } else if (response.status === 403) {
-                   alert("An account already exists with this email address.");
-                   this.setState({});
-                 } else if (response.status === 401) {
-                   alert("You do not have the required permission.");
-                   this.setState({});
-                 } else {
-                   alert("network error, please try again in a bit");
-                 }
+        fetch(`/api/users/adminAdd/${uk}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ company, name, email, password, admin })
         })
-        .catch(err => {
-          console.log(err);
-        });
-    } catch (error) {
-      alert("Operation failed. Please try again");
-      console.log(error);
+          .then(response => {
+            if (response.status === 201) {
+              alert("Member added Successfully.");
+              this.setState({});
+            } else if (response.status === 403) {
+              alert("An account already exists with this email address.");
+              this.setState({});
+            } else if (response.status === 401) {
+              alert("You do not have the required permission.");
+              this.setState({});
+            } else {
+              alert("network error, please try again in a bit");
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      } catch (error) {
+        alert("Operation failed. Please try again");
+        console.log(error);
+      }
+    } else {
+      alert("Confirm does not match Password");
     }
   };
 
@@ -63,7 +67,7 @@ class AddForms extends Component {
       var name = RoomName;
       capacity = `${capacity} seater`;
       var features = this.toArray(feature);
-      features.unshift(capacity);  
+      features.unshift(capacity);
       var company = this.context.user.company;
       fetch("/api/venue/", {
         method: "POST",
@@ -128,6 +132,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="InputFullName">Full Name</label>
                 <input
+                  value={this.state.UserName}
                   name="UserName"
                   type="text"
                   className="form-control"
@@ -139,6 +144,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="InputEmail">Email</label>
                 <input
+                  value={this.state.email}
                   type="email"
                   className="form-control"
                   id="InputEmail"
@@ -150,6 +156,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="Role">Role</label>
                 <select
+                  value={this.state.admin}
                   className="form-control"
                   id="Role"
                   name="admin"
@@ -164,6 +171,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="signInPassword">Password</label>
                 <input
+                  value={this.state.password}
                   name="password"
                   type="password"
                   className="form-control"
@@ -173,9 +181,22 @@ class AddForms extends Component {
                 />
                 <small>password cannot be changed later</small>
               </div>
+              <div className="form-group">
+                <label htmlFor="ConfirmPassword">Confirm Password</label>
+                <input
+                  value={this.state.ConfirmPassword}
+                  name="ConfirmPassword"
+                  type="password"
+                  className="form-control"
+                  id="ConfirmPassword"
+                  onChange={this.inputChange}
+                  required
+                />
+              </div>
               <Button type="submit">Add</Button>
             </form>
           </div>
+
           <div className="col-md-2 form-split"></div>
 
           <div className="col-md-5">
@@ -188,18 +209,20 @@ class AddForms extends Component {
               <div className="form-group ">
                 <label htmlFor="RoomImg">Image</label>
                 <input
+                  value={this.state.RoomImg}
                   name="RoomImg"
                   type="file"
                   className="form-control"
                   id="RoomImg"
                   accept="image/*"
                   onChange={this.uploadSpaceImg}
-                  plaintext
                 />
               </div>
+
               <div className="form-group">
                 <label htmlFor="RoomName">Name/Tag</label>
                 <input
+                  value={this.state.RoomName}
                   name="RoomName"
                   type="text"
                   className="form-control"
@@ -214,6 +237,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="RoomLocation">Location</label>
                 <input
+                  value={this.state.location}
                   name="location"
                   type="text"
                   className="form-control"
@@ -225,6 +249,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="RoomCapacity">Capacity</label>
                 <input
+                  value={this.state.capacity}
                   name="capacity"
                   type="number"
                   className="form-control"
@@ -237,6 +262,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="RoomFeatures">Features/Facilities</label>
                 <input
+                  value={this.state.feature}
                   name="feature"
                   type="textarea"
                   className="form-control"

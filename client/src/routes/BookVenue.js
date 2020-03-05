@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import SEO from "../components/SEO";
 import Sidebar from "../components/Sidebar";
 import Button from "../components/Button";
+import {Link} from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -80,7 +81,7 @@ function BookVenue() {
     });
   };
 
-  const createbooking = event => {
+  const createBooking = event => {
     event.preventDefault();
     if (endTime <= startTime) {
       alert("End Time earlier than Start Time");
@@ -106,7 +107,6 @@ function BookVenue() {
           .then(response => {
             if (response.status === 200) {
               alert("Venue booked successfully");
-              
             } else if (response.status === 403) {
               console.log(response);
               alert(
