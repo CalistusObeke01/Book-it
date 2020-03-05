@@ -8,15 +8,16 @@ import SpaceImg from '../images/Path 160.png';
 
 function Sidebar() {
     const sidebarAttr = [
-        {link: '/confrence', img: SpaceImg, attr: 'Spaces'}
+        {link: '/confrence', img: SpaceImg, attr: 'Spaces'},
+        {link: '/administration', img: AdminstrationImg, attr: 'Administration'}
     ];
 
     return(
         <>
             <div className="sidebar">
-                <Link to="/">
+                {/* <Link to="/">
                     <img src={Logo} alt="site logo" width="110" className="sidebar-siteLogo" />
-                </Link>
+                </Link> */}
                 
                 <ul>
                     {

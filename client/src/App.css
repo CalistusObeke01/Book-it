@@ -415,6 +415,7 @@
       padding: 2rem;
       margin-left: -16px;
       margin-right: -16px;
+      margin-top: 4rem;
   }
   
   .sidebar-content {
@@ -675,7 +676,7 @@
   }
   
   .change-btn {
-      border: 1px solid var(--mainGray);
+      border: 1px solid var(--primaryColor);
       background: transparent;
       padding: .4rem 1rem;
       border-radius: var(--bordorRadius);
@@ -687,6 +688,10 @@
       color: var(--mainWhite);
   }
   
+  .booking-btn-container {
+      margin-top: 1.5rem;
+  }
+
   .booking-board {
       background: var(--offWhite);
       padding: 1rem 1rem 4rem 1rem;
@@ -695,6 +700,7 @@
   
   .calendar-board {
       background: var(--mainGray);
+      margin-top: 4.5rem;
   }
   
   .check-availiability {
@@ -1061,5 +1067,3 @@
   }
 }
 
-  
-    
