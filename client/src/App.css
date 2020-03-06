@@ -1072,6 +1072,11 @@
         padding: 1rem 2rem;
     }
 
+    .how-to-use, .users, .signUp-section {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+
     .defaultHero {
         padding-left: 2rem;
     }
@@ -1120,6 +1125,29 @@
     .hero-text-second-break {
         display: none;
     }
+
+    .how-to-use {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .how-to-use-text {
+        margin-top: 2rem;
+    }
+
+    .easyToUse-content, .easyToUse-headings {
+        margin-bottom: 2rem;
+    }
+
+    .users {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .user-header {
+        margin-top: 1.4rem
+    }
+
 }
 
 @media screen and (max-width: 375px) {
