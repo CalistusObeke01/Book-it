@@ -13,7 +13,7 @@
     --darkGrey: #cfcfcf; 
     --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
     --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5); */
-  }
+}
   body {
       margin: 0;
       padding: 0;
@@ -1067,3 +1067,64 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+    #navbar {
+        padding: 1rem 2rem;
+    }
+
+    .defaultHero {
+        padding-left: 2rem;
+    }
+
+    .hero-header {
+        font-size: 2rem;
+    }
+
+    .hero-text {
+        font-size: 1.25rem;
+    }
+
+    .createAccount {
+        font-size: 0.85rem;
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .defaultHero {
+        padding-top: 5rem;
+    }
+
+    #navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .defaultHero {
+        padding-left: 1.5rem;
+    }
+
+    .hero-header {
+        font-size: 1.4rem;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+        padding-right: 1rem;
+    }
+
+    .hero-text-first-break {
+        display: none;
+
+    }
+
+    .hero-text-second-break {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .hero-header-first-break {
+        display: none;
+        padding-right: 1rem;
+    }
+}
