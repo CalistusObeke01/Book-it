@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../App.css";
 import Room from "./room";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "./AuthContext";
 
-const Confrence = props => {
+const Conference = props => {
   const { user } = useContext(AuthContext);
   const [rooms, setRooms] = useState("");
 
@@ -52,4 +52,4 @@ const Confrence = props => {
   }
 };
 
-export default Confrence;
+export default Conference;

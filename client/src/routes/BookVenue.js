@@ -2,12 +2,15 @@ import React, { useState, useEffect, useContext } from "react";
 import SEO from "../components/SEO";
 import Sidebar from "../components/Sidebar";
 import Button from "../components/Button";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { addMonths } from "date-fns";
 
 function BookVenue() {
   const [meetingTitle, setMeetingTitle] = useState("");
-  const [bookingDate, setBookingDate] = useState(new Date());
+  const [bookingDate, setBookingDate] = useState("");
   const [description, setDescription] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -15,6 +18,15 @@ function BookVenue() {
   const [venue, setVenue] = useState("");
   var id = sessionStorage.getItem("vId");
   var { user } = useContext(AuthContext);
+
+  const handleVenue = event => {
+    setVenue(event.target.value);
+  };
+
+  const cancelBooking = event => {
+    event.preventDefault();
+    alert("cancel btn clicked!");
+  };
 
   useEffect(() => {
     fetch(`/api/venue/${id}`)
@@ -45,13 +57,6 @@ function BookVenue() {
       })
       .catch(error => console.log(error));
   });
-
-  const timeToNumber = time => {
-    time = time.split(":");
-    console.log(time);
-    time = time.join(".");
-    return parseFloat(time);
-  };
 
   const checkTwo = (date, stime, etime) => {
     bookings.map(booking => {
@@ -115,34 +120,34 @@ function BookVenue() {
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <SEO
         title="Book!T | Book Venue"
         name="Book Venue"
         content={`Book a venue `}
       />
       <div className="row">
-        {/* <div className="col-md-3">
+        <div className="col-md-3">
           <Sidebar />
-        </div> */}
-        <div className="col-md-8">
-          <form onSubmit={createBooking}>
-            <div className="booking">
-              <p>{venue.name || "Book-Venue"}</p>
-              <div>
-                <Link to="/confrence">
-                  <Button defaultBtnColor="change-btn">Cancel</Button>
-                </Link>
-                <span style={{ marginLeft: "10px" }}></span>
-                <Button type={"submit"} defaultBtnColor="change-btn">
-                  Book space
-                </Button>
-              </div>
-            </div>
-            <div className="booking-board">
-              <p>
-                <b>New Meeting</b>
-              </p>
+        </div>
+        <div className="col-md-7">
+          <div className="booking">
+            <p>Book a Venue</p>
+          </div>
+          <div className="booking-board">
+            <p>
+              <b>New Meeting</b>
+            </p>
+            <form
+              onSubmit={event => {
+                event.preventDefault();
+                console.log(
+                   bookingDate ,  startTime ,  endTime , 
+                    meetingTitle
+                );
+              }}
+              id="venue-booking"
+            >
               <div className="form-group">
                 <label htmlFor="InputTitle">Meeting Title</label>
                 <input
@@ -158,40 +163,56 @@ function BookVenue() {
               <div className="form-row">
                 <div className="form-group col">
                   <label htmlFor="InputDate">Date</label>
-                  <input
-                    type="date"
+                  <DatePicker
+                    selected={bookingDate}
+                    onChange={date => setBookingDate(date)}
+                    minDate={new Date()}
+                    maxDate={addMonths(new Date(), 6)}
                     className="form-control"
-                    id="InputDate"
-                    value={bookingDate}
-                    onChange={event => setBookingDate(event.target.value)}
                   />
                 </div>
                 <div className="col-1"></div>
                 <div className="form-group col">
                   <label htmlFor="InputStartTime">Start Time</label>
-                  <input
-                    type="time"
+                  <DatePicker
+                    selected={startTime}
+                    onChange={date => setStartTime(date)}
+                    showTimeSelect
+                    // showTimeSelectOnly
+                    timeIntervals={15}
+                    timeCaption="Time"
+                    dateFormat="h:mm aa"
                     className="form-control"
-                    id="InputStartTime"
-                    onChange={event => {
-                      setStartTime(timeToNumber(event.target.value));
-                    }}
                   />
                 </div>
                 <div className="col-1"></div>
                 <div className="form-group col">
                   <label htmlFor="InputEndTime">End Time</label>
-                  <input
-                    type="time"
+                  <DatePicker
+                    selected={endTime}
+                    onChange={date => setEndTime(date)}
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeIntervals={15}
+                    timeCaption="Time"
+                    dateFormat="h:mm aa"
                     className="form-control"
-                    id="InputEndTime"
-                    onChange={event => {
-                      setEndTime(timeToNumber(event.target.value));
-                    }}
                   />
                 </div>
               </div>
-              
+              {/* <div className="form-group">
+                <label htmlFor="InputVenue">Venue</label>
+                <select
+                  value={venue}
+                  onChange={handleVenue}
+                  className="form-control"
+                >
+                  <option value="ikoyi">Ikoyi</option>
+                  <option value="lekki">Lekki</option>
+                  <option value="apapa">Apapa</option>
+                  <option value="surulere">Surulere</option>
+                </select>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="InputDescription">Description</label>
                 <textarea
@@ -203,11 +224,20 @@ function BookVenue() {
                   }}
                 />
               </div>
-            </div>
-          </form>
+              <div className="booking-btn-container">
+                <Link to="/conference">
+                  <Button defaultBtnColor="change-btn">Cancel</Button>
+                </Link>
+                <span style={{ marginLeft: "10px" }}></span>
+                <Button type="submit" defaultBtnColor="change-btn">
+                  Book space
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div className="col-md-4 calendar-board">
-          <p className="check-availiability">Check Availability</p>
+        <div className="col-md-2 calendar-board">
+          <p className="check-availiability">Check Availiability</p>
         </div>
       </div>
     </div>

@@ -18,9 +18,103 @@ const Header = props => {
     toggleAuth();
   };
 
-  /*if (props.location.pathname === "/book-venue") {
-    return null;
-  }*/ if (
+  if (props.location.pathname === "/book-venue" && user.admin === true) {
+    return (
+      <>
+        <header id="navbar">
+          <div className="logo">
+            <Link to="/">
+              <img src={Logo1} alt="Book it" width="100" className="logo1" />
+              <img src={Logo2} alt="Book it" width="120" className="logo2" />
+            </Link>
+          </div>
+          <nav className={isOpen ? "show-nav" : "hide-nav"}>
+            <ul>
+              <li>
+                <h5 className="text-white p-2">{user.name}</h5>
+              </li>
+              <li>
+                <h5 className="text-white p-2">{user.company}</h5>
+              </li>
+              <li>
+                <Link to="/Conference">
+                  <span>Spaces</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/administration">
+                  <span>Admin</span>
+                </Link>
+              </li>
+              <li>
+                <button onClick={logout} id="signIn">
+                  Log Out
+                </button>
+              </li>
+            </ul>
+          </nav>
+          <button
+            type="button"
+            className="menu-toggle"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? (
+              <FaTimes className="nav-icon" />
+            ) : (
+              <FaAlignRight className="nav-icon" />
+            )}
+          </button>
+        </header>
+      </>
+    );
+  } else if (
+    props.location.pathname === "/book-venue" &&
+    user.admin === false
+  ) {
+    return (
+      <>
+        <header id="navbar">
+          <div className="logo">
+            <Link to="/">
+              <img src={Logo1} alt="Book it" width="100" className="logo1" />
+              <img src={Logo2} alt="Book it" width="120" className="logo2" />
+            </Link>
+          </div>
+          <nav className={isOpen ? "show-nav" : "hide-nav"}>
+            <ul>
+              <li>
+                <h5 className="text-white p-2">{user.name}</h5>
+              </li>
+              <li>
+                <h5 className="text-white p-2">{user.company}</h5>
+              </li>
+              <li>
+                <Link to="/Conference">
+                  <span href="#">Spaces</span>
+                </Link>
+              </li>
+              <li>
+                <button onClick={logout} id="signIn">
+                  Log Out
+                </button>
+              </li>
+            </ul>
+          </nav>
+          <button
+            type="button"
+            className="menu-toggle"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? (
+              <FaTimes className="nav-icon" />
+            ) : (
+              <FaAlignRight className="nav-icon" />
+            )}
+          </button>
+        </header>
+      </>
+    );
+  } else if (
     isAuthenticated === true &&
     props.location.pathname === "/administration" &&
     user.admin === true
@@ -43,7 +137,7 @@ const Header = props => {
                 <h5 className="text-white p-2">{user.company}</h5>
               </li>
               <li>
-                <Link to="/confrence">
+                <Link to="/Conference">
                   <span href="#">Spaces</span>
                 </Link>
               </li>

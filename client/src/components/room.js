@@ -6,7 +6,6 @@ const Room = props => {
   var openBookVenue = e => {
     sessionStorage.setItem("vId", e.target.id);
   };
-  console.log(props.venue);
   return (
     <div
       className="col-md-4 rooms"

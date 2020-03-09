@@ -243,7 +243,7 @@ class SignUp extends Component {
         </>
       );
     } else {
-      return <Redirect to="/confrence" />;
+      return <Redirect to="/Conference" />;
     }
   }
 }

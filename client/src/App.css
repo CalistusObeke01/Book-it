@@ -13,7 +13,7 @@
     --darkGrey: #cfcfcf; 
     --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
     --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5); */
-  }
+}
   body {
       margin: 0;
       padding: 0;
@@ -415,6 +415,7 @@
       padding: 2rem;
       margin-left: -16px;
       margin-right: -16px;
+      margin-top: 4rem;
   }
   
   .sidebar-content {
@@ -675,7 +676,7 @@
   }
   
   .change-btn {
-      border: 1px solid var(--mainGray);
+      border: 1px solid var(--primaryColor);
       background: transparent;
       padding: .4rem 1rem;
       border-radius: var(--bordorRadius);
@@ -687,6 +688,10 @@
       color: var(--mainWhite);
   }
   
+  .booking-btn-container {
+      margin-top: 1.5rem;
+  }
+
   .booking-board {
       background: var(--offWhite);
       padding: 1rem 1rem 4rem 1rem;
@@ -695,6 +700,7 @@
   
   .calendar-board {
       background: var(--mainGray);
+      margin-top: 4.5rem;
   }
   
   .check-availiability {
@@ -868,7 +874,7 @@
 
 
 
-/* CONFRENCE ROOMS */
+/* Conference ROOMS */
 *{
   margin: 0;
   
@@ -1061,5 +1067,92 @@
   }
 }
 
-  
-    
+@media screen and (max-width: 768px) {
+    #navbar {
+        padding: 1rem 2rem;
+    }
+
+    .how-to-use, .users, .signUp-section {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+
+    .defaultHero {
+        padding-left: 2rem;
+    }
+
+    .hero-header {
+        font-size: 2rem;
+    }
+
+    .hero-text {
+        font-size: 1.25rem;
+    }
+
+    .createAccount {
+        font-size: 0.85rem;
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .defaultHero {
+        padding-top: 5rem;
+    }
+
+    #navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .defaultHero {
+        padding-left: 1.5rem;
+    }
+
+    .hero-header {
+        font-size: 1.4rem;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+        padding-right: 1rem;
+    }
+
+    .hero-text-first-break {
+        display: none;
+
+    }
+
+    .hero-text-second-break {
+        display: none;
+    }
+
+    .how-to-use {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .how-to-use-text {
+        margin-top: 2rem;
+    }
+
+    .easyToUse-content, .easyToUse-headings {
+        margin-bottom: 2rem;
+    }
+
+    .users {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .user-header {
+        margin-top: 1.4rem
+    }
+
+}
+
+@media screen and (max-width: 375px) {
+    .hero-header-first-break {
+        display: none;
+        padding-right: 1rem;
+    }
+}
