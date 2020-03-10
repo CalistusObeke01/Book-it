@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import SEO from "../components/SEO";
-import Sidebar from "../components/Sidebar";
 import Button from "../components/Button";
-import {Link} from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -127,15 +125,12 @@ function BookVenue() {
   };
 
   return(
-    <div className="container-fluid">
+    <div className="container">
         <SEO title="Book!T | Book Venue" 
             name="Book Venue"
             content ={`Book a venue `} />
         <div className="row">
-            <div className="col-md-3">
-                <Sidebar />
-            </div>
-            <div className="col-md-7">
+            <div className="col-md-9">
                 <div className="booking">
                     <p>Book a Venue</p>
                 </div>
@@ -229,7 +224,7 @@ function BookVenue() {
                     </form>
                 </div>
             </div>
-            <div className="col-md-2 calendar-board">
+            <div className="col-md-3 calendar-board">
                 <p className="check-availiability">Check Availiability</p>
             </div>
         </div>
