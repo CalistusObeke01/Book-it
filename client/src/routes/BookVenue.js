@@ -15,20 +15,21 @@ function BookVenue() {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [bookings, setBookings] = useState("");
-  const [venue, setVenue] = useState("");
+  const [venue, setVenue] = useState();
   var id = sessionStorage.getItem("vId");
   var { user } = useContext(AuthContext);
 
-  const handleVenue = event => {
-    setVenue(event.target.value);
-  };
+  // const handleVenue = event => {
+  //   setVenue(event.target.value);
+  // };
 
-  const cancelBooking = event => {
-    event.preventDefault();
-    alert("cancel btn clicked!");
-  };
+  // const cancelBooking = event => {
+  //   event.preventDefault();
+  //   alert("cancel btn clicked!");
+  // };
 
   useEffect(() => {
+    console.log(id);
     fetch(`/api/venue/${id}`)
       .then(response => {
         if (response.status === 200) {
@@ -37,11 +38,12 @@ function BookVenue() {
       })
       .then(data => {
         if (data) {
+          console.log(data.body);
           setVenue(data.body);
         }
       })
       .catch(error => console.log(error));
-  });
+  }, []);
 
   useEffect(() => {
     fetch(`/api/booking/${id}`)
@@ -52,11 +54,13 @@ function BookVenue() {
       })
       .then(data => {
         if (data) {
+          console.log(data.body);
           setBookings(data.body);
+          console.log({ bookings });
         }
       })
       .catch(error => console.log(error));
-  });
+  }, []);
 
   const checkTwo = (date, stime, etime) => {
     bookings.map(booking => {
@@ -118,7 +122,7 @@ function BookVenue() {
       }
     }
   };
-
+  console.log({ venue });
   return (
     <div className="container-fluid">
       <SEO
@@ -132,18 +136,21 @@ function BookVenue() {
         </div>
         <div className="col-md-7">
           <div className="booking">
-            <p>Book a Venue</p>
+            <p>Book</p>
           </div>
           <div className="booking-board">
             <p>
-              <b>New Meeting</b>
+              <b>New</b>
             </p>
             <form
               onSubmit={event => {
                 event.preventDefault();
                 console.log(
-                   bookingDate ,  startTime ,  endTime , 
-                    meetingTitle
+                  bookingDate,
+                  startTime,
+                  endTime,
+                  meetingTitle,
+                  venue
                 );
               }}
               id="venue-booking"

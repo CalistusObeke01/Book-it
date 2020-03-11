@@ -12,8 +12,6 @@ module.exports = app => {
   app
     .route("/api/venue/upload/")
     .post(upload.single("file"), roomResource.upload);
-    
-  app.route("/api/venue/:company").get(roomResource.getMany);
 
   app
     .route("/api/venue/:venueId")
@@ -21,9 +19,11 @@ module.exports = app => {
     .put(roomResource.update)
     .delete(roomResource.delete);
 
-  app.route("/api/bookings/").post(bookingResource.create);
+  app.route("/api/spaces/:company").get(roomResource.getMany);
 
   app.route("/api/booking/:venueId").get(bookingResource.getMany);
+
+  app.route("/api/bookings/").post(bookingResource.create);
 
   app
     .route("/api/booking/:bookingId")

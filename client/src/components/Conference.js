@@ -8,7 +8,7 @@ const Conference = props => {
   const [rooms, setRooms] = useState("");
 
   useEffect(() => {
-    fetch(`/api/venue/${user.company}`)
+    fetch(`/api/spaces/${user.company}`)
       .then(response => {
         if (response.status === 200) {
           return response.json();

@@ -17,7 +17,6 @@ class AuthContextProvider extends Component {
       fetch(`/api/users/${uk}`)
         .then(response => {
           if (response.status === 200) {
-            console.log(response);
             return response.json();
           }
         })

@@ -68,8 +68,12 @@ module.exports.getMany = async (req, res) => {
 };
 
 module.exports.getOne = (req, res) => {
+  console.log(req.params.venueId);
   Room.findById(req.params.venueId)
-    .then(room => res.json({ body: room }))
+    .then(room => {
+      console.log(room);
+      res.json({ body: room });
+    })
     .catch(err =>
       res.status(404).json({ error: err, message: "Cannot find venue " })
     );
@@ -77,8 +81,7 @@ module.exports.getOne = (req, res) => {
 
 module.exports.update = (req, res) => {
   const room = req.body;
-
-  Todo.findByIdAndUpdate({ _id: req.params.venueId }, room, { new: true })
+  Room.findByIdAndUpdate({ _id: req.params.venueId }, room, { new: true })
     .then(spot =>
       res.json({ body: spot, message: "venue updated successfully" })
     )
@@ -88,8 +91,8 @@ module.exports.update = (req, res) => {
 };
 
 module.exports.delete = (req, res) => {
-  Todo.findOneAndDelete({ _id: req.params.venueId })
-    .then(todos => res.json({ message: "venue has been deleted" }))
+  Room.findOneAndDelete({ _id: req.params.venueId })
+    .then(room => res.json({ message: "venue has been deleted" }))
     .catch(err =>
       res.status(400).json({ error: err, message: "cannot delete spot" })
     );
