@@ -9,7 +9,7 @@ import {SecretRoute} from "./routes/SecretRoute";
 import "./App.css";
 
 const Home = lazy(() => import("./routes/Home"));
-const Conference = lazy(() => import("./components/Conference"));
+const Conference = lazy(() => import("./routes/Conference"));
 const BookVenue = lazy(() => import("./routes/BookVenue"));
 const Admin = lazy(() => import("./routes/Admin"));
 const PageNotFound = lazy(() => import("./routes/PageNotFound"));
@@ -22,7 +22,7 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Switch>
             <Route exact path="/" component={Home} />
-            <PrivateRoute path="/Conference" component={Conference} />
+            <PrivateRoute path="/conference" component={Conference} />
             <SecretRoute path="/administration" component={Admin} />
             <PrivateRoute path="/book-venue" component={BookVenue} />
             <Route path="*" component={PageNotFound} />
