@@ -68,10 +68,8 @@ module.exports.getMany = async (req, res) => {
 };
 
 module.exports.getOne = (req, res) => {
-  console.log(req.params.venueId);
   Room.findById(req.params.venueId)
     .then(room => {
-      console.log(room);
       res.json({ body: room });
     })
     .catch(err =>
