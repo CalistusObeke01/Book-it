@@ -5,9 +5,9 @@ import Room4 from "../images/Room4.png";
 import Room5 from "../images/Room5.png";
 import Room6 from "../images/Room6.png";
 
-const confrenceRooms = [
+const ConferenceRooms = [
   {
-    name: "Standard Confrence Room 1",
+    name: "Standard Conference Room 1",
     location: "Floor 1 E122, Lekki, Lagos",
     image: Room1,
     id: 1,
@@ -21,7 +21,7 @@ const confrenceRooms = [
   },
 
   {
-    name: "Standard Confrence Room 2",
+    name: "Standard Conference Room 2",
     location: "Floor 2 E235, Lekki, Lagos",
     image: Room2,
     id: 2,
@@ -35,7 +35,7 @@ const confrenceRooms = [
   },
 
   {
-    name: "Big Confrence Room",
+    name: "Big Conference Room",
     location: "Apapa Lagos",
     image: Room3,
     id: 3,
@@ -55,7 +55,7 @@ const confrenceRooms = [
     id: 4,
     features: [
       "200 seating spaces",
-      "Confrence Call Phones",
+      "Conference Call Phones",
       "Sound proof walls",
       "Hi-Tech Projectors",
       "Access to 24/7 Internet"
@@ -63,13 +63,13 @@ const confrenceRooms = [
   },
 
   {
-    name: "Standard Confrence Room 3",
+    name: "Standard Conference Room 3",
     location: "Floor 2 E122, Lekki, Lagos",
     image: Room5,
     id: 5,
     features: [
       "200 seating spaces",
-      "Confrence Call Phones",
+      "Conference Call Phones",
       "Sound proof walls",
       "Hi-Tech Projectors",
       "Access to 24/7 Internet"
@@ -77,7 +77,7 @@ const confrenceRooms = [
   },
 
   {
-    name: "Small Confrence Room",
+    name: "Small Conference Room",
     location: "Floor 2 E210, Lekki, Lagos",
     image: Room6,
     id: 6,
@@ -91,4 +91,4 @@ const confrenceRooms = [
   }
 ];
 
-export default confrenceRooms;
+export default ConferenceRooms;
