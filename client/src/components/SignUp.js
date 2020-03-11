@@ -3,13 +3,28 @@ import Button from "./Button";
 import { AuthContext } from "../components/AuthContext";
 import { Redirect } from "react-router-dom";
 
-// function SignUp()\
+// function SignUp()
+let validEmailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 class SignUp extends Component {
   static contextType = AuthContext;
-  state = {};
+  state = {
+    company: null,
+    name: null,
+    email: null,
+    password: null,
+    ComfirmPassword: null,
+    errors: {
+      company: '',
+      name: '',
+      email: '',
+      password: '',
+      ComfirmPassword: '',
+    }
+  };
 
   signUp = e => {
     e.preventDefault();
+
     if (this.state.ConfirmPassword === this.state.password) {
       try {
         var { company, name, email, password } = this.state;
@@ -90,10 +105,35 @@ class SignUp extends Component {
   };
 
   inputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    // this.setState({ [e.target.name]: e.target.value });
+    e.preventDefault();
+    const {name, value} = e.target
+    let errors = this.state.errors;
+
+    switch(name) {
+      case 'company':
+        errors.company = value.length < 5 ? 'Company Name must be at least 5 characters long.' : '';
+        break;
+      case 'name':
+        errors.name = value.length < 6 ? 'Full Name must be at least 6 characters long.' : '';
+        break;
+      case 'email':
+        errors.email = validEmailRegex.test(value) ? '' : 'Email is not valid' ;
+        break;
+      case 'password':
+        errors.password = value.length < 8  ? 'Password must be at least 8 characters long.' : '';
+        break
+        default:
+    }
+
+    this.setState({
+      errors, [name] : value}, () => {
+        console.log(errors)
+    })
   };
 
   render() {
+    let errors = this.state.errors;
     if (this.context.isAuthenticated === false) {
       return (
         <>
@@ -106,7 +146,7 @@ class SignUp extends Component {
                 Welcome to <span>Book!T</span>
               </p>
 
-              <form onSubmit={this.signUp}>
+              <form onSubmit={this.signUp} noValidate>
                 <div className="form-group">
                   <label htmlFor="InputCompany">Company Name</label>
                   <input
@@ -114,10 +154,13 @@ class SignUp extends Component {
                     type="text"
                     className="form-control"
                     id="InputCompany"
+                    // value={this.state.companyName}
                     onChange={this.inputChange}
-                    required
+                    noValidate
                   />
-                  <small>Capitalization sensitive</small>
+                  {errors.company.length > 0 && 
+                  <span className="error">{errors.company}</span>}
+                  {/* <small>Capitalization sensitive</small> */}
                 </div>
                 <div className="form-group">
                   <label htmlFor="InputFullname">Full Name</label>
@@ -126,9 +169,12 @@ class SignUp extends Component {
                     type="text"
                     className="form-control"
                     id="InputFullname"
+                    // value={this.state.fullName}
                     onChange={this.inputChange}
-                    required
+                    noValidate
                   />
+                  {errors.name.length > 0 && 
+                  <span className="error">{errors.name}</span>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="InputEmail">Email</label>
@@ -137,32 +183,38 @@ class SignUp extends Component {
                     className="form-control"
                     id="InputEmail"
                     name="email"
+                    // value={this.state.email}
                     onChange={this.inputChange}
-                    required
+                    noValidate
                   />
+                  {errors.email.length > 0 && 
+                  <span className="error">{errors.email}</span>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="signInPassword">Password</label>
                   <input
                     name="password"
                     type="password"
+                    // value={this.state.password}
                     className="form-control"
                     id="signUpPassword"
                     onChange={this.inputChange}
-                    required
+                    noValidate
                   />
+                  {errors.password.length > 0 && 
+                  <span className="error">{errors.password}</span>}
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="ConfirmPassword">Confirm Password</label>
                   <input
-                    value={this.state.ConfirmPassword}
+                    // value={this.state.ConfirmPassword}
                     name="ConfirmPassword"
                     type="password"
                     className="form-control"
                     id="ConfirmPassword"
                     onChange={this.inputChange}
-                    required
+                    noValidate
                   />
                 </div>
                 <div className="form-group form-check">
