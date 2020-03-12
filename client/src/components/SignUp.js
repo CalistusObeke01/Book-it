@@ -142,9 +142,6 @@ class SignUp extends Component {
       {
         errors,
         [name]: value
-      },
-      () => {
-        console.log(errors);
       }
     );
   };

@@ -18,15 +18,6 @@ function BookVenue() {
   var id = sessionStorage.getItem("vId");
   var { user } = useContext(AuthContext);
 
-  // const handleVenue = event => {
-  //   setVenue(event.target.value);
-  // };
-
-  // const cancelBooking = event => {
-  //   event.preventDefault();
-  //   alert("cancel btn clicked!");
-  // };
-
   useEffect(() => {
     const getBookings = async () => {
       fetch(`/api/venue/${id}`)
@@ -124,7 +115,7 @@ function BookVenue() {
       }
     }
   };
-  console.log(venue);
+  
   if (venue) {
     return (
       <div className="container-fluid">
