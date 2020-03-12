@@ -189,7 +189,7 @@ class AddForms extends Component {
                   className="form-control"
                   id="InputFullName"
                   onChange={this.inputChange}
-                  required
+                  noValidate
                 />
                 {errors.UserName.length > 0 && (
                   <span className="error">{errors.UserName}</span>
@@ -204,7 +204,7 @@ class AddForms extends Component {
                   id="InputEmail"
                   name="email"
                   onChange={this.inputChange}
-                  required
+                  noValidate
                 />
                 {errors.email.length > 0 && (
                   <span className="error">{errors.email}</span>
@@ -218,7 +218,7 @@ class AddForms extends Component {
                   id="Role"
                   name="admin"
                   onChange={this.inputChange}
-                  required
+                  noValidate
                 >
                   <option>Admin</option>
                   <option>Member</option>
@@ -234,7 +234,7 @@ class AddForms extends Component {
                   className="form-control"
                   id="signUpPassword"
                   onChange={this.inputChange}
-                  required
+                  noValidate
                 />
                 <small>password cannot be changed later</small>
                 {errors.password.length > 0 && (
@@ -250,7 +250,7 @@ class AddForms extends Component {
                   className="form-control"
                   id="ConfirmPassword"
                   onChange={this.inputChange}
-                  required
+                  noValidate
                 />
                 {errors.ConfirmPassword.length > 0 && (
                   <span className="error">{errors.ConfirmPassword}</span>

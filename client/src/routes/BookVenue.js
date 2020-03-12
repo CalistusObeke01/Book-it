@@ -28,23 +28,23 @@ function BookVenue() {
   // };
 
   useEffect(() => {
-                    const getBookings = async () => {
-                      fetch(`/api/venue/${id}`)
-                        .then(response => {
-                          if (response.status === 200) {
-                            return response.json();
-                          }
-                        })
-                        .then(data => {
-                          if (data) {
-                            setVenue(data.body);
-                          }
-                        })
-                        .catch(error => console.log(error));
-                    };
-                    getBookings();
-                    // eslint-disable-next-line
-                  }, []);
+    const getBookings = async () => {
+      fetch(`/api/venue/${id}`)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          }
+        })
+        .then(data => {
+          if (data) {
+            setVenue(data.body);
+          }
+        })
+        .catch(error => console.log(error));
+    };
+    getBookings();
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     fetch(`/api/booking/${id}`)
@@ -61,7 +61,7 @@ function BookVenue() {
         }
       })
       .catch(error => console.log(error));
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const checkTwo = (date, stime, etime) => {
@@ -134,13 +134,12 @@ function BookVenue() {
           content={`Book a venue `}
         />
         <div className="row">
-          <div className="col-md-2 calendar-board">
+          <div className="col-md-3 calendar-board">
             <p className="check-availiability text-center text-capitalize m-2">
               Venue Bookings
             </p>
-           
           </div>
-          <div className="col-md-8">
+          <div className="col-md-6">
             <div className="booking">
               <p>Book {venue.name}</p>
             </div>
@@ -236,12 +235,24 @@ function BookVenue() {
               </form>
             </div>
           </div>
-          <div className="col-md-2 calendar-board">
+          <div className="col-md-3 calendar-board">
             <p className="check-availiability text-center text-capitalize m-3">
               {venue.name}
             </p>
 
-            <img src={venue.image} className="venueImage" alt={venue.name}></img>
+            <img
+              src={venue.image}
+              className="venueImage"
+              alt={venue.name}
+            ></img>
+
+            <p className="text-center mt-4">{venue.location}</p>
+
+            <ul className="text-center mt-4">
+              {venue.features.map((feature, i) => (
+                <li key={i}>{feature}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
