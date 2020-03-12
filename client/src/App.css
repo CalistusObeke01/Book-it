@@ -701,10 +701,17 @@
   .calendar-board {
       background: var(--mainGray);
       margin-top: 4.5rem;
+      min-height: 90vh;
   }
   
   .check-availiability {
       padding-top: 2rem;
+  }
+
+  .venueImage {
+      width: 90%; 
+      border-radius: 5%; 
+      margin:10px 5%; 
   }
   
   

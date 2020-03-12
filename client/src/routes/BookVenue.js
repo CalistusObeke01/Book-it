@@ -28,20 +28,22 @@ function BookVenue() {
   // };
 
   useEffect(() => {
-    console.log(id);
-    fetch(`/api/venue/${id}`)
-      .then(response => {
-        if (response.status === 200) {
-          return response.json();
-        }
-      })
-      .then(data => {
-        if (data) {
-          setVenue(data.body);
-        }
-      })
-      .catch(error => console.log(error));
-  }, [id]);
+    const getBookings = async () => {
+      fetch(`/api/venue/${id}`)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          }
+        })
+        .then(data => {
+          if (data) {
+            setVenue(data.body);
+          }
+        })
+        .catch(error => console.log(error));
+    };
+    getBookings();
+  }, []);
 
   useEffect(() => {
     fetch(`/api/booking/${id}`)
@@ -58,7 +60,7 @@ function BookVenue() {
         }
       })
       .catch(error => console.log(error));
-  }, [id]);
+  }, []);
 
   const checkTwo = (date, stime, etime) => {
     bookings.map(booking => {
@@ -121,116 +123,130 @@ function BookVenue() {
     }
   };
   console.log(venue);
-  return (
-    <div className="container-fluid">
-      <SEO
-        title="Book!T | Book Venue"
-        name="Book Venue"
-        content={`Book a venue `}
-      />
-      <div className="row">
-        <div className="col-md-8">
-          <div className="booking">
-            <p>Book</p>
-          </div>
-          <div className="booking-board">
-            <p>
-              <b>New Booking</b>
+  if (venue) {
+    return (
+      <div className="container-fluid">
+        <SEO
+          title="Book!T | Book Venue"
+          name="Book Venue"
+          content={`Book a venue `}
+        />
+        <div className="row">
+          <div className="col-md-2 calendar-board">
+            <p className="check-availiability text-center text-capitalize m-2">
+              Venue Bookings
             </p>
-            <form
-              onSubmit={event => {
-                event.preventDefault();
-                console.log(
-                  bookingDate,
-                  startTime,
-                  endTime,
-                  meetingTitle,
-                  venue
-                );
-              }}
-              id="venue-booking"
-            >
-              <div className="form-group">
-                <label htmlFor="InputTitle">Event Title</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="InputTitle"
-                  value={meetingTitle}
-                  onChange={event => {
-                    setMeetingTitle(event.target.value);
-                  }}
-                />
-              </div>
-              <div className="form-row">
-                <div className="form-group col">
-                  <label htmlFor="InputDate">Date</label>
-                  <DatePicker
-                    selected={bookingDate}
-                    onChange={date => setBookingDate(date)}
-                    minDate={new Date()}
-                    maxDate={addMonths(new Date(), 6)}
-                    className="form-control"
-                  />
-                </div>
-                <div className="col-2"></div>
-                <div className="form-group col">
-                  <label htmlFor="InputStartTime">Start Time</label>
-                  <DatePicker
-                    // selected={bookingDate}
-                    onChange={date => setStartTime(date)}
-                    showTimeSelect
-                    showTimeSelectOnly
-                    timeIntervals={15}
-                    timeCaption="Time"
-                    dateFormat="h:mm aa"
-                    className="form-control"
-                  />
-                </div>
-                <div className="col-2"></div>
-                <div className="form-group col">
-                  <label htmlFor="InputEndTime">End Time</label>
-                  <DatePicker
-                    // selected={endTime}
-                    onChange={date => setEndTime(date)}
-                    showTimeSelect
-                    showTimeSelectOnly
-                    timeIntervals={15}
-                    timeCaption="Time"
-                    dateFormat="h:mm aa"
-                    className="form-control"
-                  />
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="InputDescription">Description</label>
-                <textarea
-                  className="form-control"
-                  id="InputDescription"
-                  value={description}
-                  onChange={event => {
-                    setDescription(event.target.value);
-                  }}
-                />
-              </div>
-              <div className="booking-btn-container">
-                <Link to="/conference">
-                  <Button defaultBtnColor="change-btn">Cancel</Button>
-                </Link>
-                <span style={{ marginLeft: "10px" }}></span>
-                <Button type="submit" defaultBtnColor="change-btn">
-                  Book space
-                </Button>
-              </div>
-            </form>
+           
           </div>
-        </div>
-        <div className="col-md-3 calendar-board">
-          <p className="check-availiability">Check Availiability</p>
+          <div className="col-md-8">
+            <div className="booking">
+              <p>Book {venue.name}</p>
+            </div>
+            <div className="booking-board">
+              <p>
+                <b>New Booking</b>
+              </p>
+              <form
+                onSubmit={event => {
+                  event.preventDefault();
+                  console.log(
+                    bookingDate,
+                    startTime,
+                    endTime,
+                    meetingTitle,
+                    venue
+                  );
+                }}
+                id="venue-booking"
+              >
+                <div className="form-group">
+                  <label htmlFor="InputTitle">Event Title</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="InputTitle"
+                    value={meetingTitle}
+                    onChange={event => {
+                      setMeetingTitle(event.target.value);
+                    }}
+                  />
+                </div>
+                <div className="form-row">
+                  <div className="form-group col">
+                    <label htmlFor="InputDate">Date</label>
+                    <DatePicker
+                      selected={bookingDate}
+                      onChange={date => setBookingDate(date)}
+                      minDate={new Date()}
+                      maxDate={addMonths(new Date(), 6)}
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="col-2"></div>
+                  <div className="form-group col">
+                    <label htmlFor="InputStartTime">Start Time</label>
+                    <DatePicker
+                      // selected={bookingDate}
+                      onChange={date => setStartTime(date)}
+                      showTimeSelect
+                      showTimeSelectOnly
+                      timeIntervals={15}
+                      timeCaption="Time"
+                      dateFormat="h:mm aa"
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="col-2"></div>
+                  <div className="form-group col">
+                    <label htmlFor="InputEndTime">End Time</label>
+                    <DatePicker
+                      // selected={endTime}
+                      onChange={date => setEndTime(date)}
+                      showTimeSelect
+                      showTimeSelectOnly
+                      timeIntervals={15}
+                      timeCaption="Time"
+                      dateFormat="h:mm aa"
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="InputDescription">Description</label>
+                  <textarea
+                    className="form-control"
+                    id="InputDescription"
+                    value={description}
+                    onChange={event => {
+                      setDescription(event.target.value);
+                    }}
+                  />
+                </div>
+                <div className="booking-btn-container">
+                  <Link to="/conference">
+                    <Button defaultBtnColor="change-btn">Cancel</Button>
+                  </Link>
+                  <span style={{ marginLeft: "10px" }}></span>
+                  <Button type="submit" defaultBtnColor="change-btn">
+                    Book space
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="col-md-2 calendar-board">
+            <p className="check-availiability text-center text-capitalize m-3">
+              {venue.name}
+            </p>
+
+            <img src={venue.image} className="venueImage" alt={venue.name}></img>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <h1>Please go back and select a venue</h1>;
+  }
 }
 
 export default BookVenue;
