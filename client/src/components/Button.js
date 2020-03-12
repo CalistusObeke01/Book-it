@@ -14,5 +14,4 @@ Button.defaultProps = {
     defaultBtnColor: "defaultBtn",
 }
 
-
 export default Button

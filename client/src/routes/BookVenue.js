@@ -28,22 +28,23 @@ function BookVenue() {
   // };
 
   useEffect(() => {
-    const getBookings = async () => {
-      fetch(`/api/venue/${id}`)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          }
-        })
-        .then(data => {
-          if (data) {
-            setVenue(data.body);
-          }
-        })
-        .catch(error => console.log(error));
-    };
-    getBookings();
-  }, []);
+                    const getBookings = async () => {
+                      fetch(`/api/venue/${id}`)
+                        .then(response => {
+                          if (response.status === 200) {
+                            return response.json();
+                          }
+                        })
+                        .then(data => {
+                          if (data) {
+                            setVenue(data.body);
+                          }
+                        })
+                        .catch(error => console.log(error));
+                    };
+                    getBookings();
+                    // eslint-disable-next-line
+                  }, []);
 
   useEffect(() => {
     fetch(`/api/booking/${id}`)
@@ -60,6 +61,7 @@ function BookVenue() {
         }
       })
       .catch(error => console.log(error));
+      // eslint-disable-next-line
   }, []);
 
   const checkTwo = (date, stime, etime) => {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "./Button";
 import { AuthContext } from "./AuthContext";
 
+// eslint-disable-next-line
 let validEmailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 class AddForms extends Component {
   static contextType = AuthContext;
@@ -11,10 +12,10 @@ class AddForms extends Component {
     password: null,
     ConfirmPassword: null,
     errors: {
-      UserName: "",
-      email: "",
-      password: "",
-      ConfirmPassword: ""
+      UserName: " ",
+      email: " ",
+      password: " ",
+      ConfirmPassword: " "
     }
   };
 
@@ -158,15 +159,17 @@ class AddForms extends Component {
       {
         errors,
         [name]: value
-      },
-      () => {
-        console.log(errors);
       }
-    );
+      );
   };
 
   render() {
     let errors = this.state.errors;
+    let valid =
+      errors.UserName.length <= 0 &&
+      errors.email.length <= 0 &&
+      errors.password.length <= 0 &&
+      errors.ConfirmPassword.length <= 0;
     return (
       <>
         <section className="signUp-section" id="sign-up">
@@ -253,7 +256,10 @@ class AddForms extends Component {
                   <span className="error">{errors.ConfirmPassword}</span>
                 )}
               </div>
-              <Button type="submit">Add</Button>
+              <button type="submit" className="defaultBtn" disabled={!valid}>
+                Add
+              </button>
+              {/* <Button type="submit">Add</Button> */}
             </form>
           </div>
 

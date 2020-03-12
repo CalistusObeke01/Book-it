@@ -3,7 +3,7 @@ import Button from "./Button";
 import { AuthContext } from "../components/AuthContext";
 import { Redirect } from "react-router-dom";
 
-// function SignUp()
+// eslint-disable-next-line
 let validEmailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 class SignUp extends Component {
   static contextType = AuthContext;
@@ -13,12 +13,13 @@ class SignUp extends Component {
     email: null,
     password: null,
     ConfirmPassword: null,
+    valid: false,
     errors: {
-      company: "",
-      name: "",
-      email: "",
-      password: "",
-      ConfirmPassword: ""
+      company: " ",
+      name: " ",
+      email: " ",
+      password: " ",
+      ConfirmPassword: " "
     }
   };
 
@@ -150,6 +151,7 @@ class SignUp extends Component {
 
   render() {
     let errors = this.state.errors;
+    let valid = errors.company.length <= 0 && errors.name.length <= 0 && errors.email.length <= 0 && errors.password.length <= 0 && errors.ConfirmPassword.length <= 0;
     if (this.context.isAuthenticated === false) {
       return (
         <>
@@ -245,6 +247,7 @@ class SignUp extends Component {
                     type="checkbox"
                     className="form-check-input"
                     id="check"
+                    checked
                   />
                   <label className="form-check-label" htmlFor="check" required>
                     I have read and agreed to all{" "}
@@ -257,9 +260,10 @@ class SignUp extends Component {
                     </span>
                   </label>
                 </div>
-                <Button disabled={true} type="submit" >
+                <button type="submit" className="defaultBtn" disabled={!valid}>Create Account</button>
+                {/* <Button disabled={true} type="submit" >
                   Create Account
-                </Button>
+                </Button> */}
               </form>
             </div>
             <div className="col-md-2 form-split"></div>

@@ -609,6 +609,15 @@
       background: var(--btnHover);
   }
 
+  button:disabled {
+      background: rgb(140, 173, 250);
+  }
+
+   button:disabled:hover {
+      background: rgb(140, 173, 250);
+      cursor: default;
+  }
+
   .bookNow {
       background: transparent;
       color: var(--mainWhite);

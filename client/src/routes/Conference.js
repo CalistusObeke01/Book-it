@@ -7,19 +7,20 @@ const Conference = props => {
   const [rooms, setRooms] = useState("");
 
   useEffect(() => {
-    fetch(`/api/spaces/${user.company}`)
-      .then(response => {
-        if (response.status === 200) {
-          return response.json();
-        }
-      })
-      .then(data => {
-        if (data) {
-          setRooms(data.body);
-        }
-      })
-      .catch(error => console.log(error));
-  }, []);
+                    fetch(`/api/spaces/${user.company}`)
+                      .then(response => {
+                        if (response.status === 200) {
+                          return response.json();
+                        }
+                      })
+                      .then(data => {
+                        if (data) {
+                          setRooms(data.body);
+                        }
+                      })
+                      .catch(error => console.log(error));
+                    // eslint-disable-next-line
+                  }, []);
 
   if (rooms.length < 1) {
     return (
