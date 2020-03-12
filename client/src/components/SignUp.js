@@ -12,13 +12,13 @@ class SignUp extends Component {
     name: null,
     email: null,
     password: null,
-    ComfirmPassword: null,
+    ConfirmPassword: null,
     errors: {
-      company: '',
-      name: '',
-      email: '',
-      password: '',
-      ComfirmPassword: '',
+      company: "",
+      name: "",
+      email: "",
+      password: "",
+      ConfirmPassword: ""
     }
   };
 
@@ -61,9 +61,7 @@ class SignUp extends Component {
         alert("Signup failed. Please try again");
         console.log(error);
       }
-    } else {
-      alert("Confirm Password does not match Password");
-    }
+    } 
   };
 
   login = e => {
@@ -107,29 +105,47 @@ class SignUp extends Component {
   inputChange = e => {
     // this.setState({ [e.target.name]: e.target.value });
     e.preventDefault();
-    const {name, value} = e.target
+    const { name, value } = e.target;
     let errors = this.state.errors;
 
-    switch(name) {
-      case 'company':
-        errors.company = value.length < 5 ? 'Company Name must be at least 5 characters long.' : '';
+    switch (name) {
+      case "company":
+        errors.company =
+          value.length < 5
+            ? "Company Name must be at least 5 characters long."
+            : "";
         break;
-      case 'name':
-        errors.name = value.length < 6 ? 'Full Name must be at least 6 characters long.' : '';
+      case "name":
+        errors.name =
+          value.length < 6
+            ? "Full Name must be at least 6 characters long."
+            : "";
         break;
-      case 'email':
-        errors.email = validEmailRegex.test(value) ? '' : 'Email is not valid' ;
+      case "email":
+        errors.email = validEmailRegex.test(value) ? "" : "Email is not valid";
         break;
-      case 'password':
-        errors.password = value.length < 8  ? 'Password must be at least 8 characters long.' : '';
-        break
-        default:
+      case "password":
+        errors.password =
+          value.length < 8
+            ? "Password must be at least 8 characters long."
+            : "";
+        break;
+      case "ConfirmPassword":
+        errors.ConfirmPassword =
+          value !== this.state.password ? "Passwords do not match." : "";
+        break;
+      default:
     }
 
-    this.setState({
-      errors, [name] : value}, () => {
-        console.log(errors)
-    })
+    this.setState(
+      {
+        errors,
+        [name]: value
+      },
+      () => {
+        console.log(errors);
+      }
+    );
   };
 
   render() {
@@ -158,8 +174,9 @@ class SignUp extends Component {
                     onChange={this.inputChange}
                     noValidate
                   />
-                  {errors.company.length > 0 && 
-                  <span className="error">{errors.company}</span>}
+                  {errors.company.length > 0 && (
+                    <span className="error">{errors.company}</span>
+                  )}
                   {/* <small>Capitalization sensitive</small> */}
                 </div>
                 <div className="form-group">
@@ -173,8 +190,9 @@ class SignUp extends Component {
                     onChange={this.inputChange}
                     noValidate
                   />
-                  {errors.name.length > 0 && 
-                  <span className="error">{errors.name}</span>}
+                  {errors.name.length > 0 && (
+                    <span className="error">{errors.name}</span>
+                  )}
                 </div>
                 <div className="form-group">
                   <label htmlFor="InputEmail">Email</label>
@@ -187,8 +205,9 @@ class SignUp extends Component {
                     onChange={this.inputChange}
                     noValidate
                   />
-                  {errors.email.length > 0 && 
-                  <span className="error">{errors.email}</span>}
+                  {errors.email.length > 0 && (
+                    <span className="error">{errors.email}</span>
+                  )}
                 </div>
                 <div className="form-group">
                   <label htmlFor="signInPassword">Password</label>
@@ -201,8 +220,9 @@ class SignUp extends Component {
                     onChange={this.inputChange}
                     noValidate
                   />
-                  {errors.password.length > 0 && 
-                  <span className="error">{errors.password}</span>}
+                  {errors.password.length > 0 && (
+                    <span className="error">{errors.password}</span>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -216,6 +236,9 @@ class SignUp extends Component {
                     onChange={this.inputChange}
                     noValidate
                   />
+                  {errors.ConfirmPassword.length > 0 && (
+                    <span className="error">{errors.ConfirmPassword}</span>
+                  )}
                 </div>
                 <div className="form-group form-check">
                   <input
@@ -234,7 +257,9 @@ class SignUp extends Component {
                     </span>
                   </label>
                 </div>
-                <Button type="submit">Create Account</Button>
+                <Button disabled={true} type="submit" >
+                  Create Account
+                </Button>
               </form>
             </div>
             <div className="col-md-2 form-split"></div>

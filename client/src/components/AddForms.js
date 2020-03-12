@@ -2,10 +2,21 @@ import React, { Component } from "react";
 import Button from "./Button";
 import { AuthContext } from "./AuthContext";
 
-// function SignUp()\
+let validEmailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 class AddForms extends Component {
   static contextType = AuthContext;
-  state = {};
+  state = {
+    UserName: null,
+    email: null,
+    password: null,
+    ConfirmPassword: null,
+    errors: {
+      UserName: "",
+      email: "",
+      password: "",
+      ConfirmPassword: ""
+    }
+  };
 
   getRole = ad => {
     if (ad === "Admin") {
@@ -115,10 +126,47 @@ class AddForms extends Component {
   };
 
   inputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    // this.setState({ [e.target.name]: e.target.value });
+    e.preventDefault();
+    const { name, value } = e.target;
+    let errors = this.state.errors;
+
+    switch (name) {
+      case "UserName":
+        errors.UserName =
+          value.length < 6
+            ? "Full Name must be at least 6 characters long."
+            : "";
+        break;
+      case "email":
+        errors.email = validEmailRegex.test(value) ? "" : "Email is not valid";
+        break;
+      case "password":
+        errors.password =
+          value.length < 8
+            ? "Password must be at least 8 characters long."
+            : "";
+        break;
+      case "ConfirmPassword":
+        errors.ConfirmPassword =
+          value !== this.state.password ? "Passwords do not match." : "";
+        break;
+      default:
+    }
+
+    this.setState(
+      {
+        errors,
+        [name]: value
+      },
+      () => {
+        console.log(errors);
+      }
+    );
   };
 
   render() {
+    let errors = this.state.errors;
     return (
       <>
         <section className="signUp-section" id="sign-up">
@@ -132,7 +180,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="InputFullName">Full Name</label>
                 <input
-                  value={this.state.UserName}
+                  // value={this.state.UserName}
                   name="UserName"
                   type="text"
                   className="form-control"
@@ -140,11 +188,14 @@ class AddForms extends Component {
                   onChange={this.inputChange}
                   required
                 />
+                {errors.UserName.length > 0 && (
+                  <span className="error">{errors.UserName}</span>
+                )}
               </div>
               <div className="form-group">
                 <label htmlFor="InputEmail">Email</label>
                 <input
-                  value={this.state.email}
+                  // value={this.state.email}
                   type="email"
                   className="form-control"
                   id="InputEmail"
@@ -152,11 +203,14 @@ class AddForms extends Component {
                   onChange={this.inputChange}
                   required
                 />
+                {errors.email.length > 0 && (
+                  <span className="error">{errors.email}</span>
+                )}
               </div>
               <div className="form-group">
                 <label htmlFor="Role">Role</label>
                 <select
-                  value={this.state.admin}
+                  // value={this.state.admin}
                   className="form-control"
                   id="Role"
                   name="admin"
@@ -171,7 +225,7 @@ class AddForms extends Component {
               <div className="form-group">
                 <label htmlFor="signInPassword">Password</label>
                 <input
-                  value={this.state.password}
+                  // value={this.state.password}
                   name="password"
                   type="password"
                   className="form-control"
@@ -180,11 +234,14 @@ class AddForms extends Component {
                   required
                 />
                 <small>password cannot be changed later</small>
+                {errors.password.length > 0 && (
+                  <span className="error">{errors.password}</span>
+                )}
               </div>
               <div className="form-group">
                 <label htmlFor="ConfirmPassword">Confirm Password</label>
                 <input
-                  value={this.state.ConfirmPassword}
+                  // value={this.state.ConfirmPassword}
                   name="ConfirmPassword"
                   type="password"
                   className="form-control"
@@ -192,6 +249,9 @@ class AddForms extends Component {
                   onChange={this.inputChange}
                   required
                 />
+                {errors.ConfirmPassword.length > 0 && (
+                  <span className="error">{errors.ConfirmPassword}</span>
+                )}
               </div>
               <Button type="submit">Add</Button>
             </form>
