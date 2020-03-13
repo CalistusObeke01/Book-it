@@ -194,6 +194,7 @@
       background: url() center/cover no-repeat;
   } */
   .how-to-use {
+      width: 100%;
       padding: 4rem 4rem;
       display: flex;
       justify-content: space-between;
