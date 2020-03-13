@@ -115,7 +115,7 @@ function BookVenue() {
       }
     }
   };
-  
+
   if (venue) {
     return (
       <div className="container-fluid">
@@ -126,9 +126,23 @@ function BookVenue() {
         />
         <div className="row">
           <div className="col-md-3 calendar-board">
-            <p className="check-availiability text-center text-capitalize m-2">
-              Venue Bookings
+            <p className="check-availiability text-center text-capitalize m-3">
+              {venue.name}
             </p>
+
+            <img
+              src={venue.image}
+              className="venueImage"
+              alt={venue.name}
+            ></img>
+
+            <p className="text-center mt-4">{venue.location}</p>
+
+            <ul className="text-center mt-4 mb-4">
+              {venue.features.map((feature, i) => (
+                <li key={i}>{feature}</li>
+              ))}
+            </ul>
           </div>
           <div className="col-md-6">
             <div className="booking">
@@ -174,7 +188,7 @@ function BookVenue() {
                       className="form-control"
                     />
                   </div>
-                  <div className="col-2"></div>
+                  <div className="col-1"></div>
                   <div className="form-group col">
                     <label htmlFor="InputStartTime">Start Time</label>
                     <DatePicker
@@ -188,7 +202,7 @@ function BookVenue() {
                       className="form-control"
                     />
                   </div>
-                  <div className="col-2"></div>
+                  <div className="col-1"></div>
                   <div className="form-group col">
                     <label htmlFor="InputEndTime">End Time</label>
                     <DatePicker
@@ -227,23 +241,9 @@ function BookVenue() {
             </div>
           </div>
           <div className="col-md-3 calendar-board">
-            <p className="check-availiability text-center text-capitalize m-3">
-              {venue.name}
+            <p className="check-availiability text-center text-capitalize m-2">
+              Venue Bookings
             </p>
-
-            <img
-              src={venue.image}
-              className="venueImage"
-              alt={venue.name}
-            ></img>
-
-            <p className="text-center mt-4">{venue.location}</p>
-
-            <ul className="text-center mt-4">
-              {venue.features.map((feature, i) => (
-                <li key={i}>{feature}</li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>

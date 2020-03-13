@@ -70,11 +70,11 @@ class SignUp extends Component {
     const setUser = this.context.setUser;
     const toggleAuth = this.context.toggleAuth;
     try {
-      const { email, password } = this.state;
+      const { signInEmail, signInPassword } = this.state;
       fetch("/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email:signInEmail, password:signInPassword })
       })
         .then(async response => {
           if (response.status === 200) {
@@ -209,7 +209,7 @@ class SignUp extends Component {
                   )}
                 </div>
                 <div className="form-group">
-                  <label htmlFor="signInPassword">Password</label>
+                  <label htmlFor="signUpPassword">Password</label>
                   <input
                     name="password"
                     type="password"
@@ -245,6 +245,7 @@ class SignUp extends Component {
                     className="form-check-input"
                     id="check"
                     checked
+                    required
                   />
                   <label className="form-check-label" htmlFor="check" required>
                     I have read and agreed to all{" "}
@@ -257,7 +258,9 @@ class SignUp extends Component {
                     </span>
                   </label>
                 </div>
-                <button type="submit" className="defaultBtn" disabled={!valid}>Create Account</button>
+                <button type="submit" className="defaultBtn" disabled={!valid}>
+                  Create Account
+                </button>
                 {/* <Button disabled={true} type="submit" >
                   Create Account
                 </Button> */}
@@ -275,7 +278,7 @@ class SignUp extends Component {
                 <div className="form-group">
                   <label htmlFor="signInEmail">Email</label>
                   <input
-                    name="email"
+                    name="signInEmail"
                     type="email"
                     className="form-control"
                     id="signInEmail"
@@ -286,7 +289,7 @@ class SignUp extends Component {
                 <div className="form-group">
                   <label htmlFor="signInPassword">Password</label>
                   <input
-                    name="password"
+                    name="signInPassword"
                     type="password"
                     className="form-control"
                     id="signInPassword"
