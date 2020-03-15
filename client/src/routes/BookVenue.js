@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { addMonths } from "date-fns";
+import { addMonths, setHours, setMinutes } from "date-fns";
 
 function BookVenue() {
   const [meetingTitle, setMeetingTitle] = useState("");
@@ -69,6 +69,23 @@ function BookVenue() {
         return false;
       }
     });
+  };
+
+  const toShort = date => {
+    return new Date(date)
+      .toLocaleDateString("en-US", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+  };
+
+  const toHours = date => {
+    return new Date(date).getHours();
+  };
+
+  const toMinutes = date => {
+    return new Date(date).getMinutes();
   };
 
   const createBooking = event => {
@@ -156,11 +173,11 @@ function BookVenue() {
                 onSubmit={event => {
                   event.preventDefault();
                   console.log(
-                    bookingDate,
-                    startTime,
-                    endTime,
-                    meetingTitle,
-                    venue
+                    { bookingDate },
+                    { startTime },
+                    { endTime },
+                    toHours(startTime),
+                    toMinutes(startTime)
                   );
                 }}
                 id="venue-booking"
@@ -184,7 +201,7 @@ function BookVenue() {
                       selected={bookingDate}
                       onChange={date => setBookingDate(date)}
                       minDate={new Date()}
-                      maxDate={addMonths(new Date(), 6)}
+                      maxDate={addMonths(new Date(), 2)}
                       className="form-control"
                     />
                   </div>
@@ -192,10 +209,13 @@ function BookVenue() {
                   <div className="form-group col">
                     <label htmlFor="InputStartTime">Start Time</label>
                     <DatePicker
-                      // selected={bookingDate}
+                      selected={startTime}
                       onChange={date => setStartTime(date)}
                       showTimeSelect
                       showTimeSelectOnly
+                      openToDate={new Date(toShort(bookingDate))}
+                      minTime={setHours(setMinutes(new Date(), 0), 7)}
+                      maxTime={setHours(setMinutes(new Date(), 0), 21)}
                       timeIntervals={15}
                       timeCaption="Time"
                       dateFormat="h:mm aa"
@@ -206,10 +226,13 @@ function BookVenue() {
                   <div className="form-group col">
                     <label htmlFor="InputEndTime">End Time</label>
                     <DatePicker
-                      // selected={endTime}
+                      selected={endTime}
                       onChange={date => setEndTime(date)}
                       showTimeSelect
                       showTimeSelectOnly
+                      openToDate={new Date(toShort(bookingDate))}
+                      minTime={setHours(setMinutes(new Date(), toMinutes(startTime)), toHours(startTime))}
+                      maxTime={setHours(setMinutes(new Date(), 0), 21)}
                       timeIntervals={15}
                       timeCaption="Time"
                       dateFormat="h:mm aa"
