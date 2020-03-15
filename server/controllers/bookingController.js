@@ -7,8 +7,8 @@ module.exports.create = async (req, res) => {
 
   booked = await Booking.find({
     venueId: req.body.venueId,
-    date: req.body.date,
-    startTime: req.body.startTime
+    startTime: req.body.startTime,
+    endTime: req.body.endTime
   });
   if (booked == null || undefined || booked.length < 1) {
     newBooking

@@ -9,10 +9,11 @@ import { addMonths, setHours, setMinutes } from "date-fns";
 
 function BookVenue() {
   const [meetingTitle, setMeetingTitle] = useState("");
-  const [bookingDate, setBookingDate] = useState("");
+  const [bookingDate, setBookingDate] = useState(new Date());
   const [description, setDescription] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [disabled, setDisabled] = useState(true);
   const [bookings, setBookings] = useState("");
   const [venue, setVenue] = useState();
   var id = sessionStorage.getItem("vId");
@@ -173,7 +174,7 @@ function BookVenue() {
                 onSubmit={event => {
                   event.preventDefault();
                   console.log(
-                    { bookingDate },
+                    bookingDate.toTimeString(),
                     { startTime },
                     { endTime },
                     toHours(startTime),
@@ -188,6 +189,7 @@ function BookVenue() {
                     type="text"
                     className="form-control"
                     id="InputTitle"
+                    required
                     value={meetingTitle}
                     onChange={event => {
                       setMeetingTitle(event.target.value);
@@ -203,6 +205,7 @@ function BookVenue() {
                       minDate={new Date()}
                       maxDate={addMonths(new Date(), 2)}
                       className="form-control"
+                      required
                     />
                   </div>
                   <div className="col-1"></div>
@@ -210,7 +213,8 @@ function BookVenue() {
                     <label htmlFor="InputStartTime">Start Time</label>
                     <DatePicker
                       selected={startTime}
-                      onChange={date => setStartTime(date)}
+                      onChange={date => {setStartTime(date);
+                      setDisabled(false)}}
                       showTimeSelect
                       showTimeSelectOnly
                       openToDate={new Date(toShort(bookingDate))}
@@ -220,6 +224,7 @@ function BookVenue() {
                       timeCaption="Time"
                       dateFormat="h:mm aa"
                       className="form-control"
+                      required
                     />
                   </div>
                   <div className="col-1"></div>
@@ -231,12 +236,14 @@ function BookVenue() {
                       showTimeSelect
                       showTimeSelectOnly
                       openToDate={new Date(toShort(bookingDate))}
-                      minTime={setHours(setMinutes(new Date(), toMinutes(startTime)), toHours(startTime))}
+                      minTime={setHours(setMinutes(new Date(), (toMinutes(startTime)+15)), toHours(startTime))}
                       maxTime={setHours(setMinutes(new Date(), 0), 21)}
                       timeIntervals={15}
+                      disabled = {disabled}
                       timeCaption="Time"
                       dateFormat="h:mm aa"
                       className="form-control"
+                      required
                     />
                   </div>
                 </div>

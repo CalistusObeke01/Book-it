@@ -9,18 +9,13 @@ const bookingSchema = new Schema({
     required: true
   },
 
-  date: {
-    type: String,
-    required: true
-  },
-
   startTime: {
-    type: Number,
+    type: Date,
     required: true
   },
 
   endTime: {
-    type: Number,
+    type: Date,
     required: true
   },
 
@@ -35,6 +30,11 @@ const bookingSchema = new Schema({
   },
 
   userId: {
+    type: String,
+    required: true
+  },
+
+  userName: {
     type: String,
     required: true
   }
