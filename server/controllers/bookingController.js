@@ -1,28 +1,76 @@
 let Booking = require("../models/booking.model");
+var isDate = require("date-fns/isDate");
+var isValid = require("date-fns/isValid");
+var isFuture = require("date-fns/isFuture");
+var differenceInMilliseconds = require("date-fns/differenceInMilliseconds");
+var areIntervalsOverlapping = require("date-fns/areIntervalsOverlapping");
 
 module.exports.create = async (req, res) => {
-  const booking = req.body;
+  const checkTimeOverlap = (bookingArray, startTime, endTime) => {
+    for (i = 0; i < bookingArray.length; i++) {
+      if (
+        areIntervalsOverlapping(
+          { start: bookingArray[i].startTime, end: bookingArray[i].endTime },
+          { start: startTime, end: endTime }
+        )
+      ) {
+        return true;
+      }
+    }
+    return false;
+  };
 
+  const addBooking = booking => {
+    booking
+      .save()
+      .then(() =>{      
+        console.log(booking);
+        res.status(200).send({ message: "Venue booked successfully" });
+      })
+      .catch(err =>
+        res.status(400).send({
+          error: err,
+          message: "Booking failed, please try again"
+        })
+      );
+  };
+
+  const booking = req.body;
   newBooking = new Booking(booking);
 
-  booked = await Booking.find({
-    venueId: req.body.venueId,
-    startTime: req.body.startTime,
-    endTime: req.body.endTime
-  });
-  if (booked == null || undefined || booked.length < 1) {
-    newBooking
-      .save()
-      .then(() =>
-        res.status(200).send({ message: "Venue booked successfully" })
-      )
-      .catch(err =>
-        res
-          .status(400)
-          .send({ error: err, message: "Booking failed, please try again" })
-      );
+  if (isDate(req.body.startTime) && isDate(req.body.endTime)) {
+    console.log("date");
+    if (isValid(req.body.startTime) && isValid(req.body.endTime)) {
+      console.log("valid");
+      if (isFuture(req.body.startTime) && isFuture(req.body.endTime)) {
+        console.log("isFuture");
+        if (
+          differenceInMilliseconds(req.body.endTime, req.body.startTime) > 0
+        ) {
+          console.log("end after start");
+          booked = await Booking.find({ venueId: req.body.venueId });
+          if (booked !== null || (undefined && booked.length >= 1)) {
+            if (
+              checkTimeOverlap(booked, req.body.startTime, req.body.endTime)
+            ) {
+              res.status(403).send("selected time not available");
+            } else {
+              addBooking(newBooking);
+            }
+          } else {
+            addBooking(newBooking);
+          }
+        } else {
+          res.status(401).send("EndTime earlier than StartTime");
+        }
+      } else {
+        res.status(401).send("Bad time format");
+      }
+    } else {
+      res.status(401).send("Bad time format");
+    }
   } else {
-    res.status(403).send("selected time not available");
+    res.status(401).send("Bad time format");
   }
 };
 
@@ -63,7 +111,7 @@ module.exports.update = (req, res) => {
 
 module.exports.delete = (req, res) => {
   Todo.findOneAndDelete({ _id: req.params.bookingId })
-    .then(todos => res.json({ message: "booking has been deleted" }))
+    .then(booking => res.json({ message: "booking has been deleted" }))
     .catch(err =>
       res.status(400).json({ error: err, message: "cannot delete booking" })
     );
