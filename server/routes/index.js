@@ -23,7 +23,7 @@ module.exports = app => {
 
   app.route("/api/booking/:venueId").get(bookingResource.getMany);
 
-  app.route("/api/bookings/").post(bookingResource.create);
+  app.route("/api/booking/").post(bookingResource.create);
 
   app
     .route("/api/booking/:bookingId")

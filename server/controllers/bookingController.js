@@ -23,35 +23,49 @@ module.exports.create = async (req, res) => {
   const addBooking = booking => {
     booking
       .save()
-      .then(() =>{      
-        console.log(booking);
+      .then(() => {
         res.status(200).send({ message: "Venue booked successfully" });
       })
-      .catch(err =>
+      .catch(err => {
+        console.log(err);
         res.status(400).send({
           error: err,
           message: "Booking failed, please try again"
-        })
-      );
+        });
+      });
   };
 
   const booking = req.body;
   newBooking = new Booking(booking);
 
-  if (isDate(req.body.startTime) && isDate(req.body.endTime)) {
-    console.log("date");
-    if (isValid(req.body.startTime) && isValid(req.body.endTime)) {
-      console.log("valid");
-      if (isFuture(req.body.startTime) && isFuture(req.body.endTime)) {
-        console.log("isFuture");
+  if (
+    isDate(new Date(req.body.startTime)) &&
+    isDate(new Date(req.body.endTime))
+  ) {
+    if (
+      isValid(new Date(req.body.startTime)) &&
+      isValid(new Date(req.body.endTime))
+    ) {
+      if (
+        isFuture(new Date(req.body.startTime)) &&
+        isFuture(new Date(req.body.endTime))
+      ) {
         if (
-          differenceInMilliseconds(req.body.endTime, req.body.startTime) > 0
+          differenceInMilliseconds(
+            new Date(req.body.endTime),
+            new Date(req.body.startTime)
+          ) > 0
         ) {
-          console.log("end after start");
           booked = await Booking.find({ venueId: req.body.venueId });
-          if (booked !== null || (undefined && booked.length >= 1)) {
+          console.log(booked);
+          if (booked.length >= 1) {
+            console.log({ booked });
             if (
-              checkTimeOverlap(booked, req.body.startTime, req.body.endTime)
+              checkTimeOverlap(
+                booked,
+                new Date(req.body.startTime),
+                new Date(req.body.endTime)
+              )
             ) {
               res.status(403).send("selected time not available");
             } else {

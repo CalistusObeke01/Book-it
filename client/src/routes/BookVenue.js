@@ -10,7 +10,8 @@ import {
   setHours,
   setMinutes,
   isFuture,
-  differenceInMilliseconds
+  differenceInMilliseconds,
+  formatDistanceStrict
 } from "date-fns";
 
 function BookVenue() {
@@ -56,9 +57,7 @@ function BookVenue() {
         })
         .then(data => {
           if (data) {
-            console.log(data.body);
             setBookings(data.body);
-            console.log({ bookings });
           }
         })
         .catch(error => console.log(error));
@@ -94,12 +93,34 @@ function BookVenue() {
     }
   };
 
+  const displayBookings = bookings => {
+    if (bookings === undefined || bookings.length < 1) {
+      return (
+        <h5 className="text-center m-3">No previous booking for this Venue</h5>
+      );
+    } else {
+      return bookings.map(booking => {
+        return (
+            <div className="text-start m-3">
+              <span className="text-capitalize">Title: {booking.title}</span><br></br>
+              <span className="text-capitalize">Description: {booking.description}</span><br></br>
+              <span>Booked by: {booking.userName}</span><br></br>
+              <span>Date: {new Date(booking.startTime).toDateString()}</span><br></br>
+              <span>Start: {new Date(booking.startTime).toLocaleTimeString()}</span><br></br>
+              <span>End: {new Date(booking.endTime).toLocaleTimeString()}</span><br></br>
+              <span>Duration: {formatDistanceStrict(new Date(booking.startTime),new Date(booking.endTime))}</span>
+            </div>
+        );
+      });
+    }
+  };
+
   const createBooking = e => {
     e.preventDefault();
     if (isFuture(new Date(startTime))) {
       if (differenceInMilliseconds(endTime, startTime) > 0) {
         try {
-          fetch("/api/bookings/", {
+          fetch("/api/booking/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -108,13 +129,15 @@ function BookVenue() {
               endTime,
               venueId: id,
               description,
-              userId: user._id
+              userId: user.id,
+              userName: user.name
             })
           })
             .then(response => {
               console.log(response);
               if (response.status === 200) {
                 alert("Venue booked successfully");
+                window.location.reload(false);
               } else if (response.status === 403) {
                 console.log(response);
                 alert(
@@ -122,6 +145,8 @@ function BookVenue() {
                 );
               } else if (response.status === 401) {
                 alert("Invalid Date/Time selected");
+              } else if (response.status === 400) {
+                alert("Booking not successfull. Please try again");
               } else {
                 alert("network error, please try again in a bit");
               }
@@ -140,7 +165,7 @@ function BookVenue() {
       alert("Please select a date and time in the future .");
     }
   };
-
+  console.log(bookings);
   if (venue) {
     return (
       <div className="container-fluid">
@@ -281,6 +306,8 @@ function BookVenue() {
             <p className="check-availiability text-center text-capitalize m-2">
               Venue Bookings
             </p>
+            <h4 className="text-center m-2">{venue.name}</h4>
+            {displayBookings(bookings)}
           </div>
         </div>
       </div>
