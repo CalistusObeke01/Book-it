@@ -200,7 +200,7 @@ function BookVenue() {
             </div>
             <div className="booking-board">
               <p>
-                <b>New Booking...</b>
+                <b>New Booking</b>
               </p>
               <form onSubmit={createBooking} id="venue-booking">
                 <div className="form-group">
