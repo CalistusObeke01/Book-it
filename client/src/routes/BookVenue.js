@@ -99,9 +99,9 @@ function BookVenue() {
         <h5 className="text-center m-3">No previous booking for this Venue</h5>
       );
     } else {
-      return bookings.map(booking => {
+      return bookings.map((booking, i) => {
         return (
-            <div className="text-start m-3">
+            <div className="text-start m-3" key={i}>
               <span className="text-capitalize">Title: {booking.title}</span><br></br>
               <span className="text-capitalize">Description: {booking.description}</span><br></br>
               <span>Booked by: {booking.userName}</span><br></br>
@@ -165,7 +165,7 @@ function BookVenue() {
       alert("Please select a date and time in the future .");
     }
   };
-  console.log(bookings);
+
   if (venue) {
     return (
       <div className="container-fluid">

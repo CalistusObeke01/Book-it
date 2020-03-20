@@ -13,13 +13,15 @@ class SignUp extends Component {
     email: null,
     password: null,
     ConfirmPassword: null,
+    checked: false,
     valid: false,
     errors: {
       company: " ",
       name: " ",
       email: " ",
       password: " ",
-      ConfirmPassword: " "
+      ConfirmPassword: " ",
+      checkbox: " "
     }
   };
 
@@ -62,7 +64,7 @@ class SignUp extends Component {
         alert("Signup failed. Please try again");
         console.log(error);
       }
-    } 
+    }
   };
 
   login = e => {
@@ -74,7 +76,7 @@ class SignUp extends Component {
       fetch("/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email:signInEmail, password:signInPassword })
+        body: JSON.stringify({ email: signInEmail, password: signInPassword })
       })
         .then(async response => {
           if (response.status === 200) {
@@ -138,17 +140,26 @@ class SignUp extends Component {
       default:
     }
 
-    this.setState(
-      {
-        errors,
-        [name]: value
-      }
-    );
+    this.setState({
+      errors,
+      [name]: value
+    });
+
+    console.log({
+      errors,
+      [name]: value
+    });
   };
 
   render() {
     let errors = this.state.errors;
-    let valid = errors.company.length <= 0 && errors.name.length <= 0 && errors.email.length <= 0 && errors.password.length <= 0 && errors.ConfirmPassword.length <= 0;
+    let valid =
+      errors.company.length <= 0 &&
+      errors.name.length <= 0 &&
+      errors.email.length <= 0 &&
+      errors.password.length <= 0 &&
+      errors.ConfirmPassword.length <= 0 &&
+      this.state.checked === true;
     if (this.context.isAuthenticated === false) {
       return (
         <>
@@ -244,7 +255,11 @@ class SignUp extends Component {
                     type="checkbox"
                     className="form-check-input"
                     id="check"
-                    checked
+                    name="checkbox"
+                    defaultChecked={this.state.checked}
+                    onChange={() =>
+                      this.setState({ checked: !this.state.checked })
+                    }
                     required
                   />
                   <label className="form-check-label" htmlFor="check" required>
